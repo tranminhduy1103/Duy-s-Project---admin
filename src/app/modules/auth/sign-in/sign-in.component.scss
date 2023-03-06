@@ -1,0 +1,18 @@
+.app-logo {
+    margin: auto;
+}
+
+.facebook-login_button {
+    padding: 6px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+
+    &:hover {
+        border-color: #d2e3fc;
+        outline: none;
+    }
+
+    .mat-icon {
+        vertical-align: middle;
+    }
+}

@@ -1,0 +1,47 @@
+<div class="xl:col-span-2 flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height">
+    <h3 class="flex items-center font-bold mb-4"><mat-icon class="icon-size-4 cursor-pointer mr-2 filter-title"
+            matSuffix [svgIcon]="'heroicons_solid:search'"></mat-icon> Filter:</h3>
+
+    <p class="border-line"></p>
+
+    <div class="filter-content">
+        <h3 class="font-bold mb-2">Rate:</h3>
+
+        <div class="flex justify-center">
+            <p class="rating-star">
+                <mat-icon *ngFor="let star of starList; let i = index" (click)="onSelectStar(star)"
+                    [ngClass]="{'star-active' : filterItem.rate !== null && filterItem.rate >= star}">star</mat-icon>
+            </p>
+        </div>
+    </div>
+
+    <div class="filter-content">
+        <h3 class="font-bold mb-2">City:</h3>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-select [(ngModel)]="filterItem.city" (ngModelChange)="filterDataOutput()">
+                <mat-option value="">
+                    Select City
+                </mat-option>
+                <mat-option *ngFor="let item of listCity" [value]="item.id">
+                    {{ item.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="filter-content">
+        <h3 class="font-bold mb-2">Location:</h3>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-select [(ngModel)]="filterItem.location" (ngModelChange)="filterDataOutput()">
+                <mat-option value="">
+                    Select Location
+                </mat-option>
+                <mat-option *ngFor="let item of listCity" [value]="item.id">
+                    {{ item.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

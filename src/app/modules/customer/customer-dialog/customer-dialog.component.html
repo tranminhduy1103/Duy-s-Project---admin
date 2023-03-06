@@ -1,0 +1,76 @@
+<div class="relative flex flex-col w-full h-full">
+
+    <div class="text-xl leading-6 font-medium mb-4 text-center">
+        {{!data ? 'Create New Customer' : 'Edit Customer'}}
+    </div>
+    <div class="absolute top-0 right-0">
+ 
+            <mat-icon
+            matDialogClose
+                class="text-secondary cursor-pointer"
+                [svgIcon]="'heroicons_outline:x'"></mat-icon>
+    </div>
+
+    <!-- Content -->
+    <form
+        [formGroup]="form"
+        class="grid grid-cols-2 gap-2">
+    
+        <mat-form-field class="fuse-mat-no-subscript w-full">
+            <mat-label>Email</mat-label>
+            <input
+                matInput
+                [formControlName]="'email'">
+        </mat-form-field>
+        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>Name</mat-label>
+            <input
+                matInput
+                [formControlName]="'name'">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Account Type</mat-label>
+            <mat-select placeholder="Account Type" formControlName="accountType" multiple>
+                <mat-option *ngFor="let item of ['Premium', 'Trial', 'Preview', 'Free']" [value]="item">{{item}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="isTrial" appearance="fill">
+            <mat-label>Trial Time</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="trialStart" placeholder="Start date">
+                <input matEndDate formControlName="trialEnd" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <mat-form-field  *ngIf="isPreview" appearance="fill">
+            <mat-label>Preview Time</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="previewStart" placeholder="Start date">
+                <input matEndDate formControlName="previewEnd" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+    </form>
+    {{form.value | json}}
+    <div class="flex  justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10">
+
+        <button
+            mat-button
+            mat-stroked-button
+            mat-dialog-close
+           >
+            Cancel
+        </button>
+
+        <button
+            mat-flat-button
+            color="primary"
+            (click)="handleCreateUpdate()">
+            {{!data ? 'Create' : 'Update'}}
+        </button>
+
+    </div>
+
+</div>

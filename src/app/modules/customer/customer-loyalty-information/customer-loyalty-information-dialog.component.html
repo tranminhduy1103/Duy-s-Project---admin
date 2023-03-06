@@ -1,0 +1,38 @@
+<div class="relative flex flex-col w-full h-full">
+    <div class="text-xl leading-6 font-medium mb-4 text-center">
+        Customer's Loyalty Information
+    </div>
+    <div class="absolute top-0 right-0">
+        <mat-icon
+            matDialogClose
+            class="text-secondary cursor-pointer"
+            [svgIcon]="'heroicons_outline:x'"
+        ></mat-icon>
+    </div>
+    <div class="mt-4 text-g leading-6 font-bold mb-1">Customer's Information</div>
+    <div class="grid user-info gap-x-4 gap-y-1 px-1">
+        <div class="font-medium">Phone Number</div>
+        <div class="font-medium tracking-tight text-secondary">{{data.phoneNumber}}</div>
+        <div class="font-medium">Name</div>
+        <div class="font-medium tracking-tight text-secondary">{{data.name}}</div>
+        <div class="font-medium">Joined Date</div>
+        <div class="font-medium tracking-tight text-secondary">{{data.joinedDate | date:'short'}}</div>
+        <div class="font-medium">Loyalty Points</div>
+        <div class="font-medium tracking-tight text-secondary">{{data.lifetimePoints}}</div>
+        <div class="font-medium">Loyalty Customer</div>
+        <div class="font-medium tracking-tight text-secondary">{{data.customer}}</div>
+        <div class="font-medium">Status</div>
+        <div class="font-medium tracking-tight text-secondary" [ngClass]="{'text-green-600': data.isActive, 'text-red-600': !data.isActive}">{{data.isActive ? 'Active' : 'Deactive'}}</div>
+    </div>
+    <div class="mt-4 text-g leading-6 font-bold  mb-1">Points & Customer History</div>
+
+    <div class="overflow-x-auto">
+        <app-table [dataSource]="dataSource" [columns]="columns" (page)="handlePageChange($event)">
+        </app-table>
+    </div>
+    <div
+        class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10"
+    >
+        <button mat-button mat-stroked-button mat-dialog-close>Close</button>
+    </div>
+</div>

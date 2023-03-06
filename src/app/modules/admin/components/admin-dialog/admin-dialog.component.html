@@ -1,0 +1,41 @@
+<div class="relative flex flex-col w-full h-full">
+    <div class="text-xl leading-6 font-medium mb-4 text-center">Create Admin User</div>
+    <div class="absolute top-0 right-0">
+        <mat-icon
+            matDialogClose
+            class="text-secondary cursor-pointer"
+            [svgIcon]="'heroicons_outline:x'"
+        ></mat-icon>
+    </div>
+
+    <form [formGroup]="form" class="grid grid-cols-2 gap-6">
+        <mat-form-field class="fuse-mat-no-subscript w-full">
+            <mat-label>Email</mat-label>
+            <input matInput [formControlName]="'email'" />
+            <mat-error *ngIf="form.get('email').hasError('required')">
+                Email address is required
+            </mat-error>
+            <mat-error *ngIf="form.get('email').hasError('email')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>Name</mat-label>
+            <input matInput [formControlName]="'name'" />
+            <mat-error *ngIf="form.get('name').hasError('required')">
+                Name address is required
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+    <div
+        class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10"
+    >
+        <button mat-stroked-button matDialogClose="true">Cancel</button>
+
+        <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
+            Create
+        </button>
+    </div>
+</div>

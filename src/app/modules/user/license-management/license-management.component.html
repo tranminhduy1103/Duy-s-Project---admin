@@ -1,0 +1,55 @@
+<div class="w-full">
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-2 px-2 md:py-4">
+        <div class="flex items-center justify-between w-full mb-4">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    API Key Management
+                </h2>
+                <!-- <div class="font-medium tracking-tight text-secondary">
+                    Keep track of your financial status
+                </div> -->
+            </div>
+            <div *authRight="'Administrator'" class="flex items-center ml-6">
+                <!-- <div class="flex">
+                    <mat-form-field
+                        class="flex-auto search-input">
+                        <input matInput placeholder="Search" (keyup.enter)="filter()" [(ngModel)]="filterValue">
+                        <mat-icon
+                            class="icon-size-5 cursor-pointer"
+                            matSuffix
+                            (click)="filter()"
+                            [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                    </mat-form-field>
+                </div> -->
+                <button
+                    class="hidden sm:inline-flex ml-3"
+                    mat-flat-button
+                    (click)="handleCreate()"
+                    [color]="'primary'"
+                >
+                    <span class="ml-2">Create License Key</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div
+            class="xl:col-span-2 flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2"
+        >
+            <div class="overflow-x-auto">
+                <app-table [dataSource]="dataSource" [rowHeight]="60" class="no-border" [columns]="columns" (page)="handlePageChange($event)">
+                </app-table>
+            </div>
+        </div>
+        <ng-template #actionTemplate let-row="row" let-value="value">
+            <div class="flex items-center">
+                <mat-icon (click)="handleDelete(row)" [svgIcon]="'heroicons_solid:trash'" matTooltip="Delete" class="icon-size-6 ml-2 cursor-pointer" color="warn"></mat-icon>
+            </div>
+        </ng-template>
+        <ng-template #nameTemplate let-row="row" let-value="value">
+            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                <input matInput (input)="updatedInput$.next({description: $event.target.value, id: row.id})" [value]="value"/>
+            </mat-form-field>
+        </ng-template>
+    </div>
+</div>
