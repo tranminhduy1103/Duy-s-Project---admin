@@ -146,7 +146,7 @@ export class AuthService {
             .post(`${environment.endpoint}/authenticate/login`, credentials)
             .pipe(
                 switchMap((response: any) => {
-                    const { user, token } = response;
+                    const { user, token } = response.data;
                     // Store the access token in the local storage
                     this._authenticated = true;
                     this._userService.user = user;

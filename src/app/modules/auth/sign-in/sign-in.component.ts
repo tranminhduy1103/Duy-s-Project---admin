@@ -54,10 +54,6 @@ export class AuthSignInComponent implements OnInit {
     ngOnInit(): void {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            email: [
-                'admin@localhost.com',
-                [],
-            ],
             userName: ['Administrator', [Validators.required]],
             password: ['Abc@123456', Validators.required],
             // rememberMe: ['']
@@ -105,7 +101,7 @@ export class AuthSignInComponent implements OnInit {
         this._authService
             .signIn(this.signInForm.value)
             .subscribe((response) => {
-                if (response.isValid) {
+                if (response.success) {
                     this.redirectAfterSuccess();
                 } else {
                     this.signInForm.enable();

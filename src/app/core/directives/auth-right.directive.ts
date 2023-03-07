@@ -19,7 +19,6 @@ export class AuthRightDirective {
     @Input()
     set authRight(input: string) {
         const roles = input.split(',');
-        debugger
         const shouldRender = roles.some((role: string) =>
             this.authService.user.roles.includes(role)
         );
