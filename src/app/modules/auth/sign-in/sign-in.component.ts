@@ -60,10 +60,15 @@ export class AuthSignInComponent implements OnInit {
         });
 
         this._socialAuthService.signOut().then(() => { });
-        this._socialAuthService.authState.subscribe((user) => {
+        this._socialAuthService.authState.subscribe(
+            (user) => {
             this._authService
                 .signInViaAccount(user)
-                .subscribe(() => this.redirectAfterSuccess());
+                .subscribe((response) => {
+                    if (response) {
+                        this.redirectAfterSuccess()
+                    }
+                });
         });
 
         this._activatedRoute.queryParams.subscribe((params) => {

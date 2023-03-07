@@ -262,19 +262,21 @@ export class AuthService {
 
         return this._httpClient
             .post(
-                `${environment.endpoint}/authenticate/login-account`,
+                `${environment.endpoint}/authenticate/googleLogin`,
                 credentials
             )
             .pipe(
                 switchMap((response: any) => {
-                    const { user, token } = response;
-                    // Store the access token in the local storage
-                    this._authenticated = true;
-                    this._userService.user = user;
-                    this.user = user;
-                    localStorage.setItem('user', JSON.stringify(user));
-                    this.accessToken = token;
-                    return of(response);
+                    if (response && response.data) {
+                        const { user, token } = response.data;
+                        // Store the access token in the local storage
+                        this._authenticated = true;
+                        this._userService.user = user;
+                        this.user = user;
+                        localStorage.setItem('user', JSON.stringify(user));
+                        this.accessToken = token;
+                        return of(response);
+                    } return of(response);
                 })
             );
     }
