@@ -101,7 +101,7 @@ export class AuthSignInComponent implements OnInit {
         this._authService
             .signIn(this.signInForm.value)
             .subscribe((response) => {
-                if (response.success) {
+                if (response && response.success) {
                     this.redirectAfterSuccess();
                 } else {
                     this.signInForm.enable();
