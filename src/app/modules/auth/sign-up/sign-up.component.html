@@ -72,6 +72,15 @@
                     </mat-error>
                 </mat-form-field>
 
+                <!-- Phone field -->
+                <mat-form-field class="w-full">
+                    <mat-label>User name:</mat-label>
+                    <input id="name" matInput [formControlName]="'name'">
+                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        User name is required
+                    </mat-error>
+                </mat-form-field>
+
                 <!-- Password field -->
                 <mat-form-field class="w-full">
                     <mat-label>Password</mat-label>

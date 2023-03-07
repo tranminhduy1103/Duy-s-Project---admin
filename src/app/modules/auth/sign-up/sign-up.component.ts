@@ -47,6 +47,7 @@ export class AuthSignUpComponent implements OnInit {
     ngOnInit(): void {
         // Create the form
         this.signUpForm = this._formBuilder.group({
+            name: ['', Validators.required],
             firstName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             lastName: ['', Validators.required],
@@ -85,24 +86,44 @@ export class AuthSignUpComponent implements OnInit {
         this._authService.signUp({ ...this.signUpForm.value, refId: this.refUser })
             .subscribe(
                 (response) => {
+                    if (response.success) {
+                        this.alert = {
+                            type: 'success',
+                            message: 'Register successfully.'
+                        };
+
+                        // Show the alert
+                        this.showAlert = true;
+
+                        this.signUpForm.reset();
+                    } else {
+                        this.alert = {
+                            type: 'error',
+                            message: 'Something went wrong, please try again.'
+                        };
+
+                        // Show the alert
+                        this.showAlert = true;
+                    }
 
                     // Navigate to the confirmation required page
-                    this._router.navigateByUrl('/confirmation-required');
-                },
-                (response) => {
-                    // Set the alert
-                    this.alert = {
-                        type: 'error',
-                        message: 'Something went wrong, please try again.'
-                    };
-
-                    // Show the alert
-                    this.showAlert = true;
-                },
-                () => {
-                    // Re-enable the form
+                    // this._router.navigateByUrl('/confirmation-required');
                     this.signUpForm.enable();
-                }
+                },
+                // (response) => {
+                //     // Set the alert
+                //     this.alert = {
+                //         type: 'error',
+                //         message: 'Something went wrong, please try again.'
+                //     };
+
+                //     // Show the alert
+                //     this.showAlert = true;
+                // },
+                // () => {
+                //     // Re-enable the form
+                //     this.signUpForm.enable();
+                // }
             );
     }
 }
