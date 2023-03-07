@@ -39,7 +39,7 @@ export class UserComponent implements OnInit, OnDestroy {
         private _router: Router,
         private _userService: UserService,
         private _authService: AuthService
-    ) {}
+    ) { }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks

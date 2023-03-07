@@ -1,35 +1,15 @@
-<ngx-datatable
-    [rows]="dataSource.items"
-    class="material"
-    [columns]="columns"
-    [rowHeight]="rowHeight"
-    [columnMode]="'force'"
-    [reorderable]="false"
-    [footerHeight]="50"
-    [headerHeight]="40"
-    [externalPaging]="true"
-    [count]="dataSource.totalItems"
-    [offset]="dataSource.page -1"
-    [limit]="dataSource.pageSize"
-    [externalSorting]="true"
->
-<ngx-datatable-footer>
-        <ng-template 
-        ngx-datatable-footer-template
-        let-rowCount="rowCount"
-        let-pageSize="pageSize"
-        let-selectedCount="selectedCount"
-        let-curPage="curPage"
-        let-offset="offset"
-        let-isVisible="isVisible">
+<ngx-datatable [rows]="dataSource.items" class="material" [columns]="columns" [rowHeight]="rowHeight"
+    [columnMode]="'force'" [reorderable]="false" [footerHeight]="50" [headerHeight]="40" [externalPaging]="true"
+    [count]="dataSource.totalItems" [offset]="dataSource.page -1" [limit]="dataSource.pageSize"
+    [externalSorting]="true">
+    <ngx-datatable-footer>
+        <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+            let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-isVisible="isVisible">
             <div class="page-count">
-            {{dataSource.totalPages}} pages
+                {{dataSource.totalPages}} pages
             </div>
-            <mat-paginator [length]="dataSource.totalItems"
-                        [pageSize]="dataSource.pageSize"
-                        [pageSizeOptions]="pageSizeOptions"
-                        (page)="handlePageChange($event)"
-                        aria-label="Select page">
+            <mat-paginator [length]="dataSource.totalItems" [pageSize]="dataSource.pageSize"
+                [pageSizeOptions]="pageSizeOptions" (page)="handlePageChange($event)" aria-label="Select page">
             </mat-paginator>
         </ng-template>
     </ngx-datatable-footer>

@@ -35,10 +35,10 @@ export class CampaignManagementComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.getAlls();
-        this.campaignsQuery.select().subscribe((m: any) => {
-            this.dataSource = m;
-        });
+        // this.getAlls();
+        // this.campaignsQuery.select().subscribe((m: any) => {
+        //     this.dataSource = m;
+        // });
         this.columns = [
             { prop: 'title' },
             { prop: 'description' },

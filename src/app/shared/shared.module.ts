@@ -9,6 +9,7 @@ import { TableComponent } from './components/table/table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
+import { GridViewComponent } from './components/grid-view/grid-view.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
         ReactiveFormsModule,
         MaterialModule,
         TableComponent,
-        LeftMenuComponent
+        LeftMenuComponent,
+        GridViewComponent
     ],
     providers: [
         ConfirmationService
@@ -34,7 +36,8 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
       AccessResourceDirective,
       ConfirmationDialogComponent,
       TableComponent,
-      LeftMenuComponent
+      LeftMenuComponent,
+      GridViewComponent
     ]
 })
 export class SharedModule
