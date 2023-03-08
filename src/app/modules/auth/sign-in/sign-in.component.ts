@@ -60,16 +60,28 @@ export class AuthSignInComponent implements OnInit {
         });
 
         this._socialAuthService.signOut().then(() => { });
+
         this._socialAuthService.authState.subscribe(
             (user) => {
-            this._authService
-                .signInViaAccount(user)
-                .subscribe((response) => {
-                    if (response) {
-                        this.redirectAfterSuccess()
-                    }
-                });
-        });
+                this._authService
+                    .signInViaFacebookAccount(user)
+                    .subscribe((response) => {
+                        if (response) {
+                            this.redirectAfterSuccess();
+                        }
+                    });
+            });
+
+        this._socialAuthService.authState.subscribe(
+            (user) => {
+                this._authService
+                    .signInViaAccount(user)
+                    .subscribe((response) => {
+                        if (response) {
+                            this.redirectAfterSuccess();
+                        }
+                    });
+            });
 
         this._activatedRoute.queryParams.subscribe((params) => {
             const isVerified = params['verified'] === 'true';

@@ -57,8 +57,8 @@ export class AuthService {
         return this._httpClient.post(
             `${environment.endpoint}/authenticate/forgot-password`,
             {
-                "email": email,
-                "callBackUrl": `${location.protocol}//${location.host}/reset-password`
+                'email': email,
+                'callBackUrl': `${location.protocol}//${location.host}/reset-password`
             }
         );
     }
@@ -116,9 +116,9 @@ export class AuthService {
         return this._httpClient
             .post(`${environment.endpoint}/authenticate/reset-password`,
                 {
-                    "userId": userId,
-                    "code": resetCode,
-                    "newPassword": newPassword
+                    'userId': userId,
+                    'code': resetCode,
+                    'newPassword': newPassword
                 })
             .pipe(
                 tap((response) => {
@@ -243,7 +243,7 @@ export class AuthService {
     }
 
     /**
-     * Sign in via facebook
+     * Sign in via google
      *
      * @param credentials
      */
@@ -263,6 +263,45 @@ export class AuthService {
         return this._httpClient
             .post(
                 `${environment.endpoint}/authenticate/googleLogin`,
+                credentials
+            )
+            .pipe(
+                switchMap((response: any) => {
+                    if (response && response.data) {
+                        const { user, token } = response.data;
+                        // Store the access token in the local storage
+                        this._authenticated = true;
+                        this._userService.user = user;
+                        this.user = user;
+                        localStorage.setItem('user', JSON.stringify(user));
+                        this.accessToken = token;
+                        return of(response);
+                    } return of(response);
+                })
+            );
+    }
+
+    /**
+     * Sign in via facebook
+     *
+     * @param credentials
+     */
+    signInViaFacebookAccount(credentials: {
+        email: string;
+        id: string;
+        authToken: string;
+        firstName: string;
+        lastName: string;
+        name: string;
+    }): Observable<any> {
+        // Throw error, if the user is already logged in
+        if (this._authenticated) {
+            return throwError('User is already logged in.');
+        }
+
+        return this._httpClient
+            .post(
+                `${environment.endpoint}/authenticate/facebook-login`,
                 credentials
             )
             .pipe(

@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { MatDrawer } from '@angular/material/sidenav';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { UserService } from 'app/core/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'settings',
@@ -23,7 +25,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
      */
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
-        private _fuseMediaWatcherService: FuseMediaWatcherService
+        private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private _userService: UserService,
+        private router: Router
     ) {
     }
 
@@ -40,33 +44,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
             {
                 id: 'account',
                 icon: 'heroicons_outline:user-circle',
-                title: 'Account',
-                description: 'Manage your public profile and private information'
+                title: 'Profile',
+                description: 'Profile manage',
+                isShow: true
             },
             {
-                id: 'security',
-                icon: 'heroicons_outline:lock-closed',
-                title: 'Security',
-                description: 'Manage your password and 2-step verification preferences'
-            },
-            {
-                id: 'plan-billing',
+                id: 'banking',
                 icon: 'heroicons_outline:credit-card',
-                title: 'Plan & Billing',
-                description: 'Manage your subscription plan, payment method and billing information'
+                title: 'Bank account',
+                description: 'Bank account manage',
+                isShow: false
             },
-            {
-                id: 'notifications',
-                icon: 'heroicons_outline:bell',
-                title: 'Notifications',
-                description: 'Manage when you\'ll be notified on which channels'
-            },
-            {
-                id: 'team',
-                icon: 'heroicons_outline:user-group',
-                title: 'Team',
-                description: 'Manage your existing team and change roles/permissions'
-            }
         ];
 
         // Subscribe to media changes
@@ -114,6 +102,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
         if (this.drawerMode === 'over') {
             this.drawer.close();
         }
+    }
+
+    isAdvertiser(): boolean {
+        if (this._userService.user.roles.includes('Advertiser')) {
+            return true;
+        }
+        return false;
     }
 
     /**

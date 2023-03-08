@@ -55,9 +55,16 @@
                 </mat-form-field>
 
                 <!-- Phone field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Phone</mat-label>
-                    <input id="phone" matInput [formControlName]="'phone'">
+                <mat-form-field class="w-full phone-number-account">
+                    <mat-label>Phone number</mat-label>
+                    <ngx-mat-intl-tel-input id="phone" [preferredCountries]="['vn', 'us']" [enablePlaceholder]="true"
+                        [enableSearch]="true" name="phone" describedBy="phoneInput" formControlName="phone">
+                    </ngx-mat-intl-tel-input>
+                    <!-- <mat-error>Số điện thoại không đúng</mat-error> -->
+                    <mat-error *ngIf="signUpForm.get('phone').errors?.minlength">
+                        Minimum required is 10 number</mat-error>
+                    <mat-error *ngIf="signUpForm.get('phone').errors?.maxlength">
+                        Maximum required is 11 number</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="w-full">

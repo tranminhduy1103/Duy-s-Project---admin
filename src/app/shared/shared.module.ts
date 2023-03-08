@@ -10,6 +10,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { GridViewComponent } from './components/grid-view/grid-view.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
     imports: [
@@ -18,6 +20,8 @@ import { GridViewComponent } from './components/grid-view/grid-view.component';
         ReactiveFormsModule,
         NgxDatatableModule,
         MatPaginatorModule,
+        ImageCropperModule,
+        MatGridListModule,
         MaterialModule,
     ],
     exports: [
@@ -27,19 +31,20 @@ import { GridViewComponent } from './components/grid-view/grid-view.component';
         MaterialModule,
         TableComponent,
         LeftMenuComponent,
-        GridViewComponent
+        GridViewComponent,
+        // ImageCropperComponent,
+        MatGridListModule,
     ],
     providers: [
         ConfirmationService
     ],
     declarations: [
-      AccessResourceDirective,
-      ConfirmationDialogComponent,
-      TableComponent,
-      LeftMenuComponent,
-      GridViewComponent
+        AccessResourceDirective,
+        ConfirmationDialogComponent,
+        TableComponent,
+        LeftMenuComponent,
+        GridViewComponent
     ]
 })
-export class SharedModule
-{
+export class SharedModule {
 }

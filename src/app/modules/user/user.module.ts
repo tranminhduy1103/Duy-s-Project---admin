@@ -12,6 +12,12 @@ import { LicenseManagementComponent } from './license-management/license-managem
 import { CoreModule } from 'app/core/core.module';
 import { AuthRightDirective } from 'app/core/directives/auth-right.directive';
 import { MyRefUserManagementComponent } from './my-ref-user/my-ref-user-management.component';
+import { FuseAlertModule } from '@fuse/components/alert';
+import { FuseScrollbarModule } from '@fuse/directives/scrollbar';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { SettingsComponent } from './settings/settings.component';
+import { SettingsAccountComponent } from './settings/account/account.component';
+import { SettingsBankingComponent } from './settings/banking/banking.component';
 
 const routes: Route[] = [
     {
@@ -38,6 +44,10 @@ const routes: Route[] = [
                 path: 'my-ref-user',
                 component: MyRefUserManagementComponent,
             },
+            {
+                path: 'settings',
+                component: SettingsComponent,
+            },
         ],
     },
 ];
@@ -49,14 +59,20 @@ const routes: Route[] = [
         ChangePasswordComponent,
         LicenseManagementComponent,
         AuthRightDirective,
-        MyRefUserManagementComponent
+        MyRefUserManagementComponent,
+        SettingsComponent,
+        SettingsAccountComponent,
+        SettingsBankingComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
         SharedModule,
         MaterialModule,
+        FuseAlertModule,
+        FuseScrollbarModule,
+        NgxMatIntlTelInputComponent,
     ],
     providers: [DatePipe],
 })
-export class UserModule {}
+export class UserModule { }

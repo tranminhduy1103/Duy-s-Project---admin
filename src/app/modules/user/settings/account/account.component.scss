@@ -1,0 +1,25 @@
+.country-selector {
+  opacity: 1 !important;
+  bottom: 8px !important;
+}
+
+.phone-number-account {
+  // input:not(.country-search) {
+  //   bottom: 3px;
+  //   left: 80px;
+  // }
+
+  .country-list-button {
+    font-size: 0.8rem !important;
+  }
+
+  .mat-menu-content:not(:empty) {
+    max-height: 250px;
+  }
+}
+
+::ng-deep {
+  .phone-number-profile .ngx-mat-tel-input-container .mat-input-element.mat-form-field-autofill-control {
+    margin-left: 70px;
+}
+}

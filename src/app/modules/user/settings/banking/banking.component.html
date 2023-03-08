@@ -1,0 +1,121 @@
+<div class="w-full max-w-3xl">
+
+    <!-- Form -->
+    <form [formGroup]="planBillingForm">
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Thông tin thanh toán</div>
+            <div class="text-secondary">Thông tin thanh toán của bạn.</div>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-6 w-full mt-8">
+            <!-- Plan -->
+            <mat-radio-group class="invisible absolute w-0 h-0 pointer-events-none" [formControlName]="'paymentMethod'"
+                #planRadioGroup="matRadioGroup">
+                <ng-container *ngFor="let paymentMethod of paymentMethods; trackBy: trackByFn">
+                    <mat-radio-button [value]="paymentMethod.value"></mat-radio-button>
+                </ng-container>
+            </mat-radio-group>
+            <ng-container *ngFor="let paymentMethod of paymentMethods; trackBy: trackByFn">
+                <div class="relative flex flex-col items-start justify-start p-6 rounded-md shadow cursor-pointer bg-card"
+                    [ngClass]="{'ring ring-inset ring-primary': planRadioGroup.value === paymentMethod.value}"
+                    (click)="paymentMethodChange(planRadioGroup, paymentMethod.value)">
+                    <ng-container *ngIf="planRadioGroup.value === paymentMethod.value">
+                        <mat-icon class="absolute top-0 right-0 mt-2 mr-2 icon-size-7 text-primary"
+                            [svgIcon]="'heroicons_solid:check-circle'"></mat-icon>
+                    </ng-container>
+                    <div class="flex-auto">
+                        <img src="{{paymentMethod.logo}}" alt="{{paymentMethod.alt}}">
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-12 mb-10 border-t"></div>
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Thông tin thanh toán chi tiết</div>
+            <div class="text-secondary">Cập nhật thông tin thanh toán chi tiết. </div>
+        </div>
+
+        <!-- MOMO Form -->
+        <div *ngIf="planRadioGroup.value === 'Momo'" class="grid grid-cols-4 gap-6 w-full mt-8">
+            <!-- Phone -->
+            <div class="col-span-4">
+                <mat-form-field class="w-full">
+                    <mat-label>Số điện thoại</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                    <input [formControlName]="'phone'" matInput>           
+                            <mat-error>
+                        Số điện thoại bắt buộc nhập
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- ATM Form -->
+        <div *ngIf="planRadioGroup.value !== 'Momo'" class="grid grid-cols-4 gap-6 w-full mt-8">
+            <!-- Bank Name -->
+            <div class="col-span-4">
+                <mat-form-field class="w-full">
+                    <mat-label>Ngân hàng</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:banknotes'" matPrefix></mat-icon>
+                    <input [formControlName]="'bankName'" matInput>        
+                    <mat-error>
+                        Tên ngân hàng bắt buộc nhập
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- Card number -->
+            <div class="col-span-4 sm:col-span-2">
+                <mat-form-field class="w-full">
+                    <mat-label>Số thẻ</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:credit-card'" matPrefix></mat-icon>
+                    <input [formControlName]="'numberCard'" matInput>
+                    <mat-error>
+                        Số thẻ bắt buộc nhập
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- Phone -->
+            <div class="col-span-4 sm:col-span-2">
+                <mat-form-field class="w-full">
+                    <mat-label>Số điện thoại</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                    <input [formControlName]="'phone'" matInput>
+                    <mat-error>
+                        Số điện thoại bắt buộc nhập
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- Card holder -->
+            <div class="col-span-4">
+                <mat-form-field class="w-full">
+                    <mat-label>Họ tên chủ thẻ</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix></mat-icon>
+                    <input [formControlName]="'holderName'" matInput>
+                    <mat-error>
+                        Tên chủ thẻ bắt buộc nhập
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button mat-stroked-button type="button"
+            (click)="cancelUpdate()">
+                Hủy
+            </button>
+            <button class="ml-4" mat-flat-button type="button" [color]="'primary'"
+            (click)="updatePayment()">Lưu
+            </button>
+        </div>
+    </form>
+
+</div>
