@@ -5,19 +5,15 @@ import {
     OnDestroy,
     ViewChild,
     TemplateRef,
-    ViewEncapsulation,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { ColumnMode, TableColumn } from '@swimlane/ngx-datatable';
+import { TableColumn } from '@swimlane/ngx-datatable';
 import { AuthService } from 'app/core/auth/auth.service';
 import { PageOptions, Pagination } from 'app/shared/models/pagination.model';
 import { APIResponseModel } from 'app/shared/models/response.model';
-import { ConfirmationService } from 'app/shared/services/confirmation.service';
 import { pick } from 'lodash';
-import { ApexOptions } from 'ng-apexcharts';
-import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { LicenseKeyService } from '../services/license-key.service';
 
 @Component({

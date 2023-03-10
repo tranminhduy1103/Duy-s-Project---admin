@@ -2,24 +2,23 @@
 <fuse-loading-bar></fuse-loading-bar>
 
 <!-- Navigation -->
-<!-- <fuse-vertical-navigation [ngClass]="userRoles.includes('Publisher') ? 'hidden' : ''"
-    class="dark bg-gray-900 print:hidden" [mode]="isScreenSmall ? 'over' : 'side'" [name]="'mainNavigation'"
-    [navigation]="navigation.default" [opened]="!isScreenSmall" [appearance]="leftMenu.type">
+<fuse-vertical-navigation class="dark bg-gray-900 print:hidden" [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'" [navigation]="navigation.default" [opened]="!isScreenSmall" [appearance]="leftMenu.type">
     <ng-container fuseVerticalNavigationContentHeader>
         <div class="flex items-center h-20 p-6">
             <img src="../../../../../assets/images/logo/{{leftMenu.type === 'default' ? 'logo.svg' : 'logo_mini.svg'}}"
                 alt="logo" style="height: 52px;">
         </div>
     </ng-container>
-</fuse-vertical-navigation> -->
+</fuse-vertical-navigation>
 
 <!-- Wrapper -->
 <div class="flex flex-col flex-auto w-full min-w-0">
     <!-- Header -->
-    <div class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-999 shadow print:hidden bg-gray-800 dark:bg-gray-900">
+    <div
+        class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-999 shadow print:hidden bg-gray-800 dark:bg-gray-900">
         <!-- Navigation toggle button -->
-        <button class="menu-button-navigation hidden"
-            mat-icon-button
+        <button class="menu-button-navigation hidden" mat-icon-button
             (click)="toggleNavigation('mainNavigation', leftMenu.type === 'default' ? 'thin' : 'default')">
             <mat-icon [svgIcon]="leftMenu.icon"></mat-icon>
         </button>
@@ -36,15 +35,14 @@
         </div>
     </div>
 
-    <div class="flex justify-center px-4 md:px-8 bg-card dark:bg-gray-700 ng-star-inserted">
-        <!-- Navigation toggle button -->
+    <!-- <div class="flex justify-center px-4 md:px-8 bg-card dark:bg-gray-700 ng-star-inserted">
         <div class="relative flex items-center w-full max-w-360 h-16">
             <div class="fuse-horizontal-navigation-wrapper ng-tns-c52-31">
-                <fuse-horizontal-navigation [name]="'mainNavigation'"
-                [navigation]="navigation.default" class="-mx-4 ng-tns-c52-31 ng-star-inserted"></fuse-horizontal-navigation>
+                <fuse-horizontal-navigation [name]="'mainNavigation'" [navigation]="navigation.default"
+                    class="-mx-4 ng-tns-c52-31 ng-star-inserted"></fuse-horizontal-navigation>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Content -->
     <div class="flex flex-col flex-auto">

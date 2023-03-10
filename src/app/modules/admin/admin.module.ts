@@ -30,7 +30,35 @@ const route: Route[] = [
         path: 'campaigns',
         loadChildren: () =>
             import('app/modules/campaign/campaign.module').then(
-                (m) => m.CampaignModule
+                m => m.CampaignModule
+            ),
+    },
+    {
+        path: 'symptoms',
+        loadChildren: () =>
+            import('app/modules/symptoms/symptoms.module').then(
+                m => m.SymptomsModule
+            ),
+    },
+    {
+        path: 'pharmacy',
+        loadChildren: () =>
+            import('app/modules/pharmacy/pharmacy.module').then(
+                m => m.PharmacyModule
+            ),
+    },
+    {
+        path: 'drug',
+        loadChildren: () =>
+            import('app/modules/drug/drug.module').then(
+                m => m.DrugModule
+            ),
+    },
+    {
+        path: 'doctor',
+        loadChildren: () =>
+            import('app/modules/doctor/doctor.module').then(
+                m => m.DoctorModule
             ),
     },
 ];
@@ -70,4 +98,4 @@ const route: Route[] = [
         MatNativeDateModule,
     ],
 })
-export class AdminModule {}
+export class AdminModule { }
