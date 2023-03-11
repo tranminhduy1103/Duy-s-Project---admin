@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
             {
                 oldPassword: ['', Validators.required],
                 newPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
-                passwordConfirm: ['', Validators.required],
+                passwordConfirm: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
             },
             {
                 validators: FuseValidators.mustMatch(
@@ -50,22 +50,22 @@ export class ChangePasswordComponent implements OnInit {
             newPassword: this.form.value.newPassword
         };
 
-          // Hide the alert
-          this.showAlert = false;
+        // Hide the alert
+        this.showAlert = false;
 
         this.userService.changePassword(request)
             .subscribe((response) => {
-            if (response.status === 'Success') {
-                this.snackBarService.success({ message: response.message });
-            }
-            else {
-                this.snackBarService.error({ message: response.message });
-            }
-            this.form.reset();
-            Object.keys(this.form.controls).forEach((key) => {
-                this.form.get(key).setErrors(null) ;
+                if (response.status === 'Success') {
+                    this.snackBarService.success({ message: response.message });
+                }
+                else {
+                    this.snackBarService.error({ message: response.message });
+                }
+                this.form.reset();
+                Object.keys(this.form.controls).forEach((key) => {
+                    this.form.get(key).setErrors(null);
+                });
             });
-        });
 
 
     }

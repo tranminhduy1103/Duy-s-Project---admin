@@ -16,7 +16,7 @@ export class UserService extends DataService {
 
     changePassword(params: any): Observable<any> {
         return this.httpClient
-            .post<any>(`${environment.endpoint}/authenticate/change-password`, params)
+            .put<any>(`${environment.endpoint}/authenticate/${params.userId}/change-password`, params)
             .pipe(
                 catchError((error: HttpErrorResponse) =>
                     throwError(error.message)

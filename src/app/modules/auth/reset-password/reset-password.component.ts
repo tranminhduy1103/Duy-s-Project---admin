@@ -52,8 +52,9 @@ export class AuthResetPasswordComponent implements OnInit {
             );
         // Create the form
         this.resetPasswordForm = this._formBuilder.group({
-            password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
-            passwordConfirm: ['', Validators.required]
+            oldpassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
+            newPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
+            confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
         },
             {
                 validators: FuseValidators.mustMatch('password', 'passwordConfirm')

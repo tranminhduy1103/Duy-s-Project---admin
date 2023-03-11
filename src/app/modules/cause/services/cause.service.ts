@@ -6,17 +6,17 @@ import { environment } from 'environments/environment';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { DrugStore } from '../state/drug.store';
+import { CauseStore } from '../state/cause.store';
 
 @Injectable({ providedIn: 'root' })
-export class DrugService extends DataService {
-    _url = 'drug';
+export class CauseService extends DataService {
+    _url = 'cause';
     constructor(
         private httpClient: HttpClient,
-        private drugStore: DrugStore,
+        private causeStore: CauseStore,
         private snackBarService: SnackBarService
     ) {
-        super('drugs', httpClient, snackBarService, drugStore, null);
+        super('causes', httpClient, snackBarService, causeStore, null);
     }
     // getAll(): Observable<any> {
     //     return this.httpClient.get<any[]>(`${environment.endpoint}/${this._url}s`)

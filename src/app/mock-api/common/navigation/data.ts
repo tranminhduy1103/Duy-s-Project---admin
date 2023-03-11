@@ -11,6 +11,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         role: 'Administrator',
     },
     {
+        id: 'manage-cause',
+        title: 'CAUSE',
+        type: 'basic',
+        icon: 'heroicons_outline:eye',
+        link: '/admin/cause',
+        role: 'Administrator',
+    },
+    {
         id: 'manage-symptoms',
         title: 'SYMPTOMS',
         type: 'basic',

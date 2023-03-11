@@ -10,15 +10,15 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { TableColumn } from '@swimlane/ngx-datatable/public-api';
 import { PageOptions, Pagination } from 'app/shared/models/pagination.model';
 import { pick } from 'lodash';
-import { SymptomsDialogComponent } from '../symptoms-dialog/symptoms-dialog.component';
-import { SymptomsService } from '../services/symptoms.service';
-import { SymptomsQuery } from '../state/symptoms.query';
+import { CauseDialogComponent } from '../cause-dialog/cause-dialog.component';
+import { CauseService } from '../services/cause.service';
+import { CauseQuery } from '../state/cause.query';
 @Component({
-    selector: 'app-symptoms-management',
-    templateUrl: './symptoms-management.component.html',
-    styleUrls: ['./symptoms-management.component.scss'],
+    selector: 'app-cause-management',
+    templateUrl: './cause-management.component.html',
+    styleUrls: ['./cause-management.component.scss'],
 })
-export class SymptomsManagementComponent implements OnInit, OnDestroy {
+export class CauseManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
     page: PageOptions = new PageOptions();
@@ -29,14 +29,14 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
 
     constructor(
         public dialog: MatDialog,
-        private symptomsQuery: SymptomsQuery,
-        private symptomsService: SymptomsService,
+        private causeQuery: CauseQuery,
+        private causeService: CauseService,
         private fuseConfirmationService: FuseConfirmationService
     ) { }
 
     ngOnInit(): void {
         this.getAlls();
-        this.symptomsQuery.select().subscribe((m: any) => {
+        this.causeQuery.select().subscribe((m: any) => {
             this.dataSource = m;
         });
         this.columns = [
@@ -66,14 +66,14 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void { }
 
     getAlls(params: any = this.page): void {
-        this.symptomsService
+        this.causeService
             .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
             .subscribe();
     }
 
     handleToggle(item): void {
         this.fuseConfirmationService.openConfirm(() => {
-            this.symptomsService
+            this.causeService
                 .toggle(item.id)
                 .subscribe(() => this.getAlls());
         });
@@ -81,14 +81,14 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
 
     handleDelete(item): void {
         this.fuseConfirmationService.openConfirm(() => {
-            this.symptomsService
+            this.causeService
                 .delete(item.id)
                 .subscribe(res => res.success && this.getAlls());
         });
     }
 
     openDialog(model = null): void {
-        const ref = this.dialog.open(SymptomsDialogComponent, {
+        const ref = this.dialog.open(CauseDialogComponent, {
             width: '800px',
             data: model,
         });

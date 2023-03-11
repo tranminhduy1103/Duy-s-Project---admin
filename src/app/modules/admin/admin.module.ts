@@ -61,6 +61,13 @@ const route: Route[] = [
                 m => m.DoctorModule
             ),
     },
+    {
+        path: 'cause',
+        loadChildren: () =>
+            import('app/modules/cause/cause.module').then(
+                m => m.CauseModule
+            ),
+    },
 ];
 @NgModule({
     declarations: [],
