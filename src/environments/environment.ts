@@ -11,7 +11,7 @@ export const environment = {
     // endpoint: 'https://localhost:44312/api',
     endpoint: 'https://duyprojectapi20230305124117.azurewebsites.net/api',
     landingUrl:
-        'https://mass-recruitment-landing-git-master-khanglqse.vercel.app/',
+        'https://happy-smoke-0b1eb3110.2.azurestaticapps.net/',
 };
 
 /*
