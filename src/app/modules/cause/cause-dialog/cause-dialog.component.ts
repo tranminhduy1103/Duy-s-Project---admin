@@ -10,9 +10,9 @@ interface ConvertType {
 }
 
 @Component({
-    selector: 'app-drug-dialog',
-    templateUrl: './drug-dialog.component.html',
-    styleUrls: ['./drug-dialog.component.scss'],
+    selector: 'app-cause-dialog',
+    templateUrl: './cause-dialog.component.html',
+    styleUrls: ['./cause-dialog.component.scss'],
 })
 export class CauseDialogComponent implements OnInit {
     form: FormGroup;
