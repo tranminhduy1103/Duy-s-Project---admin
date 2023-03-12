@@ -24,6 +24,8 @@ export class PharmacyDialogComponent implements OnInit {
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
+    listDoctor: [];
+    listLogo: [];
 
     constructor(
         public dialogRef: MatDialogRef<PharmacyDialogComponent>,
