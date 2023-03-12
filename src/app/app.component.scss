@@ -4,7 +4,7 @@
     width: 100%;
     height: 100%;
 
-    
+
 }
 
 ::ng-deep {
@@ -13,6 +13,10 @@
     }
 
     .phone-number-account .ngx-mat-tel-input-container .mat-input-element.mat-form-field-autofill-control {
+        margin-left: 70px;
+    }
+
+    .phone-number-profile .ngx-mat-tel-input-container .mat-input-element.mat-form-field-autofill-control {
         margin-left: 70px;
     }
 }

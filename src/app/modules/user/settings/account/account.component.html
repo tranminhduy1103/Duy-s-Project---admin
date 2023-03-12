@@ -47,16 +47,16 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            
+
             <!-- Phone -->
             <div class="sm:col-span-2">
                 <mat-form-field class="w-full phone-number-profile">
                     <mat-label>Phone</mat-label>
-                    <ngx-mat-intl-tel-input id="phoneNumber" [preferredCountries]="['vn', 'us']"
-                        [enablePlaceholder]="true" [enableSearch]="true" name="phoneNumber" describedBy="phoneInput"
-                        formControlName="phoneNumber">
+                    <ngx-mat-intl-tel-input id="phone" [preferredCountries]="['vn', 'us']"
+                        [enablePlaceholder]="true" [enableSearch]="true" name="phone" describedBy="phoneInput"
+                        formControlName="phone">
                     </ngx-mat-intl-tel-input>
-                    <mat-error>Phone number is not correct</mat-error>
+                    <mat-error>Phone is not correct</mat-error>
                 </mat-form-field>
             </div>
         </div>
