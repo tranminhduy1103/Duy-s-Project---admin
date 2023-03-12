@@ -34,27 +34,31 @@ export class SymptomsDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            commission: [],
-            startDate: [],
-            endDate: [],
-            convertType: [],
-            description: [],
-            note: [],
-            type: [],
+            description: [''],
+            cause: [''],
+            basicExperiment: [''],
+            approach: [''],
+            treatment: [''],
+            diet: [''],
+            livingActivity: [''],
+            referenceImage: [''],
+            type: [''],
             id: [uuidv4()],
         });
 
         if (this.data) {
             this.form.patchValue({
                 id: this.data.id,
-                title: this.data.title,
-                commission: this.data.commission,
-                startDate: this.data.startDate,
-                endDate: this.data.endDate,
-                convertType: this.data.convertType,
+                name: this.data.name,
                 description: this.data.description,
-                note: this.data.note,
-                type: this.data.type,
+                cause: this.data.cause,
+                basicExperiment: this.data.basicExperiment,
+                approach: this.data.approach,
+                treatment: this.data.treatment,
+                diet: this.data.diet,
+                livingActivity: this.data.livingActivity,
+                referenceImage: this.data.referenceImage,
+                type: this.data.type
             });
             this.mode = 'Update';
         }
@@ -89,6 +93,7 @@ export class SymptomsDialogComponent implements OnInit {
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
     }
+    
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
     }

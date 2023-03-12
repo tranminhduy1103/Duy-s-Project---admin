@@ -34,27 +34,30 @@ export class PharmacyDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            commission: [],
-            startDate: [],
-            endDate: [],
-            convertType: [],
-            description: [],
-            note: [],
-            type: [],
+            name: [''],
+            address: [''],
+            phone: [''],
+            drugs: [''],
+            doctorId: [''],
+            logoId: [''],
+            column: [''],
+            referenceImage:[''],
+            type: [''],
             id: [uuidv4()],
         });
 
         if (this.data) {
             this.form.patchValue({
                 id: this.data.id,
-                title: this.data.title,
-                commission: this.data.commission,
-                startDate: this.data.startDate,
-                endDate: this.data.endDate,
-                convertType: this.data.convertType,
-                description: this.data.description,
-                note: this.data.note,
-                type: this.data.type,
+                name: this.data.name,
+                address: this.data.address,
+                phone: this.data.phone,
+                drugs: this.data.drugs,
+                doctorId: this.data.doctorId,
+                logoId: this.data.logoId,
+                column: this.data.column,
+                referenceImage: this.data.referenceImage,
+                type: this.data.type
             });
             this.mode = 'Update';
         }

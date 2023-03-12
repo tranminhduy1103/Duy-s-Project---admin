@@ -34,27 +34,18 @@ export class CauseDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            commission: [],
-            startDate: [],
-            endDate: [],
-            convertType: [],
-            description: [],
-            note: [],
-            type: [],
+            name: [''],
+            description: [''],
+            referecenImage: [''],
             id: [uuidv4()],
         });
 
         if (this.data) {
             this.form.patchValue({
                 id: this.data.id,
-                title: this.data.title,
-                commission: this.data.commission,
-                startDate: this.data.startDate,
-                endDate: this.data.endDate,
-                convertType: this.data.convertType,
+                name: this.data.name,
                 description: this.data.description,
-                note: this.data.note,
-                type: this.data.type,
+                referecenImage: this.data.referecenImage
             });
             this.mode = 'Update';
         }

@@ -31,30 +31,25 @@ export class DrugDialogComponent implements OnInit {
         private fb: FormBuilder,
         private drugService: DrugService
     ) { }
+
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            commission: [],
-            startDate: [],
-            endDate: [],
-            convertType: [],
-            description: [],
-            note: [],
-            type: [],
+            name: [''],
+            effect: [''],
+            description: [''],
+            price: [''],
+            type: [''],
             id: [uuidv4()],
         });
 
         if (this.data) {
             this.form.patchValue({
                 id: this.data.id,
-                title: this.data.title,
-                commission: this.data.commission,
-                startDate: this.data.startDate,
-                endDate: this.data.endDate,
-                convertType: this.data.convertType,
+                name: this.data.name,
+                effect: this.data.effect,
                 description: this.data.description,
-                note: this.data.note,
-                type: this.data.type,
+                price: this.data.price
             });
             this.mode = 'Update';
         }

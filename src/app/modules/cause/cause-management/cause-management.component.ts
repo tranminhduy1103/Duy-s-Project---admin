@@ -40,21 +40,8 @@ export class CauseManagementComponent implements OnInit, OnDestroy {
             this.dataSource = m;
         });
         this.columns = [
-            { prop: 'title' },
-            { prop: 'description' },
-            // {
-            //     name: 'description',
-            //     prop: 'description',
-            //     $$valueGetter: (obj: any, prop: any) =>
-            //         obj[prop] ? 'Active' : 'Inactive',
-            //     cellClass: (data: any): string =>
-            //         data.row.isActive
-            //             ? 'text-green-600 font-medium'
-            //             : 'text-red-600 font-medium',
-            // },
-            { prop: 'note' },
-            { prop: 'commission' },
-            { prop: 'convertType' },
+            { prop: 'name', name: 'Name' },
+            { prop: 'description', name: 'Description' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',
@@ -100,7 +87,7 @@ export class CauseManagementComponent implements OnInit, OnDestroy {
         this.page.pageSize = page.pageSize;
         this.getAlls(this.page);
     }
-    
+
     filter(): void {
         this.page.pageNumber = 1;
         this.page.pageSize = 10;
