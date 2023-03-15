@@ -33,16 +33,16 @@ export class SymptomsDialogComponent implements OnInit {
     ) { }
     ngOnInit(): void {
         this.form = this.fb.group({
-            title: ['', Validators.required],
-            description: [''],
-            cause: [''],
-            basicExperiment: [''],
-            approach: [''],
-            treatment: [''],
-            diet: [''],
-            livingActivity: [''],
-            referenceImage: [''],
-            type: [''],
+            name: ['', Validators.required],
+            description: ['', Validators.required],
+            cause: ['', Validators.required],
+            basicExperiment: ['', Validators.required],
+            approach: ['', Validators.required],
+            treatment: ['', Validators.required],
+            diet: ['', Validators.required],
+            livingActivity: ['', Validators.required],
+            referenceImage: ['', Validators.required],
+            type: ['', Validators.required],
             id: [uuidv4()],
         });
 
@@ -93,7 +93,7 @@ export class SymptomsDialogComponent implements OnInit {
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
     }
-    
+
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
     }

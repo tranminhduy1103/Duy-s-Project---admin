@@ -34,9 +34,10 @@ export class CauseDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            name: [''],
-            description: [''],
-            referecenImage: [''],
+            name: ['', Validators.required],
+            description: ['', Validators.required],
+            referecenImage: ['', Validators.required],
+            type: ['', Validators.required],
             id: [uuidv4()],
         });
 
@@ -45,7 +46,8 @@ export class CauseDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
-                referecenImage: this.data.referecenImage
+                referecenImage: this.data.referecenImage,
+                type: this.data.type
             });
             this.mode = 'Update';
         }

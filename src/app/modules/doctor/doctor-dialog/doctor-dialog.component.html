@@ -46,7 +46,7 @@
                 Commission is required
             </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
             <mat-label>Start Date</mat-label>
             <input
                 matInput
@@ -79,8 +79,8 @@
             <mat-error *ngIf="form.get('endDate').hasError('required')">
                 End Date is required
             </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
+        </mat-form-field> -->
+        <!-- <mat-form-field appearance="fill">
             <mat-label>Convert Type</mat-label>
             <mat-select [formControlName]="'convertType'">
                 <mat-option
@@ -90,7 +90,7 @@
                     {{ convertType.viewValue }}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
         <input type="file" (change)="fileChangeEvent($event)" />
 
         <!-- <image-cropper

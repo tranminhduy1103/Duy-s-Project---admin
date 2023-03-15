@@ -36,15 +36,16 @@ export class PharmacyDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            name: [''],
-            address: [''],
-            phone: [''],
-            drugs: [''],
-            doctorId: [''],
-            logoId: [''],
-            column: [''],
-            referenceImage:[''],
-            type: [''],
+            name: ['', Validators.required],
+            description: ['', Validators.required],
+            address: ['', Validators.required],
+            phone: ['', Validators.required],
+            drugs: ['', Validators.required],
+            doctorId: ['', Validators.required],
+            logoId: ['', Validators.required],
+            column: ['', Validators.required],
+            referenceImage:['', Validators.required],
+            type: ['', Validators.required],
             id: [uuidv4()],
         });
 
@@ -52,6 +53,7 @@ export class PharmacyDialogComponent implements OnInit {
             this.form.patchValue({
                 id: this.data.id,
                 name: this.data.name,
+                description: this.data.description,
                 address: this.data.address,
                 phone: this.data.phone,
                 drugs: this.data.drugs,

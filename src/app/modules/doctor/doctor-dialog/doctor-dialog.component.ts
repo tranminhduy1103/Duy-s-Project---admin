@@ -34,13 +34,11 @@ export class DoctorDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             title: ['', Validators.required],
-            commission: [],
-            startDate: [],
-            endDate: [],
-            convertType: [],
-            description: [],
-            note: [],
-            type: [],
+            commission: ['', Validators.required],
+            convertType: ['', Validators.required],
+            description: ['', Validators.required],
+            note: ['', Validators.required],
+            type: ['', Validators.required],
             id: [uuidv4()],
         });
 
