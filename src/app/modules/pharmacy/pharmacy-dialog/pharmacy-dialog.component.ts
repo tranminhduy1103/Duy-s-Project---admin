@@ -24,8 +24,8 @@ export class PharmacyDialogComponent implements OnInit {
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
-    listDoctor: [];
-    listLogo: [];
+    listDoctor = [{id: "1", name: 'A'}];
+    listLogo = [{id: "1", name: 'A'}];
 
     constructor(
         public dialogRef: MatDialogRef<PharmacyDialogComponent>,
@@ -33,20 +33,20 @@ export class PharmacyDialogComponent implements OnInit {
         private fb: FormBuilder,
         private pharmacyService: PharmacyService
     ) { }
+
     ngOnInit(): void {
         this.form = this.fb.group({
-            title: ['', Validators.required],
             name: ['', Validators.required],
-            description: ['', Validators.required],
+            // description: ['', Validators.required],
             address: ['', Validators.required],
             phone: ['', Validators.required],
             drugs: ['', Validators.required],
             doctorId: ['', Validators.required],
             logoId: ['', Validators.required],
             column: ['', Validators.required],
-            referenceImage:['', Validators.required],
+            referenceImage:[''],
             type: ['', Validators.required],
-            id: [uuidv4()],
+            // id: [uuidv4()],
         });
 
         if (this.data) {

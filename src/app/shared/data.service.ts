@@ -19,7 +19,7 @@ export class DataService {
     ) {}
     getAll(params: any = null): Observable<APIResponseModel> {
         return this.http
-            .get<APIResponseModel>(`${environment.endpoint}/${this.url}`, {params: params})
+            .get<APIResponseModel>(`${environment.endpoint}/${this.url}s`, {params: params})
             .pipe(
                 catchError((error: HttpErrorResponse) =>
                     throwError(error.message)

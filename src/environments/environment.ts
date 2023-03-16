@@ -4,9 +4,6 @@
 
 export const environment = {
     production: false,
-    googleAppId:
-        '636707412368-aanklm8gkpcb8hnvjps5ad0pqkopan3o.apps.googleusercontent.com',
-    facebookAppId: '729974315419896',
     // endpoint: 'https://mass-recruitment-wapi.azurewebsites.net/api',
     // endpoint: 'https://localhost:44312/api',
     endpoint: 'https://duyprojectapi20230305124117.azurewebsites.net/api',

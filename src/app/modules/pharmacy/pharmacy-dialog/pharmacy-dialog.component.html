@@ -24,12 +24,20 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>Drugs</mat-label>
+            <input matInput [formControlName]="'drugs'" />
+            <mat-error *ngIf="form.get('drugs').hasError('required')">
+                Drugs is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Description</mat-label>
             <input matInput [formControlName]="'description'" />
             <mat-error *ngIf="form.get('description').hasError('required')">
                 Description is required
             </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Address</mat-label>
@@ -41,7 +49,7 @@
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Phone</mat-label>
-            <input matInput type="number" [formControlName]="'phone'" />
+            <input matInput type="text" [formControlName]="'phone'" />
             <mat-error *ngIf="form.get('phone').hasError('required')">
                 Phone is required
             </mat-error>
@@ -49,7 +57,7 @@
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Column</mat-label>
-            <input matInput type="number" [formControlName]="'column'" />
+            <input matInput type="text" [formControlName]="'column'" />
             <mat-error *ngIf="form.get('column').hasError('required')">
                 Column is required
             </mat-error>
@@ -57,7 +65,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Doctor</mat-label>
-            <mat-select [formControlName]="'doctor'">
+            <mat-select [formControlName]="'doctorId'">
                 <mat-option *ngFor="let doctor of listDoctor" [value]="doctor.id">
                     {{ doctor.name }}
                 </mat-option>
@@ -66,7 +74,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Logo</mat-label>
-            <mat-select [formControlName]="'logo'">
+            <mat-select [formControlName]="'logoId'">
                 <mat-option *ngFor="let logo of listLogo" [value]="logo.id">
                     {{ logo.name }}
                 </mat-option>

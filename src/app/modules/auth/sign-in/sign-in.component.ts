@@ -9,12 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
-import {
-    SocialAuthService,
-    GoogleLoginProvider,
-    SocialUser,
-    FacebookLoginProvider,
-} from '@abacritt/angularx-social-login';
 
 @Component({
     selector: 'auth-sign-in',
@@ -41,7 +35,6 @@ export class AuthSignInComponent implements OnInit {
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
-        private _socialAuthService: SocialAuthService
     ) { }
 
     // -----------------------------------------------------------------------------------------------------
@@ -54,34 +47,10 @@ export class AuthSignInComponent implements OnInit {
     ngOnInit(): void {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            userName: ['Administrator', [Validators.required]],
+            userName: ['Admin1', [Validators.required]],
             password: ['Abc@123456', Validators.required],
             // rememberMe: ['']
         });
-
-        this._socialAuthService.signOut().then(() => { });
-
-        this._socialAuthService.authState.subscribe(
-            (user) => {
-                this._authService
-                    .signInViaFacebookAccount(user)
-                    .subscribe((response) => {
-                        if (response) {
-                            this.redirectAfterSuccess();
-                        }
-                    });
-            });
-
-        this._socialAuthService.authState.subscribe(
-            (user) => {
-                this._authService
-                    .signInViaAccount(user)
-                    .subscribe((response) => {
-                        if (response) {
-                            this.redirectAfterSuccess();
-                        }
-                    });
-            });
 
         this._activatedRoute.queryParams.subscribe((params) => {
             const isVerified = params['verified'] === 'true';
@@ -148,15 +117,5 @@ export class AuthSignInComponent implements OnInit {
 
         // Navigate to the redirect url
         this._router.navigateByUrl(redirectURL);
-    }
-
-    refreshGoogleToken(): void {
-        this._socialAuthService.refreshAuthToken(
-            GoogleLoginProvider.PROVIDER_ID
-        );
-    }
-
-    loginWithFacebook(): void {
-        this._socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
 }

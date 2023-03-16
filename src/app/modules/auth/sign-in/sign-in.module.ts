@@ -11,9 +11,6 @@ import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { AuthSignInComponent } from 'app/modules/auth/sign-in/sign-in.component';
 import { authSignInRoutes } from 'app/modules/auth/sign-in/sign-in.routing';
-import {
-    SocialLoginModule,
-} from '@abacritt/angularx-social-login';
 
 @NgModule({
     declarations: [AuthSignInComponent
@@ -29,7 +26,6 @@ import {
         FuseCardModule,
         FuseAlertModule,
         SharedModule,
-        SocialLoginModule
     ],
 })
 export class AuthSignInModule
