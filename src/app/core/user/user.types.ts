@@ -7,4 +7,5 @@ export interface User
     status?: string;
     accountType: Array<string>;
     roles: Array<string>;
+    userName: string;
 }
