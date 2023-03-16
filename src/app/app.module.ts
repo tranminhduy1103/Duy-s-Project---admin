@@ -56,18 +56,18 @@ const routerConfig: ExtraOptions = {
             useValue: {
                 autoLogin: false,
                 providers: [
-                    {
-                        id: GoogleLoginProvider.PROVIDER_ID,
-                        provider: new GoogleLoginProvider(
-                            environment.googleAppId
-                        ),
-                    },
-                    {
-                        id: FacebookLoginProvider.PROVIDER_ID,
-                        provider: new FacebookLoginProvider(
-                            environment.facebookAppId
-                        ),
-                    },
+                    // {
+                    //     id: GoogleLoginProvider.PROVIDER_ID,
+                    //     provider: new GoogleLoginProvider(
+                    //         environment.googleAppId
+                    //     ),
+                    // },
+                    // {
+                    //     id: FacebookLoginProvider.PROVIDER_ID,
+                    //     provider: new FacebookLoginProvider(
+                    //         environment.facebookAppId
+                    //     ),
+                    // },
                 ],
             } as SocialAuthServiceConfig,
         },
