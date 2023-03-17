@@ -34,7 +34,6 @@ export class DrugDialogComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            title: ['', Validators.required],
             name: ['', Validators.required],
             effect: ['', Validators.required],
             description: ['', Validators.required],
@@ -49,6 +48,7 @@ export class DrugDialogComponent implements OnInit {
                 name: this.data.name,
                 effect: this.data.effect,
                 description: this.data.description,
+                type: this.data.type,
                 price: this.data.price
             });
             this.mode = 'Update';

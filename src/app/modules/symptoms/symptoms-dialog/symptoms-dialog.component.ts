@@ -4,6 +4,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SymptomsService } from '../services/symptoms.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { CauseService } from 'app/modules/cause/services/cause.service';
+import { pick } from 'lodash';
+import { PageOptions } from 'app/shared/models/pagination.model';
+import { CauseQuery } from 'app/modules/cause/state/cause.query';
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -17,6 +21,7 @@ interface ConvertType {
 export class SymptomsDialogComponent implements OnInit {
     form: FormGroup;
     mode: string = 'Create';
+    page: PageOptions = new PageOptions();
     imageChangedEvent: any = '';
     croppedImage: any = '';
     convertTypes: ConvertType[] = [
@@ -24,24 +29,27 @@ export class SymptomsDialogComponent implements OnInit {
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
+    listCause: [];
 
     constructor(
         public dialogRef: MatDialogRef<SymptomsDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private fb: FormBuilder,
-        private symptomsService: SymptomsService
+        private symptomsService: SymptomsService,
+        private causeService: CauseService,
+        private causeQuery: CauseQuery,
     ) { }
     ngOnInit(): void {
         this.form = this.fb.group({
-            name: ['', Validators.required],
+            name: ['', [Validators.required]],
             description: ['', Validators.required],
-            cause: ['', Validators.required],
+            causeId: ['', Validators.required],
             basicExperiment: ['', Validators.required],
             approach: ['', Validators.required],
             treatment: ['', Validators.required],
             diet: ['', Validators.required],
             livingActivity: ['', Validators.required],
-            referenceImage: ['', Validators.required],
+            referenceImage: [''],
             type: ['', Validators.required],
             id: [uuidv4()],
         });
@@ -51,7 +59,7 @@ export class SymptomsDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
-                cause: this.data.cause,
+                causeId: this.data.causeId,
                 basicExperiment: this.data.basicExperiment,
                 approach: this.data.approach,
                 treatment: this.data.treatment,
@@ -62,6 +70,11 @@ export class SymptomsDialogComponent implements OnInit {
             });
             this.mode = 'Update';
         }
+
+        this.getListCause();
+        this.causeQuery.select().subscribe((m: any) => {
+            this.listCause = m.items || [];
+        });
     }
 
     handleCreateUpdate(): void {
@@ -92,6 +105,12 @@ export class SymptomsDialogComponent implements OnInit {
                 .create(this.form.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
+    }
+
+    getListCause(params: any = this.page): void {
+        this.causeService
+            .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
+            .subscribe();
     }
 
     fileChangeEvent(event: any): void {

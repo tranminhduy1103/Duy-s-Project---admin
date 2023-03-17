@@ -17,6 +17,6 @@ export class SymptomsService extends DataService {
         private symptomsStore: SymptomsStore,
         private snackBarService: SnackBarService
     ) {
-        super('diseases', httpClient, snackBarService, symptomsStore, null);
+        super('disease', httpClient, snackBarService, symptomsStore, null);
     }
 }

@@ -16,7 +16,7 @@ export class CauseService extends DataService {
         private causeStore: CauseStore,
         private snackBarService: SnackBarService
     ) {
-        super('causes', httpClient, snackBarService, causeStore, null);
+        super('cause', httpClient, snackBarService, causeStore, null);
     }
     // getAll(): Observable<any> {
     //     return this.httpClient.get<any[]>(`${environment.endpoint}/${this._url}s`)

@@ -33,10 +33,9 @@ export class CauseDialogComponent implements OnInit {
     ) { }
     ngOnInit(): void {
         this.form = this.fb.group({
-            title: ['', Validators.required],
             name: ['', Validators.required],
             description: ['', Validators.required],
-            referecenImage: ['', Validators.required],
+            referecenImage: [''],
             type: ['', Validators.required],
             id: [uuidv4()],
         });

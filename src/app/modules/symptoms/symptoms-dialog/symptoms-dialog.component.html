@@ -31,33 +31,34 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+        <mat-form-field appearance="fill">
             <mat-label>Cause</mat-label>
-            <input matInput [formControlName]="'cause'" />
-            <mat-error *ngIf="form.get('cause').hasError('required')">
-                Cause is required
-            </mat-error>
+            <mat-select [formControlName]="'causeId'">
+                <mat-option *ngFor="let cause of listCause" [value]="cause.id">
+                    {{ cause.name }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Basic Experiment</mat-label>
-            <input matInput type="number" [formControlName]="'basicExperiment'" />
+            <input matInput type="text" [formControlName]="'basicExperiment'" />
             <mat-error *ngIf="form.get('basicExperiment').hasError('required')">
                 Basic Experiment is required
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Basic Experiment</mat-label>
-            <input matInput type="number" [formControlName]="'basicExperiment'" />
-            <mat-error *ngIf="form.get('basicExperiment').hasError('required')">
-                Basic Experiment is required
+            <mat-label>Approach</mat-label>
+            <input matInput type="text" [formControlName]="'approach'" />
+            <mat-error *ngIf="form.get('approach').hasError('required')">
+                Approach Experiment is required
             </mat-error>
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Treatment</mat-label>
-            <input matInput type="number" [formControlName]="'treatment'" />
+            <input matInput type="text" [formControlName]="'treatment'" />
             <mat-error *ngIf="form.get('treatment').hasError('required')">
                 Treatment is required
             </mat-error>
@@ -65,7 +66,7 @@
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Diet</mat-label>
-            <input matInput type="number" [formControlName]="'diet'" />
+            <input matInput type="text" [formControlName]="'diet'" />
             <mat-error *ngIf="form.get('diet').hasError('required')">
                 Diet is required
             </mat-error>
@@ -73,20 +74,11 @@
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Living Activity</mat-label>
-            <input matInput type="number" [formControlName]="'livingActivity'" />
+            <input matInput type="text" [formControlName]="'livingActivity'" />
             <mat-error *ngIf="form.get('livingActivity').hasError('required')">
                 Living Activity is required
             </mat-error>
         </mat-form-field>
-        
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Convert Type</mat-label>
-            <mat-select [formControlName]="'convertType'">
-                <mat-option *ngFor="let convertType of convertTypes" [value]="convertType.value">
-                    {{ convertType.viewValue }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field> -->
 
         <input type="file" (change)="fileChangeEvent($event)" />
 

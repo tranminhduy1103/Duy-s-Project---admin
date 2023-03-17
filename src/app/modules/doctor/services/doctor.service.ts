@@ -10,13 +10,13 @@ import { DoctorStore } from '../state/doctor.store';
 
 @Injectable({ providedIn: 'root' })
 export class DoctorService extends DataService {
-    _url = 'symptoms';
+    _url = 'user';
     constructor(
         private httpClient: HttpClient,
         private symptomsStore: DoctorStore,
         private snackBarService: SnackBarService
     ) {
-        super('doctor', httpClient, snackBarService, DoctorStore, null);
+        super('user', httpClient, snackBarService, DoctorStore, null);
     }
     // getAll(): Observable<any> {
     //     return this.httpClient.get<any[]>(`${environment.endpoint}/${this._url}s`)

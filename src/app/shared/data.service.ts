@@ -27,7 +27,7 @@ export class DataService {
             )
             .pipe(
                 tap((response: APIResponseModel) => {
-                    this.listItemStore?._setState(response.data);
+                    this.listItemStore?._setState(response.data || []);
                     return of(response);
                 })
             );

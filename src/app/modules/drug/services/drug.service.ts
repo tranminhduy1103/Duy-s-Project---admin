@@ -16,7 +16,7 @@ export class DrugService extends DataService {
         private drugStore: DrugStore,
         private snackBarService: SnackBarService
     ) {
-        super('drugs', httpClient, snackBarService, drugStore, null);
+        super('drug', httpClient, snackBarService, drugStore, null);
     }
     // getAll(): Observable<any> {
     //     return this.httpClient.get<any[]>(`${environment.endpoint}/${this._url}s`)
