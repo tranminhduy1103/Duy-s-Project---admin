@@ -4,6 +4,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PharmacyService } from '../services/pharmacy.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { pick } from 'lodash';
+import { PageOptions } from 'app/shared/models/pagination.model';
+import { DrugService } from 'app/modules/drug/services/drug.service';
+import { DrugQuery } from 'app/modules/drug/state/drug.query';
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -24,14 +28,18 @@ export class PharmacyDialogComponent implements OnInit {
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
-    listDoctor = [{id: "1", name: 'A'}];
-    listLogo = [{id: "1", name: 'A'}];
+    listDoctor = [{id: uuidv4(), name: 'A'}];
+    listLogo = [{id: uuidv4(), name: 'A'}];
+    page: PageOptions = new PageOptions();
+    drugList: [];
 
     constructor(
         public dialogRef: MatDialogRef<PharmacyDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private fb: FormBuilder,
-        private pharmacyService: PharmacyService
+        private pharmacyService: PharmacyService,
+        private drugQuery: DrugQuery,
+        private drugService: DrugService,
     ) { }
 
     ngOnInit(): void {
@@ -40,7 +48,7 @@ export class PharmacyDialogComponent implements OnInit {
             // description: ['', Validators.required],
             address: ['', Validators.required],
             phone: ['', Validators.required],
-            drugs: ['', Validators.required],
+            drugIds: [[]],
             doctorId: ['', Validators.required],
             logoId: ['', Validators.required],
             column: ['', Validators.required],
@@ -56,7 +64,7 @@ export class PharmacyDialogComponent implements OnInit {
                 description: this.data.description,
                 address: this.data.address,
                 phone: this.data.phone,
-                drugs: this.data.drugs,
+                drugIds: this.data.drugIds,
                 doctorId: this.data.doctorId,
                 logoId: this.data.logoId,
                 column: this.data.column,
@@ -65,6 +73,17 @@ export class PharmacyDialogComponent implements OnInit {
             });
             this.mode = 'Update';
         }
+
+        this.getListDrug();
+        this.drugQuery.select().subscribe((m: any) => {
+            this.drugList = m.items || [];
+        });
+    }
+
+    getListDrug(params: any = this.page): void {
+        this.drugService
+            .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
+            .subscribe();
     }
 
     handleCreateUpdate(): void {

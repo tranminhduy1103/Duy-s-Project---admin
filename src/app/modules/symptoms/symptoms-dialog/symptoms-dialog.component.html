@@ -31,12 +31,14 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+        <mat-form-field appearance="fill">
             <mat-label>Cause</mat-label>
-            <input matInput [formControlName]="'cause'" />
-            <mat-error *ngIf="form.get('cause').hasError('required')">
-                Cause is required
-            </mat-error>
+            <mat-select [formControlName]="'causeId'" multiple>
+                <mat-option *ngFor="let cause of causeList" [value]="cause.id">{{cause.name}}</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="form.get('drugIds').hasError('required')">
+                Drugs is required
+            </mat-error> -->
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">

@@ -23,12 +23,22 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+        <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Drugs</mat-label>
             <input matInput [formControlName]="'drugs'" />
             <mat-error *ngIf="form.get('drugs').hasError('required')">
                 Drugs is required
             </mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="fill">
+            <mat-label>Drugs</mat-label>
+            <mat-select [formControlName]="'drugIds'" multiple>
+                <mat-option *ngFor="let drug of drugList" [value]="drug.id">{{drug.name}}</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="form.get('drugIds').hasError('required')">
+                Drugs is required
+            </mat-error> -->
         </mat-form-field>
 
         <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">

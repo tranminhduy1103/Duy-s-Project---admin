@@ -4,6 +4,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SymptomsService } from '../services/symptoms.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { CauseService } from 'app/modules/cause/services/cause.service';
+import { CauseQuery } from 'app/modules/cause/state/cause.query';
+import { PageOptions } from 'app/shared/models/pagination.model';
+import { pick } from 'lodash';
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -19,23 +23,27 @@ export class SymptomsDialogComponent implements OnInit {
     mode: string = 'Create';
     imageChangedEvent: any = '';
     croppedImage: any = '';
+    page: PageOptions = new PageOptions();
     convertTypes: ConvertType[] = [
         { value: 'CPA', viewValue: 'CPA' },
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
+    causeList: [];
 
     constructor(
         public dialogRef: MatDialogRef<SymptomsDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private fb: FormBuilder,
-        private symptomsService: SymptomsService
+        private symptomsService: SymptomsService,
+        private causeQuery: CauseQuery,
+        private causeService: CauseService,
     ) { }
     ngOnInit(): void {
         this.form = this.fb.group({
             name: ['', Validators.required],
             description: ['', Validators.required],
-            cause: ['', Validators.required],
+            causeId: [[]],
             basicExperiment: ['', Validators.required],
             approach: ['', Validators.required],
             treatment: ['', Validators.required],
@@ -51,7 +59,7 @@ export class SymptomsDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
-                cause: this.data.cause,
+                causeId: this.data.cause,
                 basicExperiment: this.data.basicExperiment,
                 approach: this.data.approach,
                 treatment: this.data.treatment,
@@ -61,7 +69,18 @@ export class SymptomsDialogComponent implements OnInit {
                 type: this.data.type
             });
             this.mode = 'Update';
-        }
+        };
+
+        this.getListCause();
+        this.causeQuery.select().subscribe((m: any) => {
+            this.causeList = m.items || [];
+        });
+    }
+
+    getListCause(params: any = this.page): void {
+        this.causeService
+        .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
+        .subscribe();
     }
 
     handleCreateUpdate(): void {
