@@ -21,9 +21,9 @@ interface ConvertType {
 export class SymptomsDialogComponent implements OnInit {
     form: FormGroup;
     mode: string = 'Create';
+    page: PageOptions = new PageOptions();
     imageChangedEvent: any = '';
     croppedImage: any = '';
-    page: PageOptions = new PageOptions();
     convertTypes: ConvertType[] = [
         { value: 'CPA', viewValue: 'CPA' },
         { value: 'CPC', viewValue: 'CPC' },
@@ -41,7 +41,7 @@ export class SymptomsDialogComponent implements OnInit {
     ) { }
     ngOnInit(): void {
         this.form = this.fb.group({
-            name: ['', Validators.required],
+            name: ['', [Validators.required]],
             description: ['', Validators.required],
             causeId: [[]],
             basicExperiment: ['', Validators.required],
@@ -49,7 +49,7 @@ export class SymptomsDialogComponent implements OnInit {
             treatment: ['', Validators.required],
             diet: ['', Validators.required],
             livingActivity: ['', Validators.required],
-            referenceImage: ['', Validators.required],
+            referenceImage: [''],
             type: ['', Validators.required],
             id: [uuidv4()],
         });

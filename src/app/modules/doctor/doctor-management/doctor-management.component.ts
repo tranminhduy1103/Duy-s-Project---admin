@@ -35,23 +35,13 @@ export class DoctorManagementComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        // this.getAlls();
-        // this.campaignsQuery.select().subscribe((m: any) => {
-        //     this.dataSource = m;
-        // });
+        this.getAlls();
+        this.doctorQuery.select().subscribe((m: any) => {
+            this.dataSource = m || [];
+        });
         this.columns = [
             { prop: 'title' },
             { prop: 'description' },
-            // {
-            //     name: 'description',
-            //     prop: 'description',
-            //     $$valueGetter: (obj: any, prop: any) =>
-            //         obj[prop] ? 'Active' : 'Inactive',
-            //     cellClass: (data: any): string =>
-            //         data.row.isActive
-            //             ? 'text-green-600 font-medium'
-            //             : 'text-red-600 font-medium',
-            // },
             { prop: 'note' },
             { prop: 'commission' },
             { prop: 'convertType' },
