@@ -8,6 +8,9 @@ import { pick } from 'lodash';
 import { PageOptions } from 'app/shared/models/pagination.model';
 import { DrugService } from 'app/modules/drug/services/drug.service';
 import { DrugQuery } from 'app/modules/drug/state/drug.query';
+import { DoctorService } from 'app/modules/doctor/services/doctor.service';
+import { DoctorQuery } from 'app/modules/doctor/state/doctor.query';
+
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -32,6 +35,8 @@ export class PharmacyDialogComponent implements OnInit {
     listLogo = [{id: uuidv4(), name: 'A'}];
     page: PageOptions = new PageOptions();
     drugList: [];
+    userList: [];
+    logoList: [];
 
     constructor(
         public dialogRef: MatDialogRef<PharmacyDialogComponent>,
@@ -40,6 +45,8 @@ export class PharmacyDialogComponent implements OnInit {
         private pharmacyService: PharmacyService,
         private drugQuery: DrugQuery,
         private drugService: DrugService,
+        private doctorService: DoctorService,
+        private doctorQuery: DoctorQuery,
     ) { }
 
     ngOnInit(): void {
@@ -49,7 +56,7 @@ export class PharmacyDialogComponent implements OnInit {
             address: ['', Validators.required],
             phone: ['', Validators.required],
             drugIds: [[]],
-            doctorId: ['', Validators.required],
+            doctorId: [[]],
             logoId: ['', Validators.required],
             column: ['', Validators.required],
             referenceImage:[''],
@@ -74,16 +81,39 @@ export class PharmacyDialogComponent implements OnInit {
             this.mode = 'Update';
         }
 
+        this.getListDoctor();
+        this.doctorQuery.select().subscribe((m: any) => {
+            this.userList = m.items.filter(value => value.roles === 'Doctor') || [];
+        });
+
         this.getListDrug();
         this.drugQuery.select().subscribe((m: any) => {
             this.drugList = m.items || [];
         });
+
+        this.getListLogo();
     }
 
     getListDrug(params: any = this.page): void {
         this.drugService
             .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
             .subscribe();
+    }
+
+    getListDoctor(params: any = this.page): void {
+        this.doctorService
+            .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
+            .subscribe();
+    }
+
+    getListLogo(params: any = this.page) {
+        this.pharmacyService.getListLogo(params).subscribe(response => {
+            if(response && response.success) {
+                this.logoList = response.data.items || [];
+            } else {
+                return;
+            }
+        });
     }
 
     handleCreateUpdate(): void {

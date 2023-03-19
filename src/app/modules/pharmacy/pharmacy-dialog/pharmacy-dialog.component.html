@@ -76,8 +76,8 @@
         <mat-form-field appearance="fill">
             <mat-label>Doctor</mat-label>
             <mat-select [formControlName]="'doctorId'">
-                <mat-option *ngFor="let doctor of listDoctor" [value]="doctor.id">
-                    {{ doctor.name }}
+                <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                    {{ doctor.userName }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -85,8 +85,8 @@
         <mat-form-field appearance="fill">
             <mat-label>Logo</mat-label>
             <mat-select [formControlName]="'logoId'">
-                <mat-option *ngFor="let logo of listLogo" [value]="logo.id">
-                    {{ logo.name }}
+                <mat-option *ngFor="let logo of logoList" [value]="logo.id">
+                    {{ logo.imagePath }}
                 </mat-option>
             </mat-select>
         </mat-form-field>

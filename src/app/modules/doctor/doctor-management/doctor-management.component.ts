@@ -40,11 +40,11 @@ export class DoctorManagementComponent implements OnInit, OnDestroy {
             this.dataSource = m || [];
         });
         this.columns = [
-            { prop: 'title' },
-            { prop: 'description' },
-            { prop: 'note' },
-            { prop: 'commission' },
-            { prop: 'convertType' },
+            { prop: 'userName', name: 'Name' },
+            { prop: 'email', name: 'Email'  },
+            { prop: 'phone', name: 'Phone' },
+            { prop: 'state', name: 'State' },
+            { prop: 'city', name: 'City' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',
@@ -60,6 +60,7 @@ export class DoctorManagementComponent implements OnInit, OnDestroy {
             .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
             .subscribe();
     }
+
     handleToggle(item): void {
         this.fuseConfirmationService.openConfirm(() => {
             this.doctorService

@@ -13,36 +13,9 @@ export class DoctorService extends DataService {
     _url = 'user';
     constructor(
         private httpClient: HttpClient,
-        private symptomsStore: DoctorStore,
+        private doctorStore: DoctorStore,
         private snackBarService: SnackBarService
     ) {
-        super('user', httpClient, snackBarService, DoctorStore, null);
+        super('user', httpClient, snackBarService, doctorStore, null);
     }
-    // getAll(): Observable<any> {
-    //     return this.httpClient.get<any[]>(`${environment.endpoint}/${this._url}s`)
-    //         .pipe(
-    //             catchError((error: HttpErrorResponse) => throwError(error.message))
-    //         )
-    //         .pipe(tap((response: any) => {
-    //             this.campaignsStore?.set(response.data);
-    //             return of(response);
-    //         }));
-    // }
-
-    // uploadFile(file: File, recordId: any, type: any){
-    //     return this.http
-    //         .post(
-    //             `${environment.endpoint}/${this.url}`,
-    //             model
-    //         )
-    //         .pipe(
-    //             catchError((error: HttpErrorResponse) =>
-    //                 throwError(error.message)
-    //             )
-    //         )
-    //         .pipe(tap((response: APIResponseModel) => {
-    //             this._snackBarService.success({message: `Create ${startCase(camelCase(this.url))} Successfully!`});
-    //             of(response);
-    //         }));
-    // }
 }
