@@ -46,11 +46,13 @@ export class SettingsAccountComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]]
         });
 
-        this._userService.getById(this._userServiceCore.user.id)
-            .subscribe((response) => {
-                this.user = response.data;
-                this.handleReset();
-            });
+        // this._userService.getById(this._userServiceCore.user.id)
+        //     .subscribe((response) => {
+        //         this.user = response.data;
+        //         this.handleReset();
+        //     });
+
+        this.getUserProfile();
 
 
         this.provinces = [
@@ -281,6 +283,35 @@ export class SettingsAccountComponent implements OnInit {
         ];
     }
 
+    getUserProfile(): void {
+        const userInfo = JSON.parse(localStorage.getItem('user'));
+
+        this._userService.getUserProfile(userInfo.id)
+            .subscribe((response) => {
+                if (response.success) {
+                    this.user = response.data;
+
+                    this.mappingUserProfile();
+                }
+                else {
+                    this._snackBarService.error({ message: response.message });
+                }
+            });
+    }
+
+    mappingUserProfile(): void {
+        if (this.user) {
+            this.accountForm.patchValue({
+                id: this.user.id,
+                firstName: this.user.firstName,
+                lastName: this.user.lastName,
+                email: this.user.email,
+                city: this.user.city,
+                address: this.user.address,
+                phone: this.user.phone
+            });
+        }
+    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -312,12 +343,12 @@ export class SettingsAccountComponent implements OnInit {
             city: this.accountForm.value.city,
         };
 
-        this._userService.update(request)
+        this._userService.updateUserProfile(request)
             .subscribe((response) => {
                 if (response.success) {
                     this.user = response.data;
                     this.handleReset();
-                    this._snackBarService.success({ message: "Update successfully!" });
+                    this._snackBarService.success({ message: 'Update successfully!' });
                 }
                 else {
                     this._snackBarService.error({ message: response.message });

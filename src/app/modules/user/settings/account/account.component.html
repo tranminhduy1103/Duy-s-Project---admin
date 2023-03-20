@@ -48,6 +48,24 @@
                 </mat-form-field>
             </div>
 
+            <!-- Address -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full">
+                    <mat-label>Address</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:home'" matPrefix></mat-icon>
+                    <input [formControlName]="'address'" matInput>
+                </mat-form-field>
+            </div>
+
+            <!-- City -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full">
+                    <mat-label>City</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix></mat-icon>
+                    <input [formControlName]="'city'" matInput>
+                </mat-form-field>
+            </div>
+
             <!-- Phone -->
             <div class="sm:col-span-2">
                 <mat-form-field class="w-full phone-number-profile">

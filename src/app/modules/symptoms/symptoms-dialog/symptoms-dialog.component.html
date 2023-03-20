@@ -33,8 +33,18 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Cause</mat-label>
-            <mat-select [formControlName]="'causeId'" multiple>
+            <mat-select [formControlName]="'causeIds'" multiple>
                 <mat-option *ngFor="let cause of causeList" [value]="cause.id">{{cause.name}}</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="form.get('drugIds').hasError('required')">
+                Drugs is required
+            </mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Drug</mat-label>
+            <mat-select [formControlName]="'drugIds'" multiple>
+                <mat-option *ngFor="let drug of drugList" [value]="drug.id">{{drug.name}}</mat-option>
             </mat-select>
             <!-- <mat-error *ngIf="form.get('drugIds').hasError('required')">
                 Drugs is required

@@ -8,6 +8,8 @@ import { CauseService } from 'app/modules/cause/services/cause.service';
 import { CauseQuery } from 'app/modules/cause/state/cause.query';
 import { PageOptions } from 'app/shared/models/pagination.model';
 import { pick } from 'lodash';
+import { DrugService } from 'app/modules/drug/services/drug.service';
+import { DrugQuery } from 'app/modules/drug/state/drug.query';
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -30,6 +32,7 @@ export class SymptomsDialogComponent implements OnInit {
         { value: 'CPS', viewValue: 'CPS' },
     ];
     causeList: [];
+    drugList: [];
 
     constructor(
         public dialogRef: MatDialogRef<SymptomsDialogComponent>,
@@ -38,12 +41,15 @@ export class SymptomsDialogComponent implements OnInit {
         private symptomsService: SymptomsService,
         private causeQuery: CauseQuery,
         private causeService: CauseService,
+        private drugQuery: DrugQuery,
+        private drugService: DrugService,
     ) { }
     ngOnInit(): void {
         this.form = this.fb.group({
             name: ['', [Validators.required]],
             description: ['', Validators.required],
-            causeId: [[]],
+            causeIds: [[]],
+            drugIds: [[]],
             basicExperiment: ['', Validators.required],
             approach: ['', Validators.required],
             treatment: ['', Validators.required],
@@ -59,7 +65,8 @@ export class SymptomsDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
-                causeId: this.data.cause,
+                causeIds: this.data.causeIds,
+                drugIds: this.data.drugIds,
                 basicExperiment: this.data.basicExperiment,
                 approach: this.data.approach,
                 treatment: this.data.treatment,
@@ -75,10 +82,21 @@ export class SymptomsDialogComponent implements OnInit {
         this.causeQuery.select().subscribe((m: any) => {
             this.causeList = m.items || [];
         });
+
+        this.getListDrug();
+        this.drugQuery.select().subscribe((m: any) => {
+            this.drugList = m.items || [];
+        });
     }
 
     getListCause(params: any = this.page): void {
         this.causeService
+        .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
+        .subscribe();
+    }
+
+    getListDrug(params: any = this.page): void {
+        this.drugService
         .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
         .subscribe();
     }

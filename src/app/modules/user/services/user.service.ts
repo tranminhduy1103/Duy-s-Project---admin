@@ -33,6 +33,7 @@ export class UserService extends DataService {
                 })
             );
     }
+
     getMyRefUsers(params: any = null): Observable<any> {
         return this.http
         .get<APIResponseModel>(`${environment.endpoint}/${this.url}/my-ref`, {params: params})
@@ -44,5 +45,38 @@ export class UserService extends DataService {
         .pipe(
             tap((response: APIResponseModel) => of(response))
         );
+    }
+
+    getUserProfile(id: string): Observable<any> {
+        return this.http
+        .get<APIResponseModel>(`${environment.endpoint}/${this.url}/getUserDetail/${id}`)
+        .pipe(
+            catchError((error: HttpErrorResponse) =>
+                throwError(error.message)
+            )
+        )
+        .pipe(
+            tap((response: APIResponseModel) => of(response))
+        );
+    }
+
+    updateUserProfile(params: any): Observable<any> {
+        return this.httpClient
+            .put<any>(`${environment.endpoint}/authenticate/${params.id}/update-User`, params)
+            .pipe(
+                catchError((error: HttpErrorResponse) =>
+                    throwError(error.message)
+                )
+            )
+            .pipe(
+                tap((response: APIResponseModel) => {
+                    if(response.success) {
+                        this.snackBarService.success({message: 'Update successfully!'});
+                    } else {
+                        this.snackBarService.error({message: response.message});
+                    }
+                    return of(response);
+                })
+            );
     }
 }

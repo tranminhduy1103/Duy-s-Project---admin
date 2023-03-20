@@ -106,8 +106,8 @@ export class PharmacyDialogComponent implements OnInit {
             .subscribe();
     }
 
-    getListLogo(params: any = this.page) {
-        this.pharmacyService.getListLogo(params).subscribe(response => {
+    getListLogo(params: any = this.page): void {
+        this.pharmacyService.getListLogo(params).subscribe((response) => {
             if(response && response.success) {
                 this.logoList = response.data.items || [];
             } else {
