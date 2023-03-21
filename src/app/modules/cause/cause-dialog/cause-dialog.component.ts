@@ -36,7 +36,6 @@ export class CauseDialogComponent implements OnInit {
             name: ['', Validators.required],
             description: ['', Validators.required],
             referecenImage: [''],
-            type: ['', Validators.required],
             id: [uuidv4()],
         });
 
@@ -46,7 +45,6 @@ export class CauseDialogComponent implements OnInit {
                 name: this.data.name,
                 description: this.data.description,
                 referecenImage: this.data.referecenImage,
-                type: this.data.type
             });
             this.mode = 'Update';
         }

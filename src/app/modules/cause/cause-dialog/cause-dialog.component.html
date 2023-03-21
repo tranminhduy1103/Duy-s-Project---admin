@@ -14,14 +14,7 @@
                 Name is required
             </mat-error>
         </mat-form-field>
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Type</mat-label>
-            <input matInput [formControlName]="'type'" />
-            <mat-error *ngIf="form.get('type').hasError('required')">
-                Type is required
-            </mat-error>
-        </mat-form-field>
-
+       
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Description</mat-label>
             <input matInput [formControlName]="'description'" />

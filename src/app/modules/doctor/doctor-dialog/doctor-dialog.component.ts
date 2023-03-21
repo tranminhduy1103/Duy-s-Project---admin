@@ -32,27 +32,35 @@ export class DoctorDialogComponent implements OnInit {
         private doctorService: DoctorService
     ) { }
     ngOnInit(): void {
+        const randomstring = Math.random().toString(36).slice(-8);
+
         this.form = this.fb.group({
-            title: ['', Validators.required],
-            commission: ['', Validators.required],
-            convertType: ['', Validators.required],
-            description: ['', Validators.required],
-            note: ['', Validators.required],
-            type: ['', Validators.required],
+            userName: ['', Validators.required],
+            password: [{ value: randomstring, disabled: true }, [Validators.required]],
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            address: ['', Validators.required],
+            phone: ['', Validators.required],
+            email: ['', Validators.required],
+            state: ['', Validators.required],
+            city: ['', Validators.required],
+            roles: ['Doctor'],
             id: [uuidv4()],
         });
 
         if (this.data) {
             this.form.patchValue({
                 id: this.data.id,
-                title: this.data.title,
-                commission: this.data.commission,
-                startDate: this.data.startDate,
-                endDate: this.data.endDate,
-                convertType: this.data.convertType,
-                description: this.data.description,
-                note: this.data.note,
-                type: this.data.type,
+                userName: this.data.userName,
+                password: this.data.password,
+                firstName: this.data.firstName,
+                lastName: this.data.lastName,
+                address: this.data.address,
+                phone: this.data.phone,
+                email: this.data.email,
+                state: this.data.state,
+                city: this.data.city,
+                roles: this.data.roles
             });
             this.mode = 'Update';
         }
@@ -68,7 +76,7 @@ export class DoctorDialogComponent implements OnInit {
                 .subscribe(res => res.success && this.dialogRef.close(true));
         } else {
             this.doctorService
-                .create(this.form.value)
+                .createUserProfile(this.form.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
     }

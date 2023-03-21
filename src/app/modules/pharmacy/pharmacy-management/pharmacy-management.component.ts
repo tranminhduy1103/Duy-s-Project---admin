@@ -41,7 +41,7 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
         });
         this.columns = [
             { prop: 'name', name: 'Name' },
-            { prop: 'description', name: 'Description' },
+            { prop: 'address', name: 'Address' },
             { prop: 'phone', name: 'Phone' },
             { prop: 'drugs', name: 'Drug' },
             { prop: 'column', name: 'Column' },

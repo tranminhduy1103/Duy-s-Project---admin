@@ -1,6 +1,6 @@
 <div class="relative flex flex-col w-full h-full">
     <div class="text-xl leading-6 font-medium mb-4 text-center">
-        Create Doctor User
+        Create Doctor
     </div>
     <div class="absolute top-0 right-0">
         <mat-icon
@@ -12,86 +12,70 @@
 
     <form [formGroup]="form" class="grid grid-cols-2 gap-6">
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Title</mat-label>
-            <input matInput [formControlName]="'title'" />
-            <mat-error *ngIf="form.get('title').hasError('required')">
-                Title is required
+            <mat-label>User Name</mat-label>
+            <input matInput [formControlName]="'userName'" />
+            <mat-error *ngIf="form.get('userName').hasError('required')">
+                User Name is required
             </mat-error>
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Type</mat-label>
-            <input matInput [formControlName]="'type'" />
-            <mat-error *ngIf="form.get('type').hasError('required')">
-                Type is required
+            <mat-label>Password</mat-label>
+            <input matInput [formControlName]="'password'" type="passwword"/>
+            <mat-error *ngIf="form.get('password').hasError('required')">
+                Password is required
             </mat-error>
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Description</mat-label>
-            <input matInput [formControlName]="'description'" />
-            <mat-error *ngIf="form.get('description').hasError('required')">
-                Description is required
+            <mat-label>First Name</mat-label>
+            <input matInput [formControlName]="'firstName'" />
+            <mat-error *ngIf="form.get('firstName').hasError('required')">
+                First Name is required
             </mat-error>
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Note</mat-label>
-            <input matInput [formControlName]="'note'" />
-            <mat-error *ngIf="form.get('note').hasError('required')">
-                Note is required
+            <mat-label>Last Name</mat-label>
+            <input matInput [formControlName]="'lastName'" />
+            <mat-error *ngIf="form.get('lastName').hasError('required')">
+                Last Name is required
             </mat-error>
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Commission</mat-label>
-            <input matInput type="number" [formControlName]="'commission'" />
-            <mat-error *ngIf="form.get('commission').hasError('required')">
-                Commission is required
+            <mat-label>Address</mat-label>
+            <input matInput [formControlName]="'address'" />
+            <mat-error *ngIf="form.get('address').hasError('required')">
+                Address is required
             </mat-error>
         </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Start Date</mat-label>
-            <input
-                matInput
-                [matDatepicker]="startDate"
-                [formControlName]="'startDate'"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="startDate"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #startDate></mat-datepicker>
-            <mat-error *ngIf="form.get('startDate').hasError('required')">
-                Start Date is required
+        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>City</mat-label>
+            <input matInput [formControlName]="'city'" />
+            <mat-error *ngIf="form.get('city').hasError('required')">
+                City is required
             </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>End Date</mat-label>
-            <input
-                matInput
-                [matDatepicker]="endDate"
-                [formControlName]="'endDate'"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-                matSuffix
-                [for]="endDate"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #endDate></mat-datepicker>
-            <mat-error *ngIf="form.get('endDate').hasError('required')">
-                End Date is required
+        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>State</mat-label>
+            <input matInput [formControlName]="'state'" />
+            <mat-error *ngIf="form.get('state').hasError('required')">
+                State is required
             </mat-error>
-        </mat-form-field> -->
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Convert Type</mat-label>
-            <mat-select [formControlName]="'convertType'">
-                <mat-option
-                    *ngFor="let convertType of convertTypes"
-                    [value]="convertType.value"
-                >
-                    {{ convertType.viewValue }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field> -->
-        <input type="file" (change)="fileChangeEvent($event)" />
+        </mat-form-field>
+        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>Phone</mat-label>
+            <input matInput [formControlName]="'phone'" />
+            <mat-error *ngIf="form.get('phone').hasError('required')">
+                Phone is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+            <mat-label>Email</mat-label>
+            <input matInput [formControlName]="'email'" />
+            <mat-error *ngIf="form.get('email').hasError('required')">
+                Email is required
+            </mat-error>
+        </mat-form-field>
+        
+        <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
         <!-- <image-cropper
             [imageChangedEvent]="imageChangedEvent"

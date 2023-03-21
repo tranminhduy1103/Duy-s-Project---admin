@@ -48,8 +48,8 @@
 
         <ng-template #actionTemplate let-row="row" let-value="value">
             <div class="flex items-center">
-                <!-- <mat-icon (click)="openDialog(row)" [svgIcon]="'heroicons_solid:pencil-alt'"
-                    class="icon-size-6 cursor-pointer" matTooltip="Edit" color="primary"></mat-icon> -->
+                <mat-icon (click)="openDialog(row)" [svgIcon]="'heroicons_solid:pencil-alt'"
+                    class="icon-size-6 cursor-pointer" matTooltip="Edit" color="primary"></mat-icon>
                 <mat-icon [ngClass]="{'color-warn': !row.isActive, 'color-success': row.isActive}"
                     [matTooltip]="row.isActive ? 'Deactivate' : 'Activate'"
                     [svgIcon]="row.isActive ? 'mat_solid:toggle_on' : 'mat_solid:toggle_off'"
