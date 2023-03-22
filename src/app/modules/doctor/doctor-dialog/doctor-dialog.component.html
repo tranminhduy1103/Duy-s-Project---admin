@@ -20,7 +20,7 @@
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Password</mat-label>
-            <input matInput [formControlName]="'password'" type="passwword"/>
+            <input matInput [formControlName]="'password'" type="password"/>
             <mat-error *ngIf="form.get('password').hasError('required')">
                 Password is required
             </mat-error>

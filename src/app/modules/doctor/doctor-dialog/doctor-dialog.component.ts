@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DoctorService } from '../services/doctor.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { UserService } from 'app/modules/user/services/user.service';
+
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -29,19 +31,20 @@ export class DoctorDialogComponent implements OnInit {
         public dialogRef: MatDialogRef<DoctorDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private fb: FormBuilder,
-        private doctorService: DoctorService
+        private doctorService: DoctorService,
+        private userService: UserService,
     ) { }
     ngOnInit(): void {
         const randomstring = Math.random().toString(36).slice(-8);
 
         this.form = this.fb.group({
             userName: ['', Validators.required],
-            password: [{ value: randomstring, disabled: true }, [Validators.required]],
+            password: [`${randomstring}`, [Validators.required]],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             address: ['', Validators.required],
             phone: ['', Validators.required],
-            email: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
             state: ['', Validators.required],
             city: ['', Validators.required],
             roles: ['Doctor'],
@@ -64,6 +67,8 @@ export class DoctorDialogComponent implements OnInit {
             });
             this.mode = 'Update';
         }
+
+        this.form.controls['password'].disable();
     }
 
     handleCreateUpdate(): void {
@@ -71,8 +76,8 @@ export class DoctorDialogComponent implements OnInit {
             return;
         }
         if (this.data) {
-            this.doctorService
-                .update({ ...this.data, ...this.form.value })
+            this.userService
+                .updateUserProfile({ ...this.data, ...this.form.value })
                 .subscribe(res => res.success && this.dialogRef.close(true));
         } else {
             this.doctorService
