@@ -7,23 +7,43 @@ import { environment } from 'environments/environment';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { DoctorStore } from '../state/doctor.store';
+import { UserManagementStore } from '../state/user-management.store';
 
 @Injectable({ providedIn: 'root' })
-export class DoctorService extends DataService {
+export class UserManagementService extends DataService {
     _url = 'user';
     _urlAdmin = 'admin';
     constructor(
         private httpClient: HttpClient,
-        private doctorStore: DoctorStore,
+        private userManagementStore: UserManagementStore,
         private snackBarService: SnackBarService
     ) {
-        super('user', httpClient, snackBarService, doctorStore, null);
+        super('user', httpClient, snackBarService, userManagementStore, null);
     }
 
     createUserProfile(params: any): Observable<any> {
         return this.httpClient
             .post<any>(`${environment.endpoint}/${this._urlAdmin}/create-user`, params)
+            .pipe(
+                catchError((error: HttpErrorResponse) =>
+                    throwError(error.message)
+                )
+            )
+            .pipe(
+                tap((response: APIResponseModel) => {
+                    if (response.success) {
+                        this.snackBarService.success({ message: response.message });
+                    } else {
+                        this.snackBarService.error({ message: response.message });
+                    }
+                    return of(response);
+                })
+            );
+    }
+
+    updateUserStatus(id: string): Observable<any> {
+        return this.httpClient
+            .put<any>(`${environment.endpoint}/${this._urlAdmin}/${id}/toggle`, id)
             .pipe(
                 catchError((error: HttpErrorResponse) =>
                     throwError(error.message)

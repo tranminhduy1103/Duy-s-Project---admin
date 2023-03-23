@@ -57,17 +57,17 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+        <mat-form-field class="w-full phone-number-profile">
             <mat-label>Phone</mat-label>
-            <input matInput type="text" [formControlName]="'phone'" />
-            <mat-error *ngIf="form.get('phone').hasError('required')">
-                Phone is required
-            </mat-error>
+            <ngx-mat-intl-tel-input id="phone" [preferredCountries]="['vn', 'us']" [enablePlaceholder]="true"
+                [enableSearch]="true" name="phone" describedBy="phoneInput" formControlName="phone">
+            </ngx-mat-intl-tel-input>
+            <mat-error>Phone is not correct</mat-error>
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Column</mat-label>
-            <input matInput type="text" [formControlName]="'column'" />
+            <input matInput type="text" [formControlName]="'column'" required="true"/>
             <mat-error *ngIf="form.get('column').hasError('required')">
                 Column is required
             </mat-error>
@@ -75,7 +75,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Doctor</mat-label>
-            <mat-select [formControlName]="'doctorId'">
+            <mat-select [formControlName]="'doctorId'" multiple>
                 <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
                     {{ doctor.userName }}
                 </mat-option>
@@ -93,7 +93,7 @@
 
         <input type="file" (change)="fileChangeEvent($event)" />
 
-        <!-- <image-cropper
+        <image-cropper
             [imageChangedEvent]="imageChangedEvent"
             [maintainAspectRatio]="true"
             [aspectRatio]="4 / 3"
@@ -102,7 +102,7 @@
             (imageLoaded)="imageLoaded($event)"
             (cropperReady)="cropperReady()"
             (loadImageFailed)="loadImageFailed()"
-        ></image-cropper> -->
+        ></image-cropper>
     </form>
 
     <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10">

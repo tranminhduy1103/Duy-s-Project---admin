@@ -15,7 +15,7 @@ interface ConvertType {
     styleUrls: ['./cause-dialog.component.scss'],
 })
 export class CauseDialogComponent implements OnInit {
-    form: FormGroup;
+    causeForm: FormGroup;
     mode: string = 'Create';
     imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -32,7 +32,7 @@ export class CauseDialogComponent implements OnInit {
         private causeService: CauseService
     ) { }
     ngOnInit(): void {
-        this.form = this.fb.group({
+        this.causeForm = this.fb.group({
             name: ['', Validators.required],
             description: ['', Validators.required],
             referecenImage: [''],
@@ -40,7 +40,7 @@ export class CauseDialogComponent implements OnInit {
         });
 
         if (this.data) {
-            this.form.patchValue({
+            this.causeForm.patchValue({
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
@@ -51,31 +51,31 @@ export class CauseDialogComponent implements OnInit {
     }
 
     handleCreateUpdate(): void {
-        if (this.form.invalid) {
+        if (this.causeForm.invalid) {
             return;
         }
         if (this.data) {
             this.causeService
-                .update({ ...this.data, ...this.form.value })
+                .update({ ...this.data, ...this.causeForm.value })
                 .subscribe(res => res.success && this.dialogRef.close(true));
         } else {
             this.causeService
-                .create(this.form.value)
+                .create(this.causeForm.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
     }
 
     uploadFile(file): void {
-        if (this.form.invalid) {
+        if (this.causeForm.invalid) {
             return;
         }
         if (this.data) {
             this.causeService
-                .update({ ...this.data, ...this.form.value })
+                .update({ ...this.data, ...this.causeForm.value })
                 .subscribe(res => res.success && this.dialogRef.close(true));
         } else {
             this.causeService
-                .create(this.form.value)
+                .create(this.causeForm.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
     }

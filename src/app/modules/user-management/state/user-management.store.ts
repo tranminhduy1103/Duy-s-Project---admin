@@ -1,13 +1,13 @@
 import { EntityState, EntityStore, Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
 
-export interface DoctorState {
+export interface UserManagementState {
   page: number;
   pageSize: number;
   totalItems: number;
   items: Array<any>;
 };
-const initState: DoctorState = {
+const initState: UserManagementState = {
   page: 1,
   pageSize: 25,
   totalItems: 0,
@@ -15,8 +15,8 @@ const initState: DoctorState = {
 };
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'doctor',  })
-export class DoctorStore extends Store<DoctorState> {
+@StoreConfig({ name: 'user',  })
+export class UserManagementStore extends Store<UserManagementState> {
   constructor() {
     super(initState);
   }

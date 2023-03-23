@@ -55,10 +55,10 @@ const route: Route[] = [
             ),
     },
     {
-        path: 'doctor',
+        path: 'user-management',
         loadChildren: () =>
-            import('app/modules/doctor/doctor.module').then(
-                m => m.DoctorModule
+            import('app/modules/user-management/user-management.module').then(
+                m => m.UserManagementModule
             ),
     },
     {

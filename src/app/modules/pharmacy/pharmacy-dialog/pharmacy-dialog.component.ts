@@ -8,8 +8,8 @@ import { pick } from 'lodash';
 import { PageOptions } from 'app/shared/models/pagination.model';
 import { DrugService } from 'app/modules/drug/services/drug.service';
 import { DrugQuery } from 'app/modules/drug/state/drug.query';
-import { DoctorService } from 'app/modules/doctor/services/doctor.service';
-import { DoctorQuery } from 'app/modules/doctor/state/doctor.query';
+import { UserManagementService } from 'app/modules/user-management/services/user-management.service';
+import { UserManagementQuery } from 'app/modules/user-management/state/user-management.query';
 
 interface ConvertType {
     value: string;
@@ -45,8 +45,8 @@ export class PharmacyDialogComponent implements OnInit {
         private pharmacyService: PharmacyService,
         private drugQuery: DrugQuery,
         private drugService: DrugService,
-        private doctorService: DoctorService,
-        private doctorQuery: DoctorQuery,
+        private userManagementService: UserManagementService,
+        private userManagementQuery: UserManagementQuery,
     ) { }
 
     ngOnInit(): void {
@@ -82,7 +82,7 @@ export class PharmacyDialogComponent implements OnInit {
         }
 
         this.getListDoctor();
-        this.doctorQuery.select().subscribe((m: any) => {
+        this.userManagementQuery.select().subscribe((m: any) => {
             this.userList = m.items.filter(value => value.roles === 'Doctor') || [];
         });
 
@@ -101,7 +101,7 @@ export class PharmacyDialogComponent implements OnInit {
     }
 
     getListDoctor(params: any = this.page): void {
-        this.doctorService
+        this.userManagementService
             .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
             .subscribe();
     }

@@ -10,15 +10,15 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { TableColumn } from '@swimlane/ngx-datatable/public-api';
 import { PageOptions, Pagination } from 'app/shared/models/pagination.model';
 import { pick } from 'lodash';
-import { DoctorDialogComponent } from '../doctor-dialog/doctor-dialog.component';
-import { DoctorService } from '../services/doctor.service';
-import { DoctorQuery } from '../state/doctor.query';
+import { UserManagementDialogComponent } from '../user-management-dialog/user-management-dialog.component';
+import { UserManagementService } from '../services/user-management.service';
+import { UserManagementQuery } from '../state/user-management.query';
 @Component({
-    selector: 'app-doctor-management',
-    templateUrl: './doctor-management.component.html',
-    styleUrls: ['./doctor-management.component.scss'],
+    selector: 'app-user-management',
+    templateUrl: './user-management.component.html',
+    styleUrls: ['./user-management.component.scss'],
 })
-export class DoctorManagementComponent implements OnInit, OnDestroy {
+export class UserManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
     page: PageOptions = new PageOptions();
@@ -29,22 +29,23 @@ export class DoctorManagementComponent implements OnInit, OnDestroy {
 
     constructor(
         public dialog: MatDialog,
-        private doctorQuery: DoctorQuery,
-        private doctorService: DoctorService,
+        private userManagementQuery: UserManagementQuery,
+        private userManagementService: UserManagementService,
         private fuseConfirmationService: FuseConfirmationService
     ) { }
 
     ngOnInit(): void {
         this.getAlls();
-        this.doctorQuery.select().subscribe((m: any) => {
+        this.userManagementQuery.select().subscribe((m: any) => {
             this.dataSource = m || [];
         });
         this.columns = [
             { prop: 'userName', name: 'Name' },
-            { prop: 'email', name: 'Email'  },
+            { prop: 'email', name: 'Email' },
             { prop: 'phone', name: 'Phone' },
             { prop: 'state', name: 'State' },
             { prop: 'city', name: 'City' },
+            { prop: 'roles', name: 'Role' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',
@@ -56,27 +57,27 @@ export class DoctorManagementComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void { }
 
     getAlls(params: any = this.page): void {
-        this.doctorService
+        this.userManagementService
             .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
             .subscribe();
     }
 
     handleToggle(item): void {
         this.fuseConfirmationService.openConfirm(() => {
-            this.doctorService
-                .toggle(item.id)
+            this.userManagementService
+                .updateUserStatus(item.id)
                 .subscribe(() => this.getAlls());
         });
     }
     handleDelete(item): void {
         this.fuseConfirmationService.openConfirm(() => {
-            this.doctorService
+            this.userManagementService
                 .delete(item.id)
                 .subscribe(res => res.success && this.getAlls());
         });
     }
     openDialog(model = null): void {
-        const ref = this.dialog.open(DoctorDialogComponent, {
+        const ref = this.dialog.open(UserManagementDialogComponent, {
             width: '800px',
             data: model,
         });

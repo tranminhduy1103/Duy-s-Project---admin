@@ -43,11 +43,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
         role: 'Administrator',
     },
     {
-        id: 'manage-doctor',
-        title: 'DOCTOR',
+        id: 'manage-user',
+        title: 'USER',
         type: 'basic',
         icon: 'heroicons_outline:users',
-        link: '/admin/doctor',
+        link: '/admin/user-management',
         role: 'Administrator',
     },
     // {

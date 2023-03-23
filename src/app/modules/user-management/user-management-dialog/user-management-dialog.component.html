@@ -1,13 +1,9 @@
 <div class="relative flex flex-col w-full h-full">
     <div class="text-xl leading-6 font-medium mb-4 text-center">
-        Create Doctor
+        {{ mode }} User
     </div>
     <div class="absolute top-0 right-0">
-        <mat-icon
-            matDialogClose
-            class="text-secondary cursor-pointer"
-            [svgIcon]="'heroicons_outline:x'"
-        ></mat-icon>
+        <mat-icon matDialogClose class="text-secondary cursor-pointer" [svgIcon]="'heroicons_outline:x'"></mat-icon>
     </div>
 
     <form [formGroup]="form" class="grid grid-cols-2 gap-6">
@@ -20,7 +16,7 @@
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Password</mat-label>
-            <input matInput [formControlName]="'password'" type="password"/>
+            <input matInput [formControlName]="'password'" type="password" />
             <mat-error *ngIf="form.get('password').hasError('required')">
                 Password is required
             </mat-error>
@@ -60,12 +56,12 @@
                 State is required
             </mat-error>
         </mat-form-field>
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+        <mat-form-field class="w-full phone-number-profile">
             <mat-label>Phone</mat-label>
-            <input matInput [formControlName]="'phone'" />
-            <mat-error *ngIf="form.get('phone').hasError('required')">
-                Phone is required
-            </mat-error>
+            <ngx-mat-intl-tel-input id="phone" [preferredCountries]="['vn', 'us']" [enablePlaceholder]="true"
+                [enableSearch]="true" name="phone" describedBy="phoneInput" formControlName="phone">
+            </ngx-mat-intl-tel-input>
+            <mat-error>Phone is not correct</mat-error>
         </mat-form-field>
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Email</mat-label>
@@ -74,7 +70,16 @@
                 Email is required
             </mat-error>
         </mat-form-field>
-        
+        <mat-form-field appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select [formControlName]="'roles'">
+                <mat-option *ngFor="let role of listRole" [value]="role.name">{{role.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('roles').hasError('required')">
+                Role is required
+            </mat-error>
+        </mat-form-field>
+
         <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
         <!-- <image-cropper
@@ -89,9 +94,7 @@
         ></image-cropper> -->
     </form>
 
-    <div
-        class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10"
-    >
+    <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10">
         <button mat-stroked-button matDialogClose="true">Cancel</button>
         <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
             {{ mode }}

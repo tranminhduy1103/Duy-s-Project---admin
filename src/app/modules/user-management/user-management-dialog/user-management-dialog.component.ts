@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DoctorService } from '../services/doctor.service';
+import { UserManagementService } from '../services/user-management.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { UserService } from 'app/modules/user/services/user.service';
@@ -12,11 +12,11 @@ interface ConvertType {
 }
 
 @Component({
-    selector: 'app-doctor-dialog',
-    templateUrl: './doctor-dialog.component.html',
-    styleUrls: ['./doctor-dialog.component.scss'],
+    selector: 'app-user-management-dialog',
+    templateUrl: './user-management-dialog.component.html',
+    styleUrls: ['./user-management-dialog.component.scss'],
 })
-export class DoctorDialogComponent implements OnInit {
+export class UserManagementDialogComponent implements OnInit {
     form: FormGroup;
     mode: string = 'Create';
     imageChangedEvent: any = '';
@@ -26,12 +26,13 @@ export class DoctorDialogComponent implements OnInit {
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
+    listRole: any = [];
 
     constructor(
-        public dialogRef: MatDialogRef<DoctorDialogComponent>,
+        public dialogRef: MatDialogRef<UserManagementDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private fb: FormBuilder,
-        private doctorService: DoctorService,
+        private userManagementService: UserManagementService,
         private userService: UserService,
     ) { }
     ngOnInit(): void {
@@ -47,7 +48,7 @@ export class DoctorDialogComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             state: ['', Validators.required],
             city: ['', Validators.required],
-            roles: ['Doctor'],
+            roles: ['', Validators.required],
             id: [uuidv4()],
         });
 
@@ -69,6 +70,12 @@ export class DoctorDialogComponent implements OnInit {
         }
 
         this.form.controls['password'].disable();
+
+        this.listRole = [
+            { name: 'Administrator' },
+            { name: 'Doctor' },
+            { name: 'Patient' }
+        ];
     }
 
     handleCreateUpdate(): void {
@@ -80,7 +87,7 @@ export class DoctorDialogComponent implements OnInit {
                 .updateUserProfile({ ...this.data, ...this.form.value })
                 .subscribe(res => res.success && this.dialogRef.close(true));
         } else {
-            this.doctorService
+            this.userManagementService
                 .createUserProfile(this.form.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
@@ -91,11 +98,11 @@ export class DoctorDialogComponent implements OnInit {
             return;
         }
         if (this.data) {
-            this.doctorService
+            this.userManagementService
                 .update({ ...this.data, ...this.form.value })
                 .subscribe(res => res.success && this.dialogRef.close(true));
         } else {
-            this.doctorService
+            this.userManagementService
                 .create(this.form.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
