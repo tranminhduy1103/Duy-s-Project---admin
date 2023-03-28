@@ -54,5 +54,12 @@
                     class="icon-size-6 ml-2 cursor-pointer" color="warn"></mat-icon>
             </div>
         </ng-template>
+
+        <ng-template #formatObject let-row="row" let-value="value">
+            <div class="flex">
+                <p *ngFor="let item of value; let i = index">{{item.name}}<span *ngIf="(i + 1) < value.length">, </span>
+                </p>
+            </div>
+        </ng-template>
     </div>
 </div>

@@ -75,7 +75,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Doctor</mat-label>
-            <mat-select [formControlName]="'doctorId'" multiple>
+            <mat-select [formControlName]="'doctorIds'" multiple>
                 <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
                     {{ doctor.userName }}
                 </mat-option>

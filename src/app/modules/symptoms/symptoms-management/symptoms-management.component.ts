@@ -21,6 +21,8 @@ import { SymptomsQuery } from '../state/symptoms.query';
 export class SymptomsManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
+    @ViewChild('formatObject', {static: true})
+    formatObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
     dataSource;
@@ -42,7 +44,7 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
         this.columns = [
             { prop: 'name', name: 'Name' },
             { prop: 'description', name: 'Description' },
-            { prop: 'cause', name: 'Cause' },
+            { prop: 'cause', name: 'Cause', cellTemplate: this.formatObject, },
             { prop: 'basicExperiment', name: 'Basic Experiment' },
             { prop: 'type', name: 'Type' },
             {

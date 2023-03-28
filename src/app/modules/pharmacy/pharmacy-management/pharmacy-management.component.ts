@@ -21,6 +21,8 @@ import { PharmacyQuery } from '../state/pharmacy.query';
 export class PharmacyManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
+    @ViewChild('formatObject', {static: true})
+    formatObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
     dataSource;
@@ -43,7 +45,7 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
             { prop: 'name', name: 'Name' },
             { prop: 'address', name: 'Address' },
             { prop: 'phone', name: 'Phone' },
-            { prop: 'drugs', name: 'Drug' },
+            { prop: 'drugs', name: 'Drug', cellTemplate: this.formatObject, },
             { prop: 'column', name: 'Column' },
             {
                 cellTemplate: this.actionTemplate,
