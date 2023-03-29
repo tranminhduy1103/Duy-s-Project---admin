@@ -89,6 +89,9 @@
                     {{ logo.imagePath }}
                 </mat-option>
             </mat-select>
+            <mat-error *ngIf="form.get('logoId').hasError('required')">
+                Logo is required
+            </mat-error>
         </mat-form-field>
 
         <input type="file" (change)="fileChangeEvent($event)" />

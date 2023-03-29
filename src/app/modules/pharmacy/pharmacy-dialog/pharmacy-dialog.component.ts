@@ -57,7 +57,7 @@ export class PharmacyDialogComponent implements OnInit {
             phone: ['', Validators.required],
             drugIds: [[]],
             doctorIds: [[]],
-            logoId: ['', Validators.required],
+            logoId: [''],
             column: ['', Validators.required],
             referenceImage:[''],
             type: ['', Validators.required],
