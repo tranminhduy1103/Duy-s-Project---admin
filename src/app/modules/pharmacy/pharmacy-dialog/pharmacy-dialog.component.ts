@@ -37,6 +37,10 @@ export class PharmacyDialogComponent implements OnInit {
     drugList: [];
     userList: [];
     logoList: [];
+    selectedDrug = [];
+    selectedDoctor = [];
+    filteredDrugs;
+    filteredDoctors;
 
     constructor(
         public dialogRef: MatDialogRef<PharmacyDialogComponent>,
@@ -83,12 +87,15 @@ export class PharmacyDialogComponent implements OnInit {
 
         this.getListDoctor();
         this.userManagementQuery.select().subscribe((m: any) => {
-            this.userList = m.items.filter(value => value.roles === 'Doctor') || [];
+            // this.userList = m.items.filter(value => value.roles === 'Doctor') || [];
+            this.userList = m.items;
+            this.filteredDoctors = this.userList.slice();
         });
 
         this.getListDrug();
         this.drugQuery.select().subscribe((m: any) => {
             this.drugList = m.items || [];
+            this.filteredDrugs = this.drugList.slice();
         });
 
         this.getListLogo();

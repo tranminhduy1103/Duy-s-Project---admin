@@ -12,6 +12,7 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { GridViewComponent } from './components/grid-view/grid-view.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectFilterModule } from 'mat-select-filter';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         ImageCropperModule,
         MatGridListModule,
         MaterialModule,
+        MatSelectFilterModule
     ],
     exports: [
         CommonModule,
@@ -34,6 +36,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         GridViewComponent,
         // ImageCropperComponent,
         MatGridListModule,
+        MatSelectFilterModule
     ],
     providers: [
         ConfirmationService
