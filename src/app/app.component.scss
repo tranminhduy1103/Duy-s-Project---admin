@@ -19,9 +19,11 @@
     .phone-number-profile .ngx-mat-tel-input-container .mat-input-element.mat-form-field-autofill-control {
         margin-left: 70px;
     }
-}
 
-::ng-deep {
+    .mat-select-panel.mat-primary {
+        margin-left: 15px;
+    }
+
     .mat-form-field.mat-form-field-appearance-fill.fuse-mat-no-subscript .mat-form-field-wrapper .mat-form-field-subscript-wrapper {
         display: inline !important;
     }

@@ -33,6 +33,10 @@ export class SymptomsDialogComponent implements OnInit {
     ];
     causeList: [];
     drugList: [];
+    selectedDrug = [];
+    selectedCause = [];
+    filteredDrugs;
+    filteredCauses;
 
     constructor(
         public dialogRef: MatDialogRef<SymptomsDialogComponent>,
@@ -81,11 +85,13 @@ export class SymptomsDialogComponent implements OnInit {
         this.getListCause();
         this.causeQuery.select().subscribe((m: any) => {
             this.causeList = m.items || [];
+            this.filteredCauses = this.causeList.slice();
         });
 
         this.getListDrug();
         this.drugQuery.select().subscribe((m: any) => {
             this.drugList = m.items || [];
+            this.filteredDrugs = this.drugList.slice();
         });
     }
 

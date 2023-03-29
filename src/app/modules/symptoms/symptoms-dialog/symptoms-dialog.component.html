@@ -31,26 +31,28 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Cause</mat-label>
-            <mat-select [formControlName]="'causeIds'" multiple>
-                <mat-option *ngFor="let cause of causeList" [value]="cause.id">{{cause.name}}</mat-option>
+        <mat-form-field>
+            <mat-label>Causes</mat-label>
+            <mat-select #selectCause multiple [(value)]="selectedCause" [formControlName]="'causeIds'">
+                <mat-select-filter *ngIf="selectCause.focused" [array]="causeList" [displayMember]="'name'"
+                    (filteredReturn)="filteredCauses = $event"></mat-select-filter>
+                <mat-option *ngFor="let cause of filteredCauses" [value]="cause.id">
+                    {{cause.name}}
+                </mat-option>
             </mat-select>
-            <!-- <mat-error *ngIf="form.get('drugIds').hasError('required')">
-                Drugs is required
-            </mat-error> -->
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Drug</mat-label>
-            <mat-select [formControlName]="'drugIds'" multiple>
-                <mat-option *ngFor="let drug of drugList" [value]="drug.id">{{drug.name}}</mat-option>
+        <mat-form-field>
+            <mat-label>Drugs</mat-label>
+            <mat-select #selectDrug multiple [(value)]="selectedDrug" [formControlName]="'drugIds'">
+                <mat-select-filter *ngIf="selectDrug.focused" [array]="drugList" [displayMember]="'name'"
+                    (filteredReturn)="filteredDrugs = $event"></mat-select-filter>
+                <mat-option *ngFor="let drug of filteredDrugs" [value]="drug.id">
+                    {{drug.name}}
+                </mat-option>
             </mat-select>
-            <!-- <mat-error *ngIf="form.get('drugIds').hasError('required')">
-                Drugs is required
-            </mat-error> -->
         </mat-form-field>
-
+        
         <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
             <mat-label>Basic Experiment</mat-label>
             <input matInput type="text" [formControlName]="'basicExperiment'" />
