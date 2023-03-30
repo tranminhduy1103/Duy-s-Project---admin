@@ -44,7 +44,7 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
         this.columns = [
             { prop: 'name', name: 'Name' },
             { prop: 'description', name: 'Description' },
-            { prop: 'cause', name: 'Cause', cellTemplate: this.formatObject, },
+            { prop: 'causes', name: 'Cause', cellTemplate: this.formatObject, },
             { prop: 'basicExperiment', name: 'Basic Experiment' },
             { prop: 'type', name: 'Type' },
             {

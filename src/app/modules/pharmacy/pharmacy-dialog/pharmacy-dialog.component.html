@@ -97,11 +97,9 @@
             </mat-error>
         </mat-form-field>
 
-        <input type="file" (change)="fileChangeEvent($event)" />
-
-        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
-            format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
-            (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+        <app-image-cropper class="col-span-2" [recordId]="this.form.value.id" [type]="'campaign-brand'"
+            [events]="eventsSubject.asObservable()">
+        </app-image-cropper>
     </form>
 
     <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10">

@@ -10,6 +10,7 @@ import { DrugService } from 'app/modules/drug/services/drug.service';
 import { DrugQuery } from 'app/modules/drug/state/drug.query';
 import { UserManagementService } from 'app/modules/user-management/services/user-management.service';
 import { UserManagementQuery } from 'app/modules/user-management/state/user-management.query';
+import { Subject } from 'rxjs';
 
 interface ConvertType {
     value: string;
@@ -34,6 +35,7 @@ export class PharmacyDialogComponent implements OnInit {
     listDoctor = [{id: uuidv4(), name: 'A'}];
     listLogo = [{id: uuidv4(), name: 'A'}];
     page: PageOptions = new PageOptions();
+    eventsSubject: Subject<void> = new Subject<void>();
     drugList: [];
     userList: [];
     logoList: [];
@@ -136,6 +138,8 @@ export class PharmacyDialogComponent implements OnInit {
                 .create(this.form.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
+
+        this.eventsSubject.next();
     }
 
     uploadFile(file): void {

@@ -7,6 +7,7 @@ export const environment = {
     // endpoint: 'https://mass-recruitment-wapi.azurewebsites.net/api',
     // endpoint: 'https://localhost:44312/api',
     endpoint: 'https://duyprojectapi20230305124117.azurewebsites.net/api',
+    endpointV1: 'https://duyprojectapi20230305124117.azurewebsites.net/',
     landingUrl:
         'https://happy-smoke-0b1eb3110.2.azurestaticapps.net/',
 };

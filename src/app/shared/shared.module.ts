@@ -13,6 +13,7 @@ import { GridViewComponent } from './components/grid-view/grid-view.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectFilterModule } from 'mat-select-filter';
+import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
 
 @NgModule({
     imports: [
@@ -34,9 +35,9 @@ import { MatSelectFilterModule } from 'mat-select-filter';
         TableComponent,
         LeftMenuComponent,
         GridViewComponent,
-        // ImageCropperComponent,
         MatGridListModule,
-        MatSelectFilterModule
+        MatSelectFilterModule,
+        ImageCropperComponent
     ],
     providers: [
         ConfirmationService
@@ -46,7 +47,8 @@ import { MatSelectFilterModule } from 'mat-select-filter';
         ConfirmationDialogComponent,
         TableComponent,
         LeftMenuComponent,
-        GridViewComponent
+        GridViewComponent,
+        ImageCropperComponent
     ]
 })
 export class SharedModule {

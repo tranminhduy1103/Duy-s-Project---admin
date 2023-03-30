@@ -1,0 +1,9 @@
+<div class="grid grid-cols-2 gap-6">
+    <div class="col-span-2">
+        <input type="file" (change)="fileChangeEvent($event)" />
+    </div>
+    <img [src]="croppedImage || '/assets/images/pages/profile/default-img.svg'" />
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+        format="jpeg" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+        (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+</div>

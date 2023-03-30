@@ -5,7 +5,6 @@ import { MaterialModule } from 'app/shared/material.module';
 import { PharmacyManagementComponent } from './pharmacy-management/pharmacy-management.component';
 import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.component';
 import { Route, RouterModule } from '@angular/router';
-import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 const routes: Route[] = [
     {
@@ -21,8 +20,7 @@ const routes: Route[] = [
         SharedModule,
         MaterialModule,
         RouterModule.forChild(routes),
-        ImageCropperModule,
-        NgxMatIntlTelInputComponent
+        NgxMatIntlTelInputComponent,
     ],
 })
 export class PharmacyModule { }
