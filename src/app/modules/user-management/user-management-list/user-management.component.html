@@ -1,28 +1,44 @@
 <div class="w-full">
     <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-2 px-2 md:py-4">
         <div class="flex items-center justify-between w-full mb-4 bg-card shadow rounded-2xl p-4">
-            <div>
-                <h2 class="text-3xl font-semibold tracking-tight leading-8">
-                    User Management
-                </h2>
-                <!-- <div class="font-medium tracking-tight text-secondary">
-                    Keep track of your financial status
-                </div> -->
-            </div>
-            <div class="flex items-center ml-6">
-                <div class="flex">
-                    <mat-form-field class="flex-auto search-input">
-                        <input matInput placeholder="Search" (keyup.enter)="filter()" [(ngModel)]="filterValue">
-                        <mat-icon class="icon-size-5 cursor-pointer" matSuffix (click)="filter()"
-                            [svgIcon]="'heroicons_solid:search'"></mat-icon>
-                    </mat-form-field>
+            <div class="row w-full">
+                <div class="col-md-12 col-lg-12 col-sm-12 w-full flex justify-between">
+                    <div class="flex items-center ml-6">
+                        <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                            User Management
+                        </h2>
+                        <!-- <div class="font-medium tracking-tight text-secondary">
+                            Keep track of your financial status
+                        </div> -->
+                    </div>
+                    <div class="flex items-center ml-6">
+                        <div class="flex">
+                            <mat-form-field class="flex-auto search-input">
+                                <input matInput placeholder="Search" (keyup.enter)="filter()" [(ngModel)]="filterValue">
+                                <mat-icon class="icon-size-5 cursor-pointer" matSuffix (click)="filter()"
+                                    [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <button class="hidden sm:inline-flex ml-3" mat-flat-button (click)="openDialog()"
+                            [color]="'primary'">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
+                            <span class="ml-2">New User</span>
+                        </button>
+                    </div>
                 </div>
-                <button class="hidden sm:inline-flex ml-3" mat-flat-button (click)="openDialog()" [color]="'primary'">
-                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
-                    <span class="ml-2">New User</span>
-                </button>
 
-
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="flex items-center">
+                        <div class="flex">
+                            <p class="p-4 tab-header font-medium" [ngClass]="tabManage === 1 ? 'tab-active' : ''"
+                                (click)="changeTabTransaction(1)">Active</p>
+                            <p class="p-4 tab-header font-medium" [ngClass]="tabManage === 2 ? 'tab-active' : ''"
+                                (click)="changeTabTransaction(2)">Arhive</p>
+                            <p class="p-4 tab-header font-medium" [ngClass]="tabManage === 3 ? 'tab-active' : ''"
+                                (click)="changeTabTransaction(3)">All</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -54,8 +70,8 @@
                     [matTooltip]="row.isActive ? 'Deactivate' : 'Activate'"
                     [svgIcon]="row.isActive ? 'mat_solid:toggle_on' : 'mat_solid:toggle_off'"
                     class="icon-size-10 cursor-pointer ml-2" (click)="handleToggle(row)"></mat-icon>
-                <mat-icon (click)="handleDelete(row)" [svgIcon]="'heroicons_solid:trash'" matTooltip="Delete"
-                    class="icon-size-6 ml-2 cursor-pointer" color="warn"></mat-icon>
+                <!-- <mat-icon (click)="handleDelete(row)" [svgIcon]="'heroicons_solid:trash'" matTooltip="Delete"
+                    class="icon-size-6 ml-2 cursor-pointer" color="warn"></mat-icon> -->
             </div>
         </ng-template>
     </div>
