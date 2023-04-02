@@ -1,31 +1,32 @@
 <div class="relative flex flex-col w-full h-full">
-    <div class="text-xl leading-6 font-medium mb-4 text-center">
+    <div class="text-xl leading-6 font-medium mb-4 text-center p-4">
         {{ mode }} Cause
     </div>
-    <div class="absolute top-0 right-0">
+    <div class="absolute top-0 right-0 p-4">
         <mat-icon matDialogClose class="text-secondary cursor-pointer" [svgIcon]="'heroicons_outline:x'"></mat-icon>
     </div>
 
-    <form [formGroup]="causeForm" class="grid grid-cols-2 gap-6">
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Name</mat-label>
-            <input matInput [formControlName]="'name'"/>
-            <mat-error *ngIf="causeForm.get('name').hasError('required')">
-                Name is required
-            </mat-error>
-        </mat-form-field>
-       
-        <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-            <mat-label>Description</mat-label>
-            <input matInput [formControlName]="'description'" />
-            <mat-error *ngIf="causeForm.get('description').hasError('required')">
-                Description is required
-            </mat-error>
-        </mat-form-field>
-        
-        <input type="file" (change)="fileChangeEvent($event)" />
+    <div class="form-action">
+        <form [formGroup]="causeForm" class="grid grid-cols-2 gap-6">
+            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                <mat-label>Name</mat-label>
+                <input matInput [formControlName]="'name'" />
+                <mat-error *ngIf="causeForm.get('name').hasError('required')">
+                    Name is required
+                </mat-error>
+            </mat-form-field>
 
-        <!-- <image-cropper
+            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                <mat-label>Description</mat-label>
+                <input matInput [formControlName]="'description'" />
+                <mat-error *ngIf="causeForm.get('description').hasError('required')">
+                    Description is required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
+
+            <!-- <image-cropper
             [imageChangedEvent]="imageChangedEvent"
             [maintainAspectRatio]="true"
             [aspectRatio]="4 / 3"
@@ -35,9 +36,10 @@
             (cropperReady)="cropperReady()"
             (loadImageFailed)="loadImageFailed()"
         ></image-cropper> -->
-    </form>
+        </form>
+    </div>
 
-    <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10">
+    <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">
         <button mat-stroked-button matDialogClose="true">Cancel</button>
         <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
             {{ mode }}

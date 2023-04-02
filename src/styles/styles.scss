@@ -23,3 +23,9 @@ body {
 .tab-active {
     border-bottom: 2px solid #006dff;
 }
+
+.form-action {
+    max-height: calc(100vh - 300px);
+    overflow: auto;
+    padding: 24px;
+}
