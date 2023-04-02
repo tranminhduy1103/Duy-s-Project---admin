@@ -29,4 +29,10 @@
     .mat-dialog-container {
         padding: 0 !important;
     }
+
+    .ngx-ic-source-image {
+        min-height: 250px !important;
+        max-width: 250px !important;
+        object-fit: cover;
+    }
 }

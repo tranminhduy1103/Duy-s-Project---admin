@@ -8,6 +8,7 @@
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
+
 body {
     * {
         font-size: 12px;
@@ -28,4 +29,10 @@ body {
     max-height: calc(100vh - 300px);
     overflow: auto;
     padding: 24px;
+}
+
+.default-img {
+    min-height: 250px;
+    max-width: 250px;
+    object-fit: cover;
 }
