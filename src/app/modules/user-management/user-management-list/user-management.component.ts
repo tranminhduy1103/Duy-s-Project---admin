@@ -24,8 +24,13 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
     dataSource;
-    filterValue: string;
+    filterValue: string = '';
     pagingOptions: Pagination;
+    tabManage = 1;
+    tabStatus = {
+        1: true,
+        2: false
+    }
 
     constructor(
         public dialog: MatDialog,
@@ -38,6 +43,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
         this.getAlls();
         this.userManagementQuery.select().subscribe((m: any) => {
             this.dataSource = m || [];
+            this.dataSource.items = m.items && this.tabManage !== 3 ? this.dataSource.items?.filter(value => value.isActive === this.tabStatus[this.tabManage]) : m.items;
         });
         this.columns = [
             { prop: 'userName', name: 'Name' },
@@ -96,5 +102,11 @@ export class UserManagementComponent implements OnInit, OnDestroy {
 
     filterListData(item): void {
         console.log(item);
+    }
+
+    changeTabTransaction(tab): void {
+        this.tabManage = tab;
+
+        this.filter();
     }
 }
