@@ -97,7 +97,7 @@
             </mat-error>
         </mat-form-field>
 
-        <app-image-cropper class="col-span-2" [recordId]="this.form.value.id" [type]="'campaign-brand'"
+        <app-image-cropper class="col-span-2" [recordId]="this.form.value.id" [type]="'campaign-brand'" [fileName]="form.get('name').value"
             [events]="eventsSubject.asObservable()">
         </app-image-cropper>
     </form>

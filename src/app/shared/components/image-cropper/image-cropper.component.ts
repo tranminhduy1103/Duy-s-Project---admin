@@ -11,6 +11,7 @@ import { Observable, Subscription } from 'rxjs';
 export class ImageCropperComponent implements OnInit {
     @Input() recordId: any;
     @Input() type: any;
+    @Input() fileName: any;
     @Input() events: Observable<void>;
     @Output() saveComplete = new EventEmitter<string>();
     imageChangedEvent: any = '';
@@ -37,7 +38,7 @@ export class ImageCropperComponent implements OnInit {
     saveImage(): void {
         if (this.fileChange) {
             this.attachmentService
-                .createByBase64(this.croppedImage, this.recordId, this.type)
+                .createByBase64(this.croppedImage, this.recordId, this.type, this.fileName)
                 .subscribe(
                     (res) => res.success && this.saveComplete.emit('Done')
                 );

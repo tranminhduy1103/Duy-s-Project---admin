@@ -24,10 +24,12 @@ export class AttachmentService extends DataService {
     createByBase64(
         fileContent: string,
         recordId: any,
-        type: any
+        type: any,
+        fileName: any
     ): Observable<APIResponseModel> {
         const model = {
-            file: fileContent,
+            content: fileContent,
+            fileName: fileName
             // recordId: recordId,
             // type: type,
             // isReplace: true,
