@@ -90,11 +90,12 @@
 <ng-template #itemTemplate>
 
     <!-- Icon -->
-    <ng-container *ngIf="item.icon">
-        <mat-icon
+    <ng-container *ngIf="item.srcImg">
+        <!-- <mat-icon
             class="fuse-vertical-navigation-item-icon"
             [ngClass]="item.classes?.icon"
-            [svgIcon]="item.icon"></mat-icon>
+            [svgIcon]="item.icon"></mat-icon> -->
+            <img [src]="item.srcImg" style="width: 30px; margin: 0 10px;"/>
     </ng-container>
 
     <!-- Title & Subtitle -->

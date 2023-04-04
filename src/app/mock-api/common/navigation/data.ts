@@ -9,6 +9,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:home',
         link: '/admin/campaigns',
         role: 'Administrator',
+        srcImg: '../assets/images/menu-logo/home.svg',
     },
     {
         id: 'manage-cause',
@@ -17,6 +18,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:eye',
         link: '/admin/cause',
         role: 'Administrator',
+        srcImg: '../assets/images/menu-logo/cause.png',
     },
     {
         id: 'manage-symptoms',
@@ -25,6 +27,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:clipboard',
         link: '/admin/symptoms',
         role: 'Administrator',
+        srcImg: '../assets/images/menu-logo/symptoms.png',
     },
     {
         id: 'manage-pharmacy',
@@ -33,6 +36,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:inbox',
         link: '/admin/pharmacy',
         role: 'Administrator',
+        srcImg: '../assets/images/menu-logo/pharmacy.png',
     },
     {
         id: 'manage-drug',
@@ -41,6 +45,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:link',
         link: '/admin/drug',
         role: 'Administrator',
+        srcImg: '../assets/images/menu-logo/drug.png',
     },
     {
         id: 'manage-user',
@@ -49,6 +54,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:users',
         link: '/admin/user-management',
         role: 'Administrator',
+        srcImg: '../assets/images/menu-logo/user.png',
     },
     // {
     //     id: 'updateProfile',
@@ -77,6 +83,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:key',
         link: '/user/change-password',
+        srcImg: '../assets/images/menu-logo/user.png',
     },
     // {
     //     id: 'api.generator',
