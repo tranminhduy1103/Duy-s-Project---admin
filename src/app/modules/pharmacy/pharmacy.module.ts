@@ -6,15 +6,20 @@ import { PharmacyManagementComponent } from './pharmacy-management/pharmacy-mana
 import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.component';
 import { Route, RouterModule } from '@angular/router';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { PharmacyDrugsComponent } from './pharmacy-drugs/pharmcy-drugs.component';
 const routes: Route[] = [
     {
         path: '',
         component: PharmacyManagementComponent,
     },
+    {
+        path: 'pharmacy-drugs/:id',
+        component: PharmacyDrugsComponent,
+    },
 ];
 
 @NgModule({
-    declarations: [PharmacyManagementComponent, PharmacyDialogComponent],
+    declarations: [PharmacyManagementComponent, PharmacyDialogComponent, PharmacyDrugsComponent],
     imports: [
         CommonModule,
         SharedModule,

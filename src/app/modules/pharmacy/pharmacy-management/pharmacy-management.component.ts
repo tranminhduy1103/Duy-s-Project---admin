@@ -28,6 +28,7 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     dataSource;
     filterValue: string;
     pagingOptions: Pagination;
+    viewType: string = 'table';
 
     constructor(
         public dialog: MatDialog,
@@ -96,10 +97,20 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     filter(): void {
         this.page.pageNumber = 1;
         this.page.pageSize = 10;
-        this.getAlls({ ...this.page, filterValue: this.filterValue });
+        this.getAlls({ ...this.page, filterValue: this.filterValue || '' });
     }
 
     filterListData(item): void {
         console.log(item);
+    }
+
+    changeView(view): void {
+        this.viewType = view;
+
+        this.filter();
+    }
+
+    viewDetailPharmacy(): void {
+
     }
 }

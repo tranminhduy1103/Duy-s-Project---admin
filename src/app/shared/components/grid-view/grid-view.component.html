@@ -1,13 +1,13 @@
 <div class="grid grid-cols-4 gap-3">
     <div class="flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height grid-item"
-        *ngFor="let item of listGridItem">
+        *ngFor="let item of listGridItem.items" (click)="viewDetail(item)">
         <div class="grid-content">
             <div class="grid-content_img">
                 <img src="../../../../assets/images/cards/01-320x200.jpg" />
             </div>
 
             <div class="grid-content_title">
-                <h3>{{item.title}}</h3>
+                <h3>{{item.name}}</h3>
 
                 <p class="rating-star">
                     <mat-icon *ngFor="let star of starList; let i = index"
@@ -18,8 +18,8 @@
             <div class="grid-border-line"></div>
 
             <div class="grid-description">
-                <h3>Description:</h3>
-                <p>{{item.description}}</p>
+                <h3>Address:</h3>
+                <p>{{item.address}}</p>
             </div>
         </div>
     </div>

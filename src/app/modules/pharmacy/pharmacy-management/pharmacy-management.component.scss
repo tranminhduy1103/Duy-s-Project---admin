@@ -8,3 +8,29 @@
 // }
 
 @import url(../../../../assets/styles/page-style.scss);
+
+.box-view {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 3px 5px 0;
+
+    &:hover {
+        opacity: 0.5;
+        transition: transform 0.5s ease;
+        cursor: pointer;
+    }
+}
+
+.box-active {
+    background: var(--fuse-primary);
+}
+
+.box-inactive {
+    background: #dddddd;
+}
+
+::ng-deep {
+    .box-active .mat-icon {
+        color: #ffffff;
+    }
+}
