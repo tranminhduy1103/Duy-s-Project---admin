@@ -13,6 +13,8 @@ import { pick } from 'lodash';
 import { PharmacyDialogComponent } from '../pharmacy-dialog/pharmacy-dialog.component';
 import { PharmacyService } from '../services/pharmacy.service';
 import { PharmacyQuery } from '../state/pharmacy.query';
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'app-pharmacy-management',
     templateUrl: './pharmacy-management.component.html',
@@ -34,7 +36,8 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
         public dialog: MatDialog,
         private pharmacyQuery: PharmacyQuery,
         private pharmacyService: PharmacyService,
-        private fuseConfirmationService: FuseConfirmationService
+        private fuseConfirmationService: FuseConfirmationService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -110,7 +113,7 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
         this.filter();
     }
 
-    viewDetailPharmacy(): void {
-
+    viewDetailPharmacy(event): void {
+        this.router.navigateByUrl('pharmacy-drugs', event.id)
     }
 }

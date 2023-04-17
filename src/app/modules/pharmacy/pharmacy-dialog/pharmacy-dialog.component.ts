@@ -63,7 +63,7 @@ export class PharmacyDialogComponent implements OnInit {
             phone: ['', Validators.required],
             drugIds: [[]],
             doctorIds: [[]],
-            logoId: [''],
+            logoId: [uuidv4()],
             column: ['', Validators.required],
             referenceImage:[''],
             type: ['', Validators.required],
@@ -79,13 +79,15 @@ export class PharmacyDialogComponent implements OnInit {
                 phone: this.data.phone,
                 drugIds: this.data.drugIds,
                 doctorIds: this.data.doctorIds,
-                logoId: this.data.logoId,
+                logoId: this.data.logoId || this.data.id,
                 column: this.data.column,
                 referenceImage: this.data.referenceImage,
                 type: this.data.type
             });
             this.mode = 'Update';
         }
+
+        this.form.controls['logoId'].disable();
 
         this.getListDoctor();
         this.userManagementQuery.select().subscribe((m: any) => {
@@ -100,7 +102,7 @@ export class PharmacyDialogComponent implements OnInit {
             this.filteredDrugs = this.drugList.slice();
         });
 
-        this.getListLogo();
+        // this.getListLogo();
     }
 
     getListDrug(params: any = this.page): void {
