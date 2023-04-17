@@ -24,13 +24,13 @@
 
                 <div class="flex items-center ml-4">
                     <div>
-                        <p class="box-view mr-2" [ngClass]="viewType === 'grid' ? 'box-active' : 'box-inactive'" (click)="changeView('grid')"><mat-icon
-                                [svgIcon]="'heroicons_outline:table'"></mat-icon>
+                        <p class="box-view mr-2" [ngClass]="viewType === 'grid' ? 'box-active' : 'box-inactive'"
+                            (click)="changeView('grid')"><mat-icon [svgIcon]="'heroicons_outline:table'"></mat-icon>
                         </p>
                     </div>
                     <div>
-                        <p class="box-view" [ngClass]="viewType === 'table' ? 'box-active' : 'box-inactive'" (click)="changeView('table')"><mat-icon
-                                [svgIcon]="'heroicons_outline:inbox'"></mat-icon>
+                        <p class="box-view" [ngClass]="viewType === 'table' ? 'box-active' : 'box-inactive'"
+                            (click)="changeView('table')"><mat-icon [svgIcon]="'heroicons_outline:inbox'"></mat-icon>
                         </p>
                     </div>
                 </div>
@@ -38,16 +38,17 @@
         </div>
 
         <div class="flex w-full">
-            <div class="left-menu">
+            <div class="left-menu" *ngIf="viewType === 'table'">
                 <left-menu (filterValue)="filterListData($event)"></left-menu>
             </div>
 
-            <div class="right-content">
+            <div [ngClass]="{'right-content' : viewType === 'table'}">
                 <div *ngIf="viewType === 'grid'; then gridView else tableView"></div>
 
                 <ng-template #gridView>
                     <div>
-                        <grid-view [listGridItem]="dataSource" (page)="handlePageChange($event)" (viewDetail)="viewDetailPharmacy($event)"></grid-view>
+                        <grid-view [listGridItem]="dataSource" (page)="handlePageChange($event)"
+                            (viewDetailItem)="viewDetailPharmacy($event)" [viewType]="viewType"></grid-view>
                     </div>
                 </ng-template>
 

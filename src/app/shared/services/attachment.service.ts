@@ -28,9 +28,9 @@ export class AttachmentService extends DataService {
         fileName: any
     ): Observable<APIResponseModel> {
         const model = {
-            content: fileContent,
-            fileName: fileName
-            // recordId: recordId,
+            fileContent: fileContent,
+            // fileName: fileName
+            recordId: recordId,
             // type: type,
             // isReplace: true,
         };
@@ -56,6 +56,17 @@ export class AttachmentService extends DataService {
     getByRecordId(recordId: any, type: any): Observable<APIResponseModel> {
         return this.http
             .get(`${environment.endpoint}/${this.url}/${recordId}/${type}`)
+            .pipe(
+                catchError((error: HttpErrorResponse) =>
+                    throwError(error.message)
+                )
+            )
+            .pipe(tap((response: APIResponseModel) => of(response)));
+    }
+
+    getImgInfo(recordId: any, type: any): Observable<APIResponseModel> {
+        return this.http
+            .get(`${environment.endpointV1}/file?recordId=${recordId}`)
             .pipe(
                 catchError((error: HttpErrorResponse) =>
                     throwError(error.message)

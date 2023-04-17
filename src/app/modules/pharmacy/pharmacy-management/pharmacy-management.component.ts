@@ -114,6 +114,6 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     }
 
     viewDetailPharmacy(event): void {
-        this.router.navigateByUrl('pharmacy-drugs', event.id)
+        this.router.navigate(['/admin/pharmacy/pharmacy-drugs', event.id])
     }
 }

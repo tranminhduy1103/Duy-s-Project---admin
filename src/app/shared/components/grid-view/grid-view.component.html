@@ -1,7 +1,7 @@
-<div class="grid grid-cols-4 gap-3">
+<div class="grid gap-3" [ngClass]="viewType === 'table' ? 'grid-cols-4' : 'grid-cols-5'">
     <div class="flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height grid-item"
-        *ngFor="let item of listGridItem.items" (click)="viewDetail(item)">
-        <div class="grid-content">
+        *ngFor="let item of listGridItem.items">
+        <div class="grid-content" (click)="viewDetail(item)">
             <div class="grid-content_img">
                 <img src="../../../../assets/images/cards/01-320x200.jpg" />
             </div>

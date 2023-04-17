@@ -27,7 +27,7 @@ export class ImageCropperComponent implements OnInit {
     getImage(): void {
         if (this.recordId && this.type) {
             this.attachmentService
-                .getByRecordId(this.recordId, this.type)
+                .getImgInfo(this.recordId, this.type)
                 .subscribe((res: APIResponseModel) => {
                     if (res && res.success) {
                         this.croppedImage = `data:image/jpeg;base64,${res.data.fileContent}`;

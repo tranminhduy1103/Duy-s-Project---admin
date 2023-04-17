@@ -10,6 +10,7 @@ import { Pagination } from 'app/shared/models/pagination.model';
 })
 
 export class GridViewComponent implements OnInit {
+    @Output() viewDetailItem: EventEmitter<any> = new EventEmitter();
     @Input() listGridItem: Pagination = {
         items: [],
         page: 1,
@@ -17,7 +18,7 @@ export class GridViewComponent implements OnInit {
         totalPages: 1,
         pageSize: 10,
     };
-    @Output() viewDataItem: EventEmitter<any> = new EventEmitter();
+    @Input() viewType: string;
     
     starList = [1, 2, 3, 4, 5];
     filterItem: FilterItemModel = new FilterItemModel();
@@ -25,31 +26,9 @@ export class GridViewComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        // this.listGridItem = [
-        //     {
-        //         title: 'Name',
-        //         img: '01-320x200.jpg',
-        //         description: 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test'
-        //     },
-        //     {
-        //         title: 'Name',
-        //         img: '01-320x200.jpg',
-        //         description: 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test'
-        //     },
-        //     {
-        //         title: 'Name',
-        //         img: '01-320x200.jpg',
-        //         description: 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test'
-        //     },
-        //     {
-        //         title: 'Name',
-        //         img: '01-320x200.jpg',
-        //         description: 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test'
-        //     }
-        // ];
     }
 
     viewDetail(item) {
-        this.viewDataItem.emit(item);
+        this.viewDetailItem.emit(item);
     }
 }

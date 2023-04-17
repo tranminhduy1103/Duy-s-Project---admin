@@ -31,9 +31,9 @@
                 <left-menu (filterValue)="filterListData($event)"></left-menu>
             </div> -->
 
-            <div class="right-content">
+            <div class="w-full">
                 <div
-                    class="xl:col-span-2 flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height">
+                    class="xl:col-span-2 flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height w-full">
                     <div class="overflow-x-auto">
                         <app-table [dataSource]="dataSource" [columns]="columns" (page)="handlePageChange($event)">
                         </app-table>

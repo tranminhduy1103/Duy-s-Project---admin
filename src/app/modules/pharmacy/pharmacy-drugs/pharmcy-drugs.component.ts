@@ -29,7 +29,10 @@ export class PharmacyDrugsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
+        this.getAlls();
+        this.pharmacyQuery.select().subscribe((m: any) => {
+            this.dataSource = m;
+        });
     }
 
     getAlls(params: any = this.page): void {

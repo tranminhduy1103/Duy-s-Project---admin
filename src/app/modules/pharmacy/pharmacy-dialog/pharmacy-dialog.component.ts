@@ -67,7 +67,7 @@ export class PharmacyDialogComponent implements OnInit {
             column: ['', Validators.required],
             referenceImage:[''],
             type: ['', Validators.required],
-            // id: [uuidv4()],
+            id: [uuidv4()],
         });
 
         if (this.data) {
