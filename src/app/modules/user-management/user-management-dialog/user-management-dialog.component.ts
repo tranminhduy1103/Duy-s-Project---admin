@@ -40,7 +40,7 @@ export class UserManagementDialogComponent implements OnInit {
 
         this.form = this.fb.group({
             userName: ['', Validators.required],
-            password: [`${randomstring}`, [Validators.required]],
+            password: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             address: ['', Validators.required],
@@ -49,8 +49,11 @@ export class UserManagementDialogComponent implements OnInit {
             state: ['', Validators.required],
             city: ['', Validators.required],
             roles: ['', Validators.required],
-            id: [uuidv4()],
+            // id: [uuidv4()],
         });
+
+        // this.form.controls['password'].disable();
+        this.form.controls['password'].setValue(randomstring);
 
         if (this.data) {
             this.form.patchValue({
@@ -68,8 +71,6 @@ export class UserManagementDialogComponent implements OnInit {
             });
             this.mode = 'Update';
         }
-
-        this.form.controls['password'].disable();
 
         this.listRole = [
             { name: 'Administrator' },

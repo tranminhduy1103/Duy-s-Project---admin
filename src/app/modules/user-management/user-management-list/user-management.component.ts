@@ -23,7 +23,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     actionTemplate: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
-    dataSource;
+    dataSource: any
     filterValue: string = '';
     pagingOptions: Pagination;
     tabManage = 1;
