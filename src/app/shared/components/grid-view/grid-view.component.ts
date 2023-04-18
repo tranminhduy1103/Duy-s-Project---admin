@@ -19,7 +19,7 @@ export class GridViewComponent implements OnInit {
         pageSize: 10,
     };
     @Input() viewType: string;
-    
+
     starList = [1, 2, 3, 4, 5];
     filterItem: FilterItemModel = new FilterItemModel();
 
@@ -28,7 +28,11 @@ export class GridViewComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    viewDetail(item) {
+    viewDetail(item): void {
         this.viewDetailItem.emit(item);
+    }
+
+    bindingItemImage(item): string {
+        return item.avatar && item.avatar.fileContent ? `data:image/jpeg;base64,${item.avatar?.fileContent}` : '../../../../assets/images/cards/01-320x200.jpg';
     }
 }

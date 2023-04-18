@@ -3,7 +3,7 @@
         *ngFor="let item of listGridItem.items">
         <div class="grid-content" (click)="viewDetail(item)">
             <div class="grid-content_img">
-                <img src="../../../../assets/images/cards/01-320x200.jpg" />
+                <img [src]="bindingItemImage(item)" />
             </div>
 
             <div class="grid-content_title">
