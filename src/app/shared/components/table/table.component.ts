@@ -9,7 +9,8 @@ import {
 } from '@angular/core';
 import { TableColumn } from '@swimlane/ngx-datatable';
 import { Pagination, TableTemplate } from 'app/shared/models/pagination.model';
-import { merge } from 'lodash-es';
+import { ColumnMode, SelectionType } from '../../../../../projects/swimlane/ngx-datatable/src/public-api';
+
 
 @Component({
     selector: 'app-table',
@@ -32,11 +33,27 @@ export class TableComponent implements OnInit {
 
     _pagingOptions: Pagination;
 
-    constructor() {}
+    rows = [];
+    selected = [];
+    ColumnMode = ColumnMode;
+    SelectionType = SelectionType;
 
-    ngOnInit(): void {}
+    constructor() { }
+
+    ngOnInit(): void { }
 
     handlePageChange(data): void {
         this.page.emit(data);
+    }
+
+    onSelect({ selected }): void {
+        console.log('Select Event', selected, this.selected);
+
+        this.selected.splice(0, this.selected.length);
+        this.selected.push(...selected);
+    }
+
+    onActivate(event): void {
+        console.log('Activate Event', event);
     }
 }

@@ -50,7 +50,8 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
             { prop: 'address', name: 'Address' },
             { prop: 'phone', name: 'Phone' },
             { prop: 'drugs', name: 'Drug', cellTemplate: this.formatObject, },
-            { prop: 'column', name: 'Column' },
+            { prop: 'openTime', name: 'Open Time' },
+            { prop: 'closeTime', name: 'Close Time' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',
@@ -114,6 +115,7 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     }
 
     viewDetailPharmacy(event): void {
-        this.router.navigate(['/admin/pharmacy/pharmacy-drugs', event.id])
+        // this.router.navigate(['/admin/pharmacy/pharmacy-drugs', event.id]);
+        this.openDialog(event);
     }
 }
