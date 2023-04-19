@@ -1,26 +1,44 @@
 <div class="grid gap-3" [ngClass]="viewType === 'table' ? 'grid-cols-4' : 'grid-cols-5'">
-    <div class="flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height grid-item"
-        *ngFor="let item of listGridItem.items">
-        <div class="grid-content" (click)="viewDetail(item)">
-            <div class="grid-content_img">
-                <img [src]="bindingItemImage(item)" />
-            </div>
+    <div *ngIf="listGridItem.items && listGridItem.items?.length; then viewGrid else notFound"></div>
 
-            <div class="grid-content_title">
-                <h3>{{item.name}}</h3>
+    <ng-template #viewGrid>
+        <div class="flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height grid-item"
+            *ngFor="let item of listGridItem.items">
+            <div class="grid-content" (click)="viewDetail(item)">
+                <div class="grid-content_img">
+                    <img [src]="bindingItemImage(item)" />
+                </div>
 
-                <p class="rating-star">
-                    <mat-icon *ngFor="let star of starList; let i = index"
-                        [ngClass]="{'grid-star-active' : filterItem.rate !== null && filterItem.rate >= star}">star</mat-icon>
-                </p>
-            </div>
+                <div class="grid-content_title">
+                    <h3>{{item.name}}</h3>
 
-            <div class="grid-border-line"></div>
+                    <p class="rating-star">
+                        <mat-icon *ngFor="let star of starList; let i = index"
+                            [ngClass]="{'grid-star-active' : filterItem.rate !== null && filterItem.rate >= star}">star</mat-icon>
+                    </p>
+                </div>
 
-            <div class="grid-description">
-                <h3>Address:</h3>
-                <p>{{item.address}}</p>
+                <div class="grid-border-line"></div>
+
+                <div class="grid-description">
+                    <h3>Address:</h3>
+                    <p>{{item.address}}</p>
+                </div>
             </div>
         </div>
-    </div>
+    </ng-template>
+
+    <ng-template #notFound>
+        <p class="ml-2">Không có dữ liệu!</p>
+    </ng-template>
+</div>
+
+<div class="flex justify-center items-center m-4">
+    <!-- <div class="page-count ml-4">
+        {{dataSource.totalPages}} Trang
+    </div> -->
+    <mat-paginator #paginator [length]="listGridItem.totalItems" [pageSize]="listGridItem.pageSize"
+        style="background-color: transparent;" [pageSizeOptions]="pageSizeOptions" (page)="handlePageChange($event)"
+        aria-label="Select page">
+    </mat-paginator>
 </div>

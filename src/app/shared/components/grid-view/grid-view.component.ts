@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { FilterItemModel } from 'app/shared/models/filter-item.model';
 import { Pagination } from 'app/shared/models/pagination.model';
 
@@ -10,7 +11,9 @@ import { Pagination } from 'app/shared/models/pagination.model';
 })
 
 export class GridViewComponent implements OnInit {
+    @ViewChild(MatPaginator) paginator: MatPaginator;
     @Output() viewDetailItem: EventEmitter<any> = new EventEmitter();
+    @Output() page: EventEmitter<any> = new EventEmitter();
     @Input() listGridItem: Pagination = {
         items: [],
         page: 1,
@@ -19,6 +22,7 @@ export class GridViewComponent implements OnInit {
         pageSize: 10,
     };
     @Input() viewType: string;
+    @Input() pageSizeOptions = [5, 10, 25, 50, 100];
 
     starList = [1, 2, 3, 4, 5];
     filterItem: FilterItemModel = new FilterItemModel();
@@ -34,5 +38,13 @@ export class GridViewComponent implements OnInit {
 
     bindingItemImage(item): string {
         return item.avatar && item.avatar.fileContent ? `data:image/jpeg;base64,${item.avatar?.fileContent}` : '../../../../assets/images/cards/01-320x200.jpg';
+    }
+
+    setPage(index: number): void {
+        this.paginator.pageIndex = index;
+    }
+
+    handlePageChange(data): void {
+        this.page.emit(data);
     }
 }

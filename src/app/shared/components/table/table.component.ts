@@ -35,8 +35,8 @@ export class TableComponent implements OnInit {
 
     rows = [];
     selected = [];
-    ColumnMode = ColumnMode;
-    SelectionType = SelectionType;
+    columnMode = ColumnMode;
+    selectionType = SelectionType;
 
     constructor() { }
 
