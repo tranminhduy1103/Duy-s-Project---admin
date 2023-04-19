@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { TableColumn } from '@swimlane/ngx-datatable';
 import { Pagination, TableTemplate } from 'app/shared/models/pagination.model';
-import { ColumnMode, SelectionType } from '../../../../../projects/swimlane/ngx-datatable/src/public-api';
+// import { ColumnMode, SelectionType } from '../../../../../projects/swimlane/ngx-datatable/src/public-api';
 
 
 @Component({
@@ -35,8 +35,8 @@ export class TableComponent implements OnInit {
 
     rows = [];
     selected = [];
-    columnMode = ColumnMode;
-    selectionType = SelectionType;
+    // columnMode = ColumnMode;
+    // selectionType = SelectionType;
 
     constructor() { }
 
