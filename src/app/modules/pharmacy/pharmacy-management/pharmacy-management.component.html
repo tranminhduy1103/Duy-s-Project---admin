@@ -10,13 +10,13 @@
                 </div> -->
             </div>
             <div class="flex items-center ml-6">
-                <div class="flex">
+                <!-- <div class="flex">
                     <mat-form-field class="flex-auto search-input">
                         <input matInput placeholder="Search" (keyup.enter)="filter()" [(ngModel)]="filterValue">
                         <mat-icon class="icon-size-5 cursor-pointer" matSuffix (click)="filter()"
                             [svgIcon]="'heroicons_solid:search'"></mat-icon>
                     </mat-form-field>
-                </div>
+                </div> -->
                 <button class="hidden sm:inline-flex ml-3" mat-flat-button (click)="openDialog()" [color]="'primary'">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
                     <span class="ml-2">New Pharmacy</span>
@@ -34,6 +34,65 @@
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between w-full mb-4">
+            <!-- <div class="flex items-center w-full">
+                <div class="flex justify-between w-full">
+                    <div class="flex items-center">
+                        <mat-form-field class="flex-auto search-input">
+                            <input matInput placeholder="Search" (keyup.enter)="filter()" [(ngModel)]="filterValue">
+                            <mat-icon class="icon-size-5 cursor-pointer" matSuffix (click)="filter()"
+                                [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-select>
+                                <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                                    {{ doctor.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-select>
+                                <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                                    {{ doctor.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="flex w-full bg-card shadow">
+                <p class="filter-menu relative flex items-center">
+                    <mat-icon class="icon-filter ml-2" [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                    <input type="text" placeholder="Search by name" class="w-full search-text-item" (keyup.enter)="filter()" [(ngModel)]="filterValue"/>
+                </p>
+                <p class="filter-menu w-full">
+                    <mat-select placeholder="Filter By A">
+                        <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                            {{ doctor.name }}
+                        </mat-option>
+                    </mat-select>
+                </p>
+                <p class="filter-menu w-full">
+                    <mat-select placeholder="Filter By A">
+                        <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                            {{ doctor.name }}
+                        </mat-option>
+                    </mat-select>
+                </p>
+                <p class="filter-menu w-full">
+                    <mat-select placeholder="Filter By A">
+                        <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                            {{ doctor.name }}
+                        </mat-option>
+                    </mat-select>
+                </p>
+                <p class="button-filter" (click)="filter()">Search</p>
             </div>
         </div>
 

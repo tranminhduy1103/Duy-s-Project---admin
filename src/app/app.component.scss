@@ -35,4 +35,17 @@
         max-width: 250px !important;
         object-fit: cover;
     }
+
+    .mat-form-field.mat-form-field-appearance-fill .mat-form-field-wrapper {
+        margin-bottom: 0;
+    }
+
+    .filter-menu .mat-select .mat-select-trigger {
+        height: 45px;
+        padding: 10px;
+    }
+
+    .box-active .mat-icon {
+        color: #ffffff;
+    }
 }

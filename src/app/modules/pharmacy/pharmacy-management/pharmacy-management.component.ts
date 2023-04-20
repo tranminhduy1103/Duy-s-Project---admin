@@ -4,6 +4,7 @@ import {
     OnDestroy,
     ViewChild,
     TemplateRef,
+    ViewEncapsulation,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
     selector: 'app-pharmacy-management',
     templateUrl: './pharmacy-management.component.html',
     styleUrls: ['./pharmacy-management.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class PharmacyManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
@@ -31,6 +33,7 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     filterValue: string;
     pagingOptions: Pagination;
     viewType: string = 'table';
+    userList;
 
     constructor(
         public dialog: MatDialog,
@@ -57,6 +60,12 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
                 prop: 'Actions',
                 sortable: false,
             },
+        ];
+
+        this.userList = [
+            { id: 1, name: 'Test A' },
+            { id: 2, name: 'Test B' },
+            { id: 3, name: 'Test C' }
         ];
     }
 
