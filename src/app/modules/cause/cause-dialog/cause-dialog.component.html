@@ -7,42 +7,44 @@
     </div>
 
     <div class="form-action">
-        <form [formGroup]="causeForm" class="grid grid-cols-2 gap-6">
-            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                <mat-label>Name</mat-label>
-                <input matInput [formControlName]="'name'" />
-                <mat-error *ngIf="causeForm.get('name').hasError('required')">
-                    Name is required
-                </mat-error>
-            </mat-form-field>
+        <form [formGroup]="causeForm">
+            <div class="grid grid-cols-2 gap-6 scroll-bar-form">
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControlName]="'name'" />
+                    <mat-error *ngIf="causeForm.get('name').hasError('required')">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                <mat-label>Description</mat-label>
-                <input matInput [formControlName]="'description'" />
-                <mat-error *ngIf="causeForm.get('description').hasError('required')">
-                    Description is required
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Description</mat-label>
+                    <input matInput [formControlName]="'description'" />
+                    <mat-error *ngIf="causeForm.get('description').hasError('required')">
+                        Description is required
+                    </mat-error>
+                </mat-form-field>
 
-            <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
+                <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
-            <!-- <image-cropper
-            [imageChangedEvent]="imageChangedEvent"
-            [maintainAspectRatio]="true"
-            [aspectRatio]="4 / 3"
-            format="png"
-            (imageCropped)="imageCropped($event)"
-            (imageLoaded)="imageLoaded($event)"
-            (cropperReady)="cropperReady()"
-            (loadImageFailed)="loadImageFailed()"
-        ></image-cropper> -->
+                <!-- <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="4 / 3"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper> -->
+            </div>
+
+            <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">
+                <button mat-stroked-button matDialogClose="true">Cancel</button>
+                <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
+                    {{ mode }}
+                </button>
+            </div>
         </form>
-    </div>
-
-    <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">
-        <button mat-stroked-button matDialogClose="true">Cancel</button>
-        <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
-            {{ mode }}
-        </button>
     </div>
 </div>

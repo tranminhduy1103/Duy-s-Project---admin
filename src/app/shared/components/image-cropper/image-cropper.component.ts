@@ -15,7 +15,7 @@ export class ImageCropperComponent implements OnInit {
     @Input() events: Observable<void>;
     @Output() saveComplete = new EventEmitter<string>();
     imageChangedEvent: any = '';
-    croppedImage: any = '';
+    croppedImage: any = '/assets/images/pages/profile/default-img.svg';
     fileChange: boolean = false;
     private eventsSubscription: Subscription;
     constructor(private attachmentService: AttachmentService) { }

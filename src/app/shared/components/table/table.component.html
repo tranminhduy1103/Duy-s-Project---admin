@@ -1,7 +1,7 @@
 <ngx-datatable [rows]="dataSource.items" class="material" [columns]="columns" [rowHeight]="rowHeight"
-    [reorderable]="false" [footerHeight]="50" [headerHeight]="40" [externalPaging]="true"
-    [count]="dataSource.totalItems" [offset]="dataSource.page -1" [limit]="dataSource.pageSize" [externalSorting]="true"
-    [selected]="selected" columnMode="'force'">
+    [columnMode]="'force'" [reorderable]="false" [footerHeight]="50" [headerHeight]="40" [externalPaging]="true"
+    [count]="dataSource.totalItems" [offset]="dataSource.page -1" [limit]="dataSource.pageSize"
+    [externalSorting]="true">
     <ngx-datatable-footer>
         <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
             let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-isVisible="isVisible">

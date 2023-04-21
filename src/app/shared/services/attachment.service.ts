@@ -66,7 +66,7 @@ export class AttachmentService extends DataService {
 
     getImgInfo(recordId: any, type: any): Observable<APIResponseModel> {
         return this.http
-            .get(`${environment.endpointV1}/file?recordId=${recordId}`)
+            .get(`${environment.endpointV1}file?recordId=${recordId}`)
             .pipe(
                 catchError((error: HttpErrorResponse) =>
                     throwError(error.message)

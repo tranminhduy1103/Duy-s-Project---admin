@@ -7,107 +7,109 @@
     </div>
 
     <div class="form-action">
-        <form [formGroup]="form" class="grid grid-cols-2 gap-6">
-            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                <mat-label>Name</mat-label>
-                <input matInput [formControlName]="'name'" />
-                <mat-error *ngIf="form.get('name').hasError('required')">
-                    Name is required
-                </mat-error>
-            </mat-form-field>
+        <form [formGroup]="form" novalidate>
+            <div class="grid grid-cols-2 gap-6 scroll-bar-form">
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControlName]="'name'" />
+                    <mat-error *ngIf="form.get('name').hasError('required')">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                <mat-label>Type</mat-label>
-                <input matInput [formControlName]="'type'" />
-                <mat-error *ngIf="form.get('type').hasError('required')">
-                    Type is required
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Type</mat-label>
+                    <input matInput [formControlName]="'type'" />
+                    <mat-error *ngIf="form.controls['type'].errors.required">
+                        Type is required
+                    </mat-error>
+                </mat-form-field>
 
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Drugs</mat-label>
-                <mat-select [formControlName]="'drugIds'" multiple>
-                    <mat-option *ngFor="let drug of drugList" [value]="drug.id">{{drug.name}}</mat-option>
-                </mat-select>
-            </mat-form-field> -->
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Drugs</mat-label>
+                    <mat-select [formControlName]="'drugIds'" multiple>
+                        <mat-option *ngFor="let drug of drugList" [value]="drug.id">{{drug.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
 
-            <mat-form-field>
-                <mat-label>Drugs</mat-label>
-                <mat-select #selectDrug multiple [(value)]="selectedDrug" [formControlName]="'drugIds'">
-                    <mat-select-filter *ngIf="selectDrug.focused" [array]="drugList" [displayMember]="'name'"
-                        (filteredReturn)="filteredDrugs = $event"></mat-select-filter>
-                    <mat-option *ngFor="let drug of filteredDrugs" [value]="drug.id">
-                        {{drug.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Drugs</mat-label>
+                    <mat-select #selectDrug multiple [(value)]="selectedDrug" [formControlName]="'drugIds'">
+                        <mat-select-filter *ngIf="selectDrug.focused" [array]="drugList" [displayMember]="'name'"
+                            (filteredReturn)="filteredDrugs = $event"></mat-select-filter>
+                        <mat-option *ngFor="let drug of filteredDrugs" [value]="drug.id">
+                            {{drug.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                <mat-label>Address</mat-label>
-                <input matInput [formControlName]="'address'" />
-                <mat-error *ngIf="form.get('address').hasError('required')">
-                    Address is required
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Address</mat-label>
+                    <input matInput [formControlName]="'address'" />
+                    <mat-error *ngIf="form.get('address').hasError('required')">
+                        Address is required
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field class="w-full phone-number-profile">
-                <mat-label>Phone</mat-label>
-                <ngx-mat-intl-tel-input id="phone" [preferredCountries]="['vn', 'us']" [enablePlaceholder]="true"
-                    [enableSearch]="true" name="phone" describedBy="phoneInput" formControlName="phone">
-                </ngx-mat-intl-tel-input>
-                <mat-error>Phone is not correct</mat-error>
-            </mat-form-field>
+                <mat-form-field class="w-full phone-number-profile">
+                    <mat-label>Phone</mat-label>
+                    <ngx-mat-intl-tel-input id="phone" [preferredCountries]="['vn', 'us']" [enablePlaceholder]="true"
+                        [enableSearch]="true" name="phone" describedBy="phoneInput" formControlName="phone">
+                    </ngx-mat-intl-tel-input>
+                    <mat-error>Phone is not correct</mat-error>
+                </mat-form-field>
 
-            <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                <mat-label>Column</mat-label>
-                <input matInput type="text" [formControlName]="'column'" required="true" />
-                <mat-error *ngIf="form.get('column').hasError('required')">
-                    Column is required
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Column</mat-label>
+                    <input matInput type="text" [formControlName]="'column'" required="true" />
+                    <mat-error *ngIf="form.get('column').hasError('required')">
+                        Column is required
+                    </mat-error>
+                </mat-form-field>
 
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Doctor</mat-label>
-                <mat-select [formControlName]="'doctorIds'" multiple>
-                    <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
-                        {{ doctor.userName }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Doctor</mat-label>
+                    <mat-select [formControlName]="'doctorIds'" multiple>
+                        <mat-option *ngFor="let doctor of userList" [value]="doctor.id">
+                            {{ doctor.userName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
 
-            <mat-form-field>
-                <mat-label>Doctors</mat-label>
-                <mat-select #selectDoctor multiple [(value)]="selectedDoctor" [formControlName]="'doctorIds'">
-                    <mat-select-filter *ngIf="selectDoctor.focused" [array]="userList" [displayMember]="'userName'"
-                        (filteredReturn)="filteredDoctors = $event"></mat-select-filter>
-                    <mat-option *ngFor="let user of filteredDoctors" [value]="user.id">
-                        {{user.userName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Doctors</mat-label>
+                    <mat-select #selectDoctor multiple [(value)]="selectedDoctor" [formControlName]="'doctorIds'">
+                        <mat-select-filter *ngIf="selectDoctor.focused" [array]="userList" [displayMember]="'userName'"
+                            (filteredReturn)="filteredDoctors = $event"></mat-select-filter>
+                        <mat-option *ngFor="let user of filteredDoctors" [value]="user.id">
+                            {{user.userName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field appearance="fill">
-                <mat-label>Logo</mat-label>
-                <!-- <mat-select [formControlName]="'logoId'">
-                    <mat-option *ngFor="let logo of logoList" [value]="logo.id">
-                        {{ logo.imagePath }}
-                    </mat-option>
-                </mat-select> -->
-                <input matInput [formControlName]="'logoId'" type="text" />
-                <mat-error *ngIf="form.get('logoId').hasError('required')">
-                    Logo is required
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Logo</mat-label>
+                    <!-- <mat-select [formControlName]="'logoId'">
+                        <mat-option *ngFor="let logo of logoList" [value]="logo.id">
+                            {{ logo.imagePath }}
+                        </mat-option>
+                    </mat-select> -->
+                    <input matInput [formControlName]="'logoId'" type="text" />
+                    <mat-error *ngIf="form.get('logoId').hasError('required')">
+                        Logo is required
+                    </mat-error>
+                </mat-form-field>
 
-        <app-image-cropper class="col-span-2" [recordId]="this.form.value.id" [type]="'campaign-brand'" [fileName]="form.get('name').value"
-            [events]="eventsSubject.asObservable()">
-        </app-image-cropper>
-    </form>
+                <app-image-cropper class="col-span-2" [recordId]="this.form.value.id" [type]="mode"
+                    [fileName]="form.get('name').value" [events]="eventsSubject.asObservable()">
+                </app-image-cropper>
+            </div>
 
-    <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">
-        <button mat-stroked-button matDialogClose="true">Cancel</button>
-        <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
-            {{ mode }}
-        </button>
+            <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4 w-full">
+                <button mat-stroked-button matDialogClose="true">Cancel</button>
+                <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
+                    {{ mode }}
+                </button>
+            </div>
+        </form>
     </div>
-</div>

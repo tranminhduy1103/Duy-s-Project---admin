@@ -26,8 +26,6 @@ body {
 }
 
 .form-action {
-    max-height: calc(100vh - 300px);
-    overflow: auto;
     padding: 24px;
 }
 
@@ -35,4 +33,9 @@ body {
     min-height: 250px;
     max-width: 250px;
     object-fit: cover;
+}
+
+.scroll-bar-form {
+    max-height: calc(100vh - 300px);
+    overflow: auto;
 }
