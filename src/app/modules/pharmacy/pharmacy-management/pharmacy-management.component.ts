@@ -15,6 +15,7 @@ import { PharmacyDialogComponent } from '../pharmacy-dialog/pharmacy-dialog.comp
 import { PharmacyService } from '../services/pharmacy.service';
 import { PharmacyQuery } from '../state/pharmacy.query';
 import { Router } from '@angular/router';
+// import { PharmacyDrugDialogComponent } from '../pharmacy-drug-dialog/pharmacy-drug-dialog.component';
 
 @Component({
     selector: 'app-pharmacy-management',
@@ -25,7 +26,7 @@ import { Router } from '@angular/router';
 export class PharmacyManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
-    @ViewChild('formatObject', {static: true})
+    @ViewChild('formatObject', { static: true })
     formatObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
@@ -101,6 +102,14 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
         ref.afterClosed().subscribe(m => m && this.getAlls());
     }
 
+    // openPharmacyDrugDialog(model = null): void {
+    //     const ref = this.dialog.open(PharmacyDrugDialogComponent, {
+    //         width: '1200px',
+    //         data: model,
+    //     });
+    //     ref.afterClosed().subscribe(m => m && this.getAlls());
+    // }
+
     handlePageChange(page): void {
         this.page.pageNumber = page.pageIndex + 1;
         this.page.pageSize = page.pageSize;
@@ -126,5 +135,21 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     viewDetailPharmacy(event): void {
         // this.router.navigate(['/admin/pharmacy/pharmacy-drugs', event.id]);
         this.openDialog(event);
+    }
+
+    uploadCSVFile(file: FileList): void {
+        const fileSelected = file[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(fileSelected as Blob);
+        reader.onloadend = (): void => {
+            const base64Csv = reader.result as string;
+
+            const splitBase64 = base64Csv.split('base64,');
+
+            this.pharmacyService.uploadCSV({ base64Csv: splitBase64[1] }).subscribe((res) => {
+                console.log(res);
+            });
+        };
     }
 }

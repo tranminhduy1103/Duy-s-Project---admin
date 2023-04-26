@@ -5,18 +5,16 @@
                 <h2 class="text-3xl font-semibold tracking-tight leading-8">
                     Pharmacy Management
                 </h2>
-                <!-- <div class="font-medium tracking-tight text-secondary">
-                    Keep track of your financial status
-                </div> -->
             </div>
             <div class="flex items-center ml-6">
-                <!-- <div class="flex">
-                    <mat-form-field class="flex-auto search-input">
-                        <input matInput placeholder="Search" (keyup.enter)="filter()" [(ngModel)]="filterValue">
-                        <mat-icon class="icon-size-5 cursor-pointer" matSuffix (click)="filter()"
-                            [svgIcon]="'heroicons_solid:search'"></mat-icon>
-                    </mat-form-field>
-                </div> -->
+                <input id="csv-file-input" class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file"
+                    [multiple]="false" (change)="uploadCSVFile(csvFileInput.files)" #csvFileInput>
+
+                <label class="hidden sm:inline-flex ml-3" mat-flat-button for="csv-file-input">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
+                    <span class="ml-2">Import Pharmacy</span>
+                </label>
+
                 <button class="hidden sm:inline-flex ml-3" mat-flat-button (click)="openDialog()" [color]="'primary'">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
                     <span class="ml-2">New Pharmacy</span>
@@ -38,7 +36,7 @@
         </div>
 
         <div class="flex items-center justify-between w-full mb-4">
-            <div class="flex w-full bg-card shadow">
+            <div class="flex w-full bg-card shadow filter-box">
                 <p class="filter-menu relative flex items-center">
                     <mat-icon class="icon-filter ml-2" [svgIcon]="'heroicons_solid:search'"></mat-icon>
                     <input type="text" placeholder="Search by name" class="w-full search-text-item"
@@ -69,12 +67,8 @@
             </div>
         </div>
 
-        <div class="flex w-full">
-            <div class="left-menu" *ngIf="viewType === 'table'">
-                <left-menu (filterValue)="filterListData($event)"></left-menu>
-            </div>
-
-            <div [ngClass]="{'right-content' : viewType === 'table'}">
+        <div class="w-full">
+            <div>
                 <div *ngIf="viewType === 'grid'; then gridView else tableView"></div>
 
                 <ng-template #gridView>
@@ -98,6 +92,8 @@
 
         <ng-template #actionTemplate let-row="row" let-value="value">
             <div class="flex items-center">
+                <!-- <mat-icon (click)="openPharmacyDrugDialog(row)" [svgIcon]="'heroicons_solid:link'"
+                    class="icon-size-6 cursor-pointer mr-2" matTooltip="Add Drug" color="primary"></mat-icon> -->
                 <mat-icon (click)="openDialog(row)" [svgIcon]="'heroicons_solid:pencil-alt'"
                     class="icon-size-6 cursor-pointer" matTooltip="Edit" color="primary"></mat-icon>
                 <mat-icon [ngClass]="{'color-warn': !row.isActive, 'color-success': row.isActive}"

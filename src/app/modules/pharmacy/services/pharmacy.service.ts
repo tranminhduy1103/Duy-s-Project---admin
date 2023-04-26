@@ -21,13 +21,19 @@ export class PharmacyService extends DataService {
         super('pharmacy', httpClient, snackBarService, pharmacyStore, null);
     }
 
-    getListLogo(param) {
+    getListLogo(param): Observable<any> {
         return this.httpClient.get<any[]>(`${environment.endpoint}/${this._logo}s?pageNumber=${param.pageNumber}&pageSize=${param.pageSize}`)
             .pipe(
                 catchError((error: HttpErrorResponse) => throwError(error.message))
             )
-            .pipe(tap((response: any) => {
-                return of(response.data);
-            }));
+            .pipe(tap((response: any) => of(response.data)));
+    }
+
+    uploadCSV(param): Observable<any> {
+        return this.httpClient.post<any[]>(`${environment.endpointV1}uploadPharmacys?base64Csv=${param.base64Csv}`, param)
+            .pipe(
+                catchError((error: HttpErrorResponse) => throwError(error.message))
+            )
+            .pipe(tap((response: any) => of(response)));
     }
 }
