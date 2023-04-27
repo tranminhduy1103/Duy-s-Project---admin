@@ -25,6 +25,14 @@
                     </mat-error>
                 </mat-form-field>
 
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Type</mat-label>
+                    <input matInput [formControlName]="'type'" />
+                    <mat-error *ngIf="causeForm.get('type').hasError('required')">
+                        Type is required
+                    </mat-error>
+                </mat-form-field>
+
                 <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
                 <!-- <image-cropper
@@ -37,6 +45,9 @@
                 (cropperReady)="cropperReady()"
                 (loadImageFailed)="loadImageFailed()"
             ></image-cropper> -->
+                <app-image-cropper class="col-span-2" [recordId]="this.causeForm.value.id" [type]="mode"
+                    [fileName]="causeForm.get('name').value" [events]="eventsSubject.asObservable()">
+                </app-image-cropper>
             </div>
 
             <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">

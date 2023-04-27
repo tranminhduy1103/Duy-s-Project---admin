@@ -112,5 +112,13 @@
                 </p>
             </div>
         </ng-template>
+
+        <ng-template #formatDoctorObject let-row="row" let-value="value">
+            <div class="flex">
+                <p *ngFor="let item of value; let i = index">
+                    {{item.userName}}<span *ngIf="(i + 1) < value.length">, </span>
+                </p>
+            </div>
+        </ng-template>
     </div>
 </div>

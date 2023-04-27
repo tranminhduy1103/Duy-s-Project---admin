@@ -39,6 +39,8 @@ export class DrugDialogComponent implements OnInit {
             description: ['', Validators.required],
             price: ['', Validators.required],
             type: ['', Validators.required],
+            quality: [''],
+            logo: [''],
             id: [uuidv4()],
         });
 
@@ -49,7 +51,9 @@ export class DrugDialogComponent implements OnInit {
                 effect: this.data.effect,
                 description: this.data.description,
                 type: this.data.type,
-                price: this.data.price
+                price: this.data.price,
+                quality: this.data.quality,
+                logo: this.data.logo
             });
             this.mode = 'Update';
         }

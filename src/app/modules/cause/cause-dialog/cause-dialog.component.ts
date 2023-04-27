@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CauseService } from '../services/cause.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { Subject } from 'rxjs';
+
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -24,6 +26,7 @@ export class CauseDialogComponent implements OnInit {
         { value: 'CPC', viewValue: 'CPC' },
         { value: 'CPS', viewValue: 'CPS' },
     ];
+    eventsSubject: Subject<void> = new Subject<void>();
 
     constructor(
         public dialogRef: MatDialogRef<CauseDialogComponent>,
@@ -36,6 +39,7 @@ export class CauseDialogComponent implements OnInit {
             name: ['', Validators.required],
             description: ['', Validators.required],
             referecenImage: [''],
+            type: [''],
             id: [uuidv4()],
         });
 
@@ -45,6 +49,7 @@ export class CauseDialogComponent implements OnInit {
                 name: this.data.name,
                 description: this.data.description,
                 referecenImage: this.data.referecenImage,
+                type: this.data.type
             });
             this.mode = 'Update';
         }

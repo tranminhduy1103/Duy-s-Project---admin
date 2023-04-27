@@ -23,7 +23,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     actionTemplate: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
-    dataSource: any
+    dataSource: any;
     filterValue: string = '';
     pagingOptions: Pagination;
     tabManage = 1;
@@ -46,12 +46,18 @@ export class UserManagementComponent implements OnInit, OnDestroy {
             this.dataSource.items = m.items && this.tabManage !== 3 ? this.dataSource.items?.filter(value => value.isActive === this.tabStatus[this.tabManage]) : m.items;
         });
         this.columns = [
-            { prop: 'userName', name: 'Name' },
+            { prop: 'userName', name: 'User Name' },
+            { prop: 'password', name: 'Password' },
+            { prop: 'firstName', name: 'First Name' },
+            { prop: 'lastName', name: 'Last Name' },
             { prop: 'email', name: 'Email' },
-            { prop: 'phone', name: 'Phone' },
+            { prop: 'city', name: 'City' },
+            { prop: 'street', name: 'Street' },
             { prop: 'state', name: 'State' },
             { prop: 'city', name: 'City' },
+            { prop: 'zipCode', name: 'Zip Code' },
             { prop: 'roles', name: 'Role' },
+            { prop: 'phone', name: 'Phone' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',

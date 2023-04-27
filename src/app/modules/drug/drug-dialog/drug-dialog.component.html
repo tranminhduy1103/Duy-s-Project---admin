@@ -49,6 +49,22 @@
                     </mat-error>
                 </mat-form-field>
 
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Quality</mat-label>
+                    <input matInput [formControlName]="'quality'" />
+                    <mat-error *ngIf="form.get('quality').hasError('required')">
+                        Quality is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Logo</mat-label>
+                    <input matInput [formControlName]="'logo'" />
+                    <!-- <mat-error *ngIf="form.get('logo').hasError('required')">
+                        Quality is required
+                    </mat-error> -->
+                </mat-form-field>
+
                 <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
                 <!-- <image-cropper

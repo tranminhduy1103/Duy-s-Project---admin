@@ -28,6 +28,8 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
     actionTemplate: TemplateRef<any>;
     @ViewChild('formatObject', { static: true })
     formatObject: TemplateRef<any>;
+    @ViewChild('formatDoctorObject', { static: true })
+    formatDoctorObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
     dataSource;
@@ -53,7 +55,8 @@ export class PharmacyManagementComponent implements OnInit, OnDestroy {
             { prop: 'name', name: 'Name' },
             { prop: 'address', name: 'Address' },
             { prop: 'phone', name: 'Phone' },
-            { prop: 'drugs', name: 'Drug', cellTemplate: this.formatObject, },
+            { prop: 'drugs', name: 'List of Drug', cellTemplate: this.formatObject, },
+            { prop: 'doctor', name: 'List of Doctor', cellTemplate: this.formatDoctorObject, },
             { prop: 'openTime', name: 'Open Time' },
             { prop: 'closeTime', name: 'Close Time' },
             {

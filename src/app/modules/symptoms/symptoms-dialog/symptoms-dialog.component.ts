@@ -61,6 +61,7 @@ export class SymptomsDialogComponent implements OnInit {
             livingActivity: ['', Validators.required],
             referenceImage: [''],
             type: ['', Validators.required],
+            logo: [''],
             id: [uuidv4()],
         });
 
@@ -77,7 +78,8 @@ export class SymptomsDialogComponent implements OnInit {
                 diet: this.data.diet,
                 livingActivity: this.data.livingActivity,
                 referenceImage: this.data.referenceImage,
-                type: this.data.type
+                type: this.data.type,
+                logo: this.data.logo,
             });
             this.mode = 'Update';
         };
