@@ -10,8 +10,8 @@
                 <input id="csv-file-input" class="absolute h-0 w-0 opacity-0 invisible pointer-events-none" type="file"
                     [multiple]="false" (change)="uploadCSVFile(csvFileInput.files)" #csvFileInput>
 
-                <label class="hidden sm:inline-flex ml-3" mat-flat-button for="csv-file-input">
-                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
+                <label class="hidden sm:inline-flex ml-3 import-file-csv" mat-flat-button for="csv-file-input">
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
                     <span class="ml-2">Import Pharmacy</span>
                 </label>
 

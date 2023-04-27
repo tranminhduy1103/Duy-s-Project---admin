@@ -40,3 +40,15 @@ body {
     overflow: auto;
     margin-bottom: 10px;
 }
+
+.import-file-csv {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    background: var(--fuse-primary);;
+    color: white;
+    border-radius: 30px;
+}
+
+.import-file-csv .mat-icon {
+    color: white;
+}
