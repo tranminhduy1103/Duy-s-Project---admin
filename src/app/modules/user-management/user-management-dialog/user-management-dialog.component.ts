@@ -35,6 +35,7 @@ export class UserManagementDialogComponent implements OnInit {
         private userManagementService: UserManagementService,
         private userService: UserService,
     ) { }
+    
     ngOnInit(): void {
         const randomstring = Math.random().toString(36).slice(-8);
 
@@ -52,7 +53,6 @@ export class UserManagementDialogComponent implements OnInit {
             // id: [uuidv4()],
         });
 
-        // this.form.controls['password'].disable();
         this.form.controls['password'].setValue(randomstring);
 
         if (this.data) {
