@@ -44,10 +44,10 @@
                 </mat-form-field>
 
                 <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Address</mat-label>
-                    <input matInput [formControlName]="'address'" />
-                    <mat-error *ngIf="form.get('address').hasError('required')">
-                        Address is required
+                    <mat-label>Location</mat-label>
+                    <input matInput [formControlName]="'location'" />
+                    <mat-error *ngIf="form.get('location').hasError('required')">
+                        Location is required
                     </mat-error>
                 </mat-form-field>
 

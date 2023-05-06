@@ -44,11 +44,11 @@ export class UserManagementDialogComponent implements OnInit {
             password: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            address: ['', Validators.required],
+            location: ['', Validators.required],
             phone: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            state: ['', Validators.required],
-            city: ['', Validators.required],
+            // state: ['', Validators.required],
+            // city: ['', Validators.required],
             roles: ['', Validators.required],
             // id: [uuidv4()],
         });
@@ -62,11 +62,11 @@ export class UserManagementDialogComponent implements OnInit {
                 password: this.data.password,
                 firstName: this.data.firstName,
                 lastName: this.data.lastName,
-                address: this.data.address,
+                location: this.data.location,
                 phone: this.data.phone,
                 email: this.data.email,
-                state: this.data.state,
-                city: this.data.city,
+                // state: this.data.state,
+                // city: this.data.city,
                 roles: this.data.roles
             });
             this.mode = 'Update';
