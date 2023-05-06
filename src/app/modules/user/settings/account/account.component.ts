@@ -40,7 +40,7 @@ export class SettingsAccountComponent implements OnInit {
             city: [''],
             district: [''],
             ward: [''],
-            address: [''],
+            location: [''],
             doB: [''],
             phone: [''],
             email: ['', [Validators.required, Validators.email]]
