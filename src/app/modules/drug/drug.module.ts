@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { SharedModule } from 'app/shared/shared.module';
 import { MaterialModule } from 'app/shared/material.module';
 import { DrugManagementComponent } from './drug-management/drug-management.component';
@@ -22,5 +22,6 @@ const routes: Route[] = [
         RouterModule.forChild(routes),
         ImageCropperModule
     ],
+    providers: [CurrencyPipe]
 })
 export class DrugModule { }

@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DrugService } from '../services/drug.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { CurrencyPipe } from '@angular/common';
+
 interface ConvertType {
     value: string;
     viewValue: string;
@@ -29,7 +31,8 @@ export class DrugDialogComponent implements OnInit {
         public dialogRef: MatDialogRef<DrugDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private fb: FormBuilder,
-        private drugService: DrugService
+        private drugService: DrugService,
+        private currencyPipe: CurrencyPipe
     ) { }
 
     ngOnInit(): void {
@@ -37,7 +40,7 @@ export class DrugDialogComponent implements OnInit {
             name: ['', Validators.required],
             effect: ['', Validators.required],
             description: ['', Validators.required],
-            price: ['', Validators.required],
+            price: [0, Validators.required],
             type: ['', Validators.required],
             quantity: [''],
             // logo: [uuidv4()],
@@ -57,6 +60,14 @@ export class DrugDialogComponent implements OnInit {
             });
             this.mode = 'Update';
         }
+
+        this.form.valueChanges.subscribe((form) => {
+            if(form.price) {
+                this.form.patchValue({
+                    price: this.currencyPipe.transform(form.price.toString().replace(/\D/g, '').replace(/^0+/, ''), 'VND', '')
+                }, {emitEvent: false});
+            }
+        });
     }
 
     handleCreateUpdate(): void {
