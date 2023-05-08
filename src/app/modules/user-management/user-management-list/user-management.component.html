@@ -62,6 +62,14 @@
             </div>
         </div>
 
+        <ng-template #formatLocationObject let-row="row" let-value="value">
+            <div class="flex">
+                <p *ngFor="let item of value; let i = index">
+                    {{item}}<span *ngIf="(i + 1) < value.length">; </span>
+                </p>
+            </div>
+        </ng-template>
+
         <ng-template #actionTemplate let-row="row" let-value="value">
             <div class="flex items-center">
                 <mat-icon (click)="openDialog(row)" [svgIcon]="'heroicons_solid:pencil-alt'"

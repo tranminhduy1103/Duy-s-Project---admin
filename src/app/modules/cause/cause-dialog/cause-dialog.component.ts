@@ -39,7 +39,7 @@ export class CauseDialogComponent implements OnInit {
             name: ['', Validators.required],
             description: ['', Validators.required],
             referecenImage: [''],
-            type: [''],
+            type: ['', Validators.required],
             id: [uuidv4()],
         });
 
@@ -68,6 +68,8 @@ export class CauseDialogComponent implements OnInit {
                 .create(this.causeForm.value)
                 .subscribe(res => res.success && this.dialogRef.close(true));
         }
+
+        this.eventsSubject.next();
     }
 
     uploadFile(file): void {

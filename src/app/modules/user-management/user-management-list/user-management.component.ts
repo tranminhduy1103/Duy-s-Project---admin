@@ -21,6 +21,8 @@ import { UserManagementQuery } from '../state/user-management.query';
 export class UserManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
+    @ViewChild('formatLocationObject', { static: true })
+    formatLocationObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
     dataSource: any;
@@ -30,7 +32,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     tabStatus = {
         1: true,
         2: false
-    }
+    };
 
     constructor(
         public dialog: MatDialog,
@@ -47,11 +49,11 @@ export class UserManagementComponent implements OnInit, OnDestroy {
         });
         this.columns = [
             { prop: 'userName', name: 'User Name' },
-            { prop: 'password', name: 'Password' },
+            // { prop: 'password', name: 'Password' },
             { prop: 'firstName', name: 'First Name' },
             { prop: 'lastName', name: 'Last Name' },
             { prop: 'email', name: 'Email' },
-            { prop: 'location', name: 'Location' },
+            { prop: 'coordinates', name: 'Location', cellTemplate: this.formatLocationObject, },
             // { prop: 'city', name: 'City' },
             // { prop: 'street', name: 'Street' },
             // { prop: 'state', name: 'State' },

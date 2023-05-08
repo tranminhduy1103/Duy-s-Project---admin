@@ -27,6 +27,10 @@ export class UserManagementDialogComponent implements OnInit {
         { value: 'CPS', viewValue: 'CPS' },
     ];
     listRole: any = [];
+    coordinate: {
+        attitude: 0;
+        longtitude: 0;
+    };
 
     constructor(
         public dialogRef: MatDialogRef<UserManagementDialogComponent>,
@@ -35,7 +39,7 @@ export class UserManagementDialogComponent implements OnInit {
         private userManagementService: UserManagementService,
         private userService: UserService,
     ) { }
-    
+
     ngOnInit(): void {
         const randomstring = Math.random().toString(36).slice(-8);
 
@@ -44,12 +48,19 @@ export class UserManagementDialogComponent implements OnInit {
             password: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            location: ['', Validators.required],
+            coordinates: ['', Validators.required],
+            latitude: [0],
+            longtitude: [0],
             phone: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            // state: ['', Validators.required],
-            // city: ['', Validators.required],
+            state: [''],
+            city: [''],
+            zipCode: [''],
+            street: [''],
+            address: [''],
             roles: ['', Validators.required],
+            type: [''],
+            isCreateBySocialAccount: [false]
             // id: [uuidv4()],
         });
 
@@ -62,12 +73,16 @@ export class UserManagementDialogComponent implements OnInit {
                 password: this.data.password,
                 firstName: this.data.firstName,
                 lastName: this.data.lastName,
-                location: this.data.location,
+                coordinates: this.data.coordinates,
+                latitude: this.data.location.coordinates[0],
+                longtitude: this.data.location.coordinates[1],
                 phone: this.data.phone,
                 email: this.data.email,
-                // state: this.data.state,
-                // city: this.data.city,
-                roles: this.data.roles
+                state: this.data.state,
+                city: this.data.city,
+                roles: this.data.roles,
+                type: this.data.type,
+                isCreateBySocialAccount: this.data.isCreateBySocialAccount
             });
             this.mode = 'Update';
         }
@@ -80,6 +95,13 @@ export class UserManagementDialogComponent implements OnInit {
     }
 
     handleCreateUpdate(): void {
+        const coordinates = [];
+        coordinates.push(this.form.controls['latitude'].value, this.form.controls['longtitude'].value);
+        this.form.controls['coordinates'].setValue(coordinates);
+
+        // this.form.removeControl('latitude');
+        // this.form.removeControl('longtitude');
+
         if (this.form.invalid) {
             return;
         }

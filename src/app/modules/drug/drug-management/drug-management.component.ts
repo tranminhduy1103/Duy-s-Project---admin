@@ -44,8 +44,8 @@ export class DrugManagementComponent implements OnInit, OnDestroy {
             { prop: 'effect', name: 'Effect' },
             { prop: 'description', name: 'Description' },
             { prop: 'price', name: 'Price' },
-            { prop: 'quanlity', name: 'Quanlity' },
-            { prop: 'logo', name: 'Logo' },
+            { prop: 'quatity', name: 'Quantity' },
+            // { prop: 'logo', name: 'Logo' },
             { prop: 'type', name: 'Type' },
             {
                 cellTemplate: this.actionTemplate,

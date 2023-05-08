@@ -58,15 +58,23 @@ export class PharmacyDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             name: ['', Validators.required],
-            location: ['', Validators.required],
             phone: ['', Validators.required],
             drugIds: [[]],
             doctorIds: [[]],
             logoId: [uuidv4()],
             column: ['', Validators.required],
             referenceImage:[''],
-            type: ['', Validators.required],
+            longtitude: [0],
+            latitude: [0],
+            // type: ['', Validators.required],
             id: [uuidv4()],
+            openTime: [],
+            closeTime: [],
+            openHour: ['', [Validators.max(24), Validators.min(0)]],
+            openSecond: ['', [Validators.max(60), Validators.min(0)]],
+            closeHour: ['', [Validators.max(24), Validators.min(0)]],
+            closeSecond: ['', [Validators.max(60), Validators.min(0)]],
+            coordinates: [[]]
         });
 
         if (this.data) {
@@ -74,14 +82,22 @@ export class PharmacyDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
-                location: this.data.location,
                 phone: this.data.phone,
                 drugIds: this.data.drugIds,
                 doctorIds: this.data.doctorIds,
                 logoId: this.data.logoId || this.data.id,
                 column: this.data.column,
                 referenceImage: this.data.referenceImage,
-                type: this.data.type
+                longtitude: this.data.coordinates[1],
+                latitude: this.data.coordinates[0],
+                openTime: this.data.openTime,
+                closeTime: this.data.closeTime,
+                openHour: this.data.openTime?.split(':')[0] || 0,
+                openSecond: this.data.openTime?.split(':')[1] || 0,
+                closeHour: this.data.closeTime?.split(':')[0] || 0,
+                closeSecond: this.data.closeTime?.split(':')[1] || 0,
+                coordinates: this.data.coordinates
+                // type: this.data.type
             });
             this.mode = 'Update';
         }
@@ -127,6 +143,13 @@ export class PharmacyDialogComponent implements OnInit {
     }
 
     handleCreateUpdate(): void {
+        const coordinates = [];
+        coordinates.push(this.form.controls['latitude'].value, this.form.controls['longtitude'].value);
+        this.form.controls['coordinates'].setValue(coordinates);
+
+        this.form.controls['openTime'].setValue(`${this.form.controls['openHour'].value || 0}:${this.form.controls['openSecond'].value || 0}`);
+        this.form.controls['closeTime'].setValue(`${this.form.controls['closeHour'].value || 0}:${this.form.controls['closeSecond'].value || 0}`);
+
         if (this.form.invalid) {
             return;
         }

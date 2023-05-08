@@ -40,7 +40,7 @@ export class DrugDialogComponent implements OnInit {
             name: ['', Validators.required],
             effect: ['', Validators.required],
             description: ['', Validators.required],
-            price: [0, Validators.required],
+            price: ['', Validators.required],
             type: ['', Validators.required],
             quantity: [''],
             // logo: [uuidv4()],

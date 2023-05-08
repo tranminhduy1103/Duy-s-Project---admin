@@ -17,13 +17,13 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
                     <mat-label>Type</mat-label>
                     <input matInput [formControlName]="'type'" />
                     <mat-error *ngIf="form.controls['type'].errors.required">
                         Type is required
                     </mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <!-- <mat-form-field appearance="fill">
                     <mat-label>Drugs</mat-label>
@@ -44,12 +44,48 @@
                 </mat-form-field>
 
                 <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Location</mat-label>
-                    <input matInput [formControlName]="'location'" />
-                    <mat-error *ngIf="form.get('location').hasError('required')">
-                        Location is required
+                    <mat-label>Latitude</mat-label>
+                    <input matInput [formControlName]="'latitude'" />
+                    <mat-error *ngIf="form.get('latitude').hasError('required')">
+                        Latitude is required
                     </mat-error>
                 </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Longtitude</mat-label>
+                    <input matInput [formControlName]="'longtitude'" />
+                    <mat-error *ngIf="form.get('longtitude').hasError('required')">
+                        Longtitude is required
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="flex">
+                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full mr-2">
+                        <mat-label>Open Hour</mat-label>
+                        <input matInput [formControlName]="'openHour'" type="number" />
+                        <mat-error>Please enter a value between 0 and 100</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                        <mat-label>Open Second</mat-label>
+                        <input matInput [formControlName]="'openSecond'" type="number" max="60" min="0"/>
+                        <mat-error>Please enter a value between 0 and 100</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex">
+                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full mr-2">
+                        <mat-label>Close Hour</mat-label>
+                        <input matInput [formControlName]="'closeHour'" type="number" [min]="form.get('openHour').value"/>
+                        <mat-error>Please enter a value between 0 and 100 and close hour must biggest than open hour</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                        <mat-label>Close Second</mat-label>
+                        <input matInput [formControlName]="'closeSecond'" type="number" />
+                        <mat-error>Please enter a value between 0 and 100</mat-error>
+                    </mat-form-field>
+                </div>
 
                 <mat-form-field class="w-full phone-number-profile">
                     <mat-label>Phone</mat-label>

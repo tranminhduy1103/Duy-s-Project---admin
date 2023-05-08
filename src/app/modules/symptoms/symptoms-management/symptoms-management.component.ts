@@ -21,7 +21,7 @@ import { SymptomsQuery } from '../state/symptoms.query';
 export class SymptomsManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
-    @ViewChild('formatObject', {static: true})
+    @ViewChild('formatObject', { static: true })
     formatObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
@@ -45,12 +45,13 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
             { prop: 'name', name: 'Name' },
             { prop: 'description', name: 'Description' },
             { prop: 'causes', name: 'Cause', cellTemplate: this.formatObject, },
+            { prop: 'drugs', name: 'Drug', cellTemplate: this.formatObject, },
             { prop: 'approach', name: 'Approach' },
             { prop: 'basicExperiment', name: 'Basic Experiment' },
             { prop: 'treatment', name: 'Treatment' },
             { prop: 'diet', name: 'Diet' },
             { prop: 'livingActivity', name: 'Living Activity' },
-            { prop: 'logo', name: 'Logo' },
+            // { prop: 'logo', name: 'Logo' },
             { prop: 'type', name: 'Type' },
             {
                 cellTemplate: this.actionTemplate,

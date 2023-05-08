@@ -33,18 +33,6 @@
                     </mat-error>
                 </mat-form-field>
 
-                <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
-
-                <!-- <image-cropper
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="4 / 3"
-                format="png"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-            ></image-cropper> -->
                 <app-image-cropper class="col-span-2" [recordId]="this.causeForm.value.id" [type]="mode"
                     [fileName]="causeForm.get('name').value" [events]="eventsSubject.asObservable()">
                 </app-image-cropper>
