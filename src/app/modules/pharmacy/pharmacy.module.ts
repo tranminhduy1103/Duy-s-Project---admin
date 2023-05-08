@@ -7,7 +7,7 @@ import { PharmacyDialogComponent } from './pharmacy-dialog/pharmacy-dialog.compo
 import { Route, RouterModule } from '@angular/router';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { PharmacyDrugsComponent } from './pharmacy-drugs/pharmcy-drugs.component';
-import { PharmacyDrugDialogComponent } from './pharmacy-drug-dialog/pharmacy-drug-dialog.component';
+// import { PharmacyDrugDialogComponent } from './pharmacy-drug-dialog/pharmacy-drug-dialog.component';
 
 const routes: Route[] = [
     {
@@ -21,7 +21,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-    declarations: [PharmacyManagementComponent, PharmacyDialogComponent, PharmacyDrugDialogComponent, PharmacyDrugsComponent],
+    declarations: [PharmacyManagementComponent, PharmacyDialogComponent, PharmacyDrugsComponent],
     imports: [
         CommonModule,
         SharedModule,
