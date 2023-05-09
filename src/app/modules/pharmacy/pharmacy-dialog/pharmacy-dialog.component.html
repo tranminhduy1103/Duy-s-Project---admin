@@ -67,7 +67,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                        <mat-label>Open Second</mat-label>
+                        <mat-label>Open Minute</mat-label>
                         <input matInput [formControlName]="'openSecond'" type="number" max="60" min="0"/>
                         <mat-error>Please enter a value between 0 and 100</mat-error>
                     </mat-form-field>
@@ -81,7 +81,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                        <mat-label>Close Second</mat-label>
+                        <mat-label>Close Minute</mat-label>
                         <input matInput [formControlName]="'closeSecond'" type="number" />
                         <mat-error>Please enter a value between 0 and 100</mat-error>
                     </mat-form-field>
@@ -95,13 +95,13 @@
                     <mat-error>Phone is not correct</mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
                     <mat-label>Column</mat-label>
                     <input matInput type="text" [formControlName]="'column'" required="true" />
                     <mat-error *ngIf="form.get('column').hasError('required')">
                         Column is required
                     </mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <!-- <mat-form-field appearance="fill">
                     <mat-label>Doctor</mat-label>

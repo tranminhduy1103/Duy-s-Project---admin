@@ -62,7 +62,7 @@ export class PharmacyDialogComponent implements OnInit {
             drugIds: [[]],
             doctorIds: [[]],
             logoId: [uuidv4()],
-            column: ['', Validators.required],
+            // column: ['', Validators.required],
             referenceImage:[''],
             longtitude: [0],
             latitude: [0],
@@ -86,7 +86,7 @@ export class PharmacyDialogComponent implements OnInit {
                 drugIds: this.data.drugIds,
                 doctorIds: this.data.doctorIds,
                 logoId: this.data.logoId || this.data.id,
-                column: this.data.column,
+                // column: this.data.column,
                 referenceImage: this.data.referenceImage,
                 longtitude: this.data.coordinates[1],
                 latitude: this.data.coordinates[0],
@@ -144,7 +144,7 @@ export class PharmacyDialogComponent implements OnInit {
 
     handleCreateUpdate(): void {
         const coordinates = [];
-        coordinates.push(this.form.controls['latitude'].value, this.form.controls['longtitude'].value);
+        coordinates.push(parseFloat(this.form.controls['latitude'].value), parseFloat(this.form.controls['longtitude'].value));
         this.form.controls['coordinates'].setValue(coordinates);
 
         this.form.controls['openTime'].setValue(`${this.form.controls['openHour'].value || 0}:${this.form.controls['openSecond'].value || 0}`);
