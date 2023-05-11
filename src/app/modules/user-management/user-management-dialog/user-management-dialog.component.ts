@@ -74,8 +74,8 @@ export class UserManagementDialogComponent implements OnInit {
                 firstName: this.data.firstName,
                 lastName: this.data.lastName,
                 coordinates: this.data.coordinates,
-                latitude: this.data.coordinates[0] || 0,
-                longtitude: this.data.coordinates[1] || 0,
+                latitude: this.data.coordinates[1] || 0,
+                longtitude: this.data.coordinates[0] || 0,
                 phone: this.data.phone,
                 email: this.data.email,
                 state: this.data.state,
@@ -96,7 +96,7 @@ export class UserManagementDialogComponent implements OnInit {
 
     handleCreateUpdate(): void {
         const coordinates = [];
-        coordinates.push(this.form.controls['latitude'].value, this.form.controls['longtitude'].value);
+        coordinates.push(parseFloat(this.form.controls['longtitude'].value), parseFloat(this.form.controls['latitude'].value));
         this.form.controls['coordinates'].setValue(coordinates);
 
         // this.form.removeControl('latitude');
