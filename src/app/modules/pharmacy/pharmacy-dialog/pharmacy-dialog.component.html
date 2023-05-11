@@ -62,28 +62,28 @@
                 <div class="flex">
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full mr-2">
                         <mat-label>Open Hour</mat-label>
-                        <input matInput [formControlName]="'openHour'" type="number" />
-                        <mat-error>Please enter a value between 0 and 100</mat-error>
+                        <input matInput [formControlName]="'openHour'" type="number" max="24" min="0"/>
+                        <mat-error>Please enter a value between 0 and 24</mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
                         <mat-label>Open Minute</mat-label>
                         <input matInput [formControlName]="'openSecond'" type="number" max="60" min="0"/>
-                        <mat-error>Please enter a value between 0 and 100</mat-error>
+                        <mat-error>Please enter a value between 0 and 60</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="flex">
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full mr-2">
                         <mat-label>Close Hour</mat-label>
-                        <input matInput [formControlName]="'closeHour'" type="number" [min]="form.get('openHour').value"/>
-                        <mat-error>Please enter a value between 0 and 100 and close hour must biggest than open hour</mat-error>
+                        <input matInput [formControlName]="'closeHour'" type="number" [min]="form.get('openHour').value" max="24"/>
+                        <mat-error>Please enter a value between 0 and 24 and close hour must biggest than open hour</mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
                         <mat-label>Close Minute</mat-label>
-                        <input matInput [formControlName]="'closeSecond'" type="number" />
-                        <mat-error>Please enter a value between 0 and 100</mat-error>
+                        <input matInput [formControlName]="'closeSecond'" type="number" max="60" min="0"/>
+                        <mat-error>Please enter a value between 0 and 60</mat-error>
                     </mat-form-field>
                 </div>
 
