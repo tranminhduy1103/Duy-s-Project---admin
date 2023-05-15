@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserManagementService } from '../services/user-management.service';
-import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { UserService } from 'app/modules/user/services/user.service';
 
@@ -27,10 +26,6 @@ export class UserManagementDialogComponent implements OnInit {
         { value: 'CPS', viewValue: 'CPS' },
     ];
     listRole: any = [];
-    coordinate: {
-        attitude: 0;
-        longtitude: 0;
-    };
 
     constructor(
         public dialogRef: MatDialogRef<UserManagementDialogComponent>,
@@ -48,9 +43,6 @@ export class UserManagementDialogComponent implements OnInit {
             password: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            coordinates: ['', Validators.required],
-            latitude: [0],
-            longtitude: [0],
             phone: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             state: [''],
@@ -73,12 +65,12 @@ export class UserManagementDialogComponent implements OnInit {
                 password: this.data.password,
                 firstName: this.data.firstName,
                 lastName: this.data.lastName,
-                coordinates: this.data.coordinates,
-                latitude: this.data.coordinates[1] || 0,
-                longtitude: this.data.coordinates[0] || 0,
                 phone: this.data.phone,
                 email: this.data.email,
                 state: this.data.state,
+                address: this.data.address,
+                street: this.data.street,
+                zipCode: this.data.zipCode,
                 city: this.data.city,
                 roles: this.data.roles,
                 type: this.data.type,
@@ -95,13 +87,6 @@ export class UserManagementDialogComponent implements OnInit {
     }
 
     handleCreateUpdate(): void {
-        const coordinates = [];
-        coordinates.push(parseFloat(this.form.controls['longtitude'].value), parseFloat(this.form.controls['latitude'].value));
-        this.form.controls['coordinates'].setValue(coordinates);
-
-        // this.form.removeControl('latitude');
-        // this.form.removeControl('longtitude');
-
         if (this.form.invalid) {
             return;
         }

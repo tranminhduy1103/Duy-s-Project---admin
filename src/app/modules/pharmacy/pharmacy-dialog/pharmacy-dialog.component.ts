@@ -64,8 +64,6 @@ export class PharmacyDialogComponent implements OnInit {
             logoId: [uuidv4()],
             // column: ['', Validators.required],
             referenceImage:[''],
-            longtitude: [0],
-            latitude: [0],
             // type: ['', Validators.required],
             id: [uuidv4()],
             openTime: [],
@@ -73,8 +71,7 @@ export class PharmacyDialogComponent implements OnInit {
             openHour: ['', [Validators.max(24), Validators.min(0)]],
             openSecond: ['', [Validators.max(60), Validators.min(0)]],
             closeHour: ['', [Validators.max(24), Validators.min(0)]],
-            closeSecond: ['', [Validators.max(60), Validators.min(0)]],
-            coordinates: [[]]
+            closeSecond: ['', [Validators.max(60), Validators.min(0)]]
         });
 
         if (this.data) {
@@ -88,15 +85,12 @@ export class PharmacyDialogComponent implements OnInit {
                 logoId: this.data.logoId || this.data.id,
                 // column: this.data.column,
                 referenceImage: this.data.referenceImage,
-                longtitude: this.data.coordinates[0] || 0,
-                latitude: this.data.coordinates[1] || 0,
                 openTime: this.data.openTime,
                 closeTime: this.data.closeTime,
                 openHour: this.data.openTime?.split(':')[0] || 0,
                 openSecond: this.data.openTime?.split(':')[1] || 0,
                 closeHour: this.data.closeTime?.split(':')[0] || 0,
-                closeSecond: this.data.closeTime?.split(':')[1] || 0,
-                coordinates: this.data.coordinates
+                closeSecond: this.data.closeTime?.split(':')[1] || 0
                 // type: this.data.type
             });
             this.mode = 'Update';
@@ -143,10 +137,6 @@ export class PharmacyDialogComponent implements OnInit {
     }
 
     handleCreateUpdate(): void {
-        const coordinates = [];
-        coordinates.push(parseFloat(this.form.controls['longtitude'].value), parseFloat(this.form.controls['latitude'].value));
-        this.form.controls['coordinates'].setValue(coordinates);
-
         this.form.controls['openTime'].setValue(`${this.form.controls['openHour'].value || 0}:${this.form.controls['openSecond'].value || 0}`);
         this.form.controls['closeTime'].setValue(`${this.form.controls['closeHour'].value || 0}:${this.form.controls['closeSecond'].value || 0}`);
 

@@ -42,23 +42,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Latitude</mat-label>
-                    <input matInput [formControlName]="'latitude'" />
-                    <mat-error *ngIf="form.get('latitude').hasError('required')">
-                        Latitude is required
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Longtitude</mat-label>
-                    <input matInput [formControlName]="'longtitude'" />
-                    <mat-error *ngIf="form.get('longtitude').hasError('required')">
-                        Longtitude is required
-                    </mat-error>
-                </mat-form-field>
-
+                
                 <div class="flex">
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full mr-2">
                         <mat-label>Open Hour</mat-label>
