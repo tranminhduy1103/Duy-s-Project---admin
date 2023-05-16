@@ -35,11 +35,11 @@
 
                 <mat-form-field>
                     <mat-label>Symptoms</mat-label>
-                    <mat-select #selectSymptoms multiple [(value)]="selectedSymptoms" [formControlName]="'symptomsIds'">
-                        <mat-select-filter *ngIf="selectSymptoms.focused" [array]="causeList" [displayMember]="'name'"
+                    <mat-select #selectSymptom multiple [(value)]="selectedSymptom" [formControlName]="'symptomsIds'">
+                        <mat-select-filter *ngIf="selectSymptom.focused" [array]="symptomsList" [displayMember]="'name'"
                             (filteredReturn)="filteredSymptoms = $event"></mat-select-filter>
-                        <mat-option *ngFor="let symptoms of filteredSymptoms" [value]="symptoms.id">
-                            {{symptoms.name}}
+                        <mat-option *ngFor="let symptom of filteredSymptoms" [value]="symptom.id">
+                            {{symptom.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

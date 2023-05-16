@@ -34,7 +34,7 @@ export class DiseaseDialogComponent implements OnInit {
     symptomsList: [];
     drugList: [];
     selectedDrug = [];
-    selectedSymptoms = [];
+    selectedSymptom = [];
     filteredDrugs;
     filteredSymptoms;
 
