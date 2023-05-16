@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between w-full mb-4 bg-card shadow rounded-2xl p-4">
             <div>
                 <h2 class="text-3xl font-semibold tracking-tight leading-8">
-                    Cause Management
+                    Disease Management
                 </h2>
                 <!-- <div class="font-medium tracking-tight text-secondary">
                     Keep track of your financial status
@@ -19,19 +19,19 @@
                 </div>
                 <button class="hidden sm:inline-flex ml-3" mat-flat-button (click)="openDialog()" [color]="'primary'">
                     <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user-add'"></mat-icon>
-                    <span class="ml-2">New Cause</span>
+                    <span class="ml-2">New Disease</span>
                 </button>
 
 
             </div>
         </div>
 
-        <div class="flex w-full">
-            <div class="left-menu">
+        <div class="w-full">
+            <!-- <div class="left-menu">
                 <left-menu (filterValue)="filterListData($event)"></left-menu>
-            </div>
+            </div> -->
 
-            <div class="right-content">
+            <div class="">
                 <div
                     class="xl:col-span-2 flex flex-col bg-card shadow rounded-2xl p-4 flex-auto overflow-hidden my-2 full-height">
                     <div class="overflow-x-auto">
@@ -52,6 +52,13 @@
                     class="icon-size-10 cursor-pointer ml-2" (click)="handleToggle(row)"></mat-icon>
                 <mat-icon (click)="handleDelete(row)" [svgIcon]="'heroicons_solid:trash'" matTooltip="Delete"
                     class="icon-size-6 ml-2 cursor-pointer" color="warn"></mat-icon>
+            </div>
+        </ng-template>
+
+        <ng-template #formatObject let-row="row" let-value="value">
+            <div class="flex">
+                <p *ngFor="let item of value; let i = index">{{item.name}}<span *ngIf="(i + 1) < value.length">, </span>
+                </p>
             </div>
         </ng-template>
     </div>

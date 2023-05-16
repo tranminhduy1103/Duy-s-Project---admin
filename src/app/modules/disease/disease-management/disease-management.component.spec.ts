@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DrugManagementComponent } from './drug-management.component';
+import { DiseaseManagementComponent } from './disease-management.component';
 
 describe('CustomerManagementComponent', () => {
-  let component: DrugManagementComponent;
-  let fixture: ComponentFixture<DrugManagementComponent>;
+  let component: DiseaseManagementComponent;
+  let fixture: ComponentFixture<DiseaseManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DrugManagementComponent]
+      declarations: [DiseaseManagementComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DrugManagementComponent);
+    fixture = TestBed.createComponent(DiseaseManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

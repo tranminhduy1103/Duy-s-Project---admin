@@ -7,115 +7,35 @@
     </div>
 
     <div class="form-action">
-        <form [formGroup]="form">
+        <form [formGroup]="symptomsForm">
             <div class="grid grid-cols-2 gap-6 scroll-bar-form">
                 <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
                     <mat-label>Name</mat-label>
                     <input matInput [formControlName]="'name'" />
-                    <mat-error *ngIf="form.get('name').hasError('required')">
+                    <mat-error *ngIf="symptomsForm.get('name').hasError('required')">
                         Name is required
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Type</mat-label>
-                    <input matInput [formControlName]="'type'" />
-                    <mat-error *ngIf="form.get('type').hasError('required')">
-                        Type is required
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
                     <mat-label>Description</mat-label>
                     <input matInput [formControlName]="'description'" />
-                    <mat-error *ngIf="form.get('description').hasError('required')">
+                    <mat-error *ngIf="symptomsForm.get('description').hasError('required')">
                         Description is required
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Causes</mat-label>
-                    <mat-select #selectCause multiple [(value)]="selectedCause" [formControlName]="'causeIds'">
-                        <mat-select-filter *ngIf="selectCause.focused" [array]="causeList" [displayMember]="'name'"
-                            (filteredReturn)="filteredCauses = $event"></mat-select-filter>
-                        <mat-option *ngFor="let cause of filteredCauses" [value]="cause.id">
-                            {{cause.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Drugs</mat-label>
-                    <mat-select #selectDrug multiple [(value)]="selectedDrug" [formControlName]="'drugIds'">
-                        <mat-select-filter *ngIf="selectDrug.focused" [array]="drugList" [displayMember]="'name'"
-                            (filteredReturn)="filteredDrugs = $event"></mat-select-filter>
-                        <mat-option *ngFor="let drug of filteredDrugs" [value]="drug.id">
-                            {{drug.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
                 <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Basic Experiment</mat-label>
-                    <input matInput type="text" [formControlName]="'basicExperiment'" />
-                    <mat-error *ngIf="form.get('basicExperiment').hasError('required')">
-                        Basic Experiment is required
+                    <mat-label>Type</mat-label>
+                    <input matInput [formControlName]="'type'" />
+                    <mat-error *ngIf="symptomsForm.get('type').hasError('required')">
+                        Type is required
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Approach</mat-label>
-                    <input matInput type="text" [formControlName]="'approach'" />
-                    <mat-error *ngIf="form.get('approach').hasError('required')">
-                        Approach Experiment is required
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Treatment</mat-label>
-                    <input matInput type="text" [formControlName]="'treatment'" />
-                    <mat-error *ngIf="form.get('treatment').hasError('required')">
-                        Treatment is required
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Diet</mat-label>
-                    <input matInput type="text" [formControlName]="'diet'" />
-                    <mat-error *ngIf="form.get('diet').hasError('required')">
-                        Diet is required
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Living Activity</mat-label>
-                    <input matInput type="text" [formControlName]="'livingActivity'" />
-                    <mat-error *ngIf="form.get('livingActivity').hasError('required')">
-                        Living Activity is required
-                    </mat-error>
-                </mat-form-field>
-
-                <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
-                    <mat-label>Logo</mat-label>
-                    <input matInput type="text" [formControlName]="'logo'" />
-                    <mat-error *ngIf="form.get('logo').hasError('required')">
-                        Logo is required
-                    </mat-error>
-                </mat-form-field> -->
-
-
-                <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
-
-                <!-- <image-cropper
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="4 / 3"
-                format="png"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-            ></image-cropper> -->
+                <app-image-cropper class="col-span-2" [recordId]="this.symptomsForm.value.id" [type]="mode"
+                    [fileName]="symptomsForm.get('name').value" [events]="eventsSubject.asObservable()">
+                </app-image-cropper>
             </div>
 
             <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">

@@ -10,17 +10,19 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { TableColumn } from '@swimlane/ngx-datatable/public-api';
 import { PageOptions, Pagination } from 'app/shared/models/pagination.model';
 import { pick } from 'lodash';
-import { CauseDialogComponent } from '../cause-dialog/cause-dialog.component';
-import { CauseService } from '../services/cause.service';
-import { CauseQuery } from '../state/cause.query';
+import { DiseaseDialogComponent } from '../disease-dialog/disease-dialog.component';
+import { DiseaseService } from '../services/disease.service';
+import { DiseaseQuery } from '../state/disease.query';
 @Component({
-    selector: 'app-cause-management',
-    templateUrl: './cause-management.component.html',
-    styleUrls: ['./cause-management.component.scss'],
+    selector: 'app-disease-management',
+    templateUrl: './disease-management.component.html',
+    styleUrls: ['./disease-management.component.scss'],
 })
-export class CauseManagementComponent implements OnInit, OnDestroy {
+export class DiseaseManagementComponent implements OnInit, OnDestroy {
     @ViewChild('actionTemplate', { static: true })
     actionTemplate: TemplateRef<any>;
+    @ViewChild('formatObject', { static: true })
+    formatObject: TemplateRef<any>;
     page: PageOptions = new PageOptions();
     columns: TableColumn[];
     dataSource;
@@ -29,21 +31,28 @@ export class CauseManagementComponent implements OnInit, OnDestroy {
 
     constructor(
         public dialog: MatDialog,
-        private causeQuery: CauseQuery,
-        private causeService: CauseService,
+        private diseaseQuery: DiseaseQuery,
+        private diseaseService: DiseaseService,
         private fuseConfirmationService: FuseConfirmationService
     ) { }
 
     ngOnInit(): void {
         this.getAlls();
-        this.causeQuery.select().subscribe((m: any) => {
+        this.diseaseQuery.select().subscribe((m: any) => {
             this.dataSource = m;
         });
         this.columns = [
             { prop: 'name', name: 'Name' },
             { prop: 'description', name: 'Description' },
+            { prop: 'symptoms', name: 'Symptoms', cellTemplate: this.formatObject, },
+            { prop: 'drugs', name: 'Drug', cellTemplate: this.formatObject, },
+            { prop: 'approach', name: 'Approach' },
+            { prop: 'basicExperiment', name: 'Basic Experiment' },
+            { prop: 'treatment', name: 'Treatment' },
+            { prop: 'diet', name: 'Diet' },
+            { prop: 'livingActivity', name: 'Living Activity' },
+            // { prop: 'logo', name: 'Logo' },
             { prop: 'type', name: 'Type' },
-            { prop: 'referenceImage', name: 'Reference Image' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',
@@ -55,14 +64,14 @@ export class CauseManagementComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void { }
 
     getAlls(params: any = this.page): void {
-        this.causeService
+        this.diseaseService
             .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
             .subscribe();
     }
 
     handleToggle(item): void {
         this.fuseConfirmationService.openConfirm(() => {
-            this.causeService
+            this.diseaseService
                 .toggle(item.id)
                 .subscribe(() => this.getAlls());
         });
@@ -70,14 +79,14 @@ export class CauseManagementComponent implements OnInit, OnDestroy {
 
     handleDelete(item): void {
         this.fuseConfirmationService.openConfirm(() => {
-            this.causeService
+            this.diseaseService
                 .delete(item.id)
                 .subscribe(res => res.success && this.getAlls());
         });
     }
 
     openDialog(model = null): void {
-        const ref = this.dialog.open(CauseDialogComponent, {
+        const ref = this.dialog.open(DiseaseDialogComponent, {
             width: '800px',
             data: model,
         });

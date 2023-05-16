@@ -16,12 +16,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FuseHighlightModule } from '@fuse/components/highlight';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DataService } from 'app/shared/data.service';
 import { MatNativeDateModule } from '@angular/material/core';
 
 const route: Route[] = [
@@ -34,10 +32,10 @@ const route: Route[] = [
             ),
     },
     {
-        path: 'symptoms',
+        path: 'disease',
         loadChildren: () =>
-            import('app/modules/symptoms/symptoms.module').then(
-                m => m.SymptomsModule
+            import('app/modules/disease/disease.module').then(
+                m => m.DiseaseModule
             ),
     },
     {
@@ -62,10 +60,10 @@ const route: Route[] = [
             ),
     },
     {
-        path: 'cause',
+        path: 'symptoms',
         loadChildren: () =>
-            import('app/modules/cause/cause.module').then(
-                m => m.CauseModule
+            import('app/modules/symptoms/symptoms.module').then(
+                m => m.SymptomsModule
             ),
     },
 ];

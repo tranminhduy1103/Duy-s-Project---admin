@@ -1,0 +1,129 @@
+<div class="relative flex flex-col w-full h-full">
+    <div class="text-xl leading-6 font-medium mb-4 text-center p-4">
+        {{ mode }} Disease
+    </div>
+    <div class="absolute top-0 right-0 p-4">
+        <mat-icon matDialogClose class="text-secondary cursor-pointer" [svgIcon]="'heroicons_outline:x'"></mat-icon>
+    </div>
+
+    <div class="form-action">
+        <form [formGroup]="form">
+            <div class="grid grid-cols-2 gap-6 scroll-bar-form">
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControlName]="'name'" />
+                    <mat-error *ngIf="form.get('name').hasError('required')">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Type</mat-label>
+                    <input matInput [formControlName]="'type'" />
+                    <mat-error *ngIf="form.get('type').hasError('required')">
+                        Type is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Description</mat-label>
+                    <input matInput [formControlName]="'description'" />
+                    <mat-error *ngIf="form.get('description').hasError('required')">
+                        Description is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Symptoms</mat-label>
+                    <mat-select #selectSymptoms multiple [(value)]="selectedSymptoms" [formControlName]="'symptomsIds'">
+                        <mat-select-filter *ngIf="selectSymptoms.focused" [array]="causeList" [displayMember]="'name'"
+                            (filteredReturn)="filteredSymptoms = $event"></mat-select-filter>
+                        <mat-option *ngFor="let symptoms of filteredSymptoms" [value]="symptoms.id">
+                            {{symptoms.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Drugs</mat-label>
+                    <mat-select #selectDrug multiple [(value)]="selectedDrug" [formControlName]="'drugIds'">
+                        <mat-select-filter *ngIf="selectDrug.focused" [array]="drugList" [displayMember]="'name'"
+                            (filteredReturn)="filteredDrugs = $event"></mat-select-filter>
+                        <mat-option *ngFor="let drug of filteredDrugs" [value]="drug.id">
+                            {{drug.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Basic Experiment</mat-label>
+                    <input matInput type="text" [formControlName]="'basicExperiment'" />
+                    <mat-error *ngIf="form.get('basicExperiment').hasError('required')">
+                        Basic Experiment is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Approach</mat-label>
+                    <input matInput type="text" [formControlName]="'approach'" />
+                    <mat-error *ngIf="form.get('approach').hasError('required')">
+                        Approach Experiment is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Treatment</mat-label>
+                    <input matInput type="text" [formControlName]="'treatment'" />
+                    <mat-error *ngIf="form.get('treatment').hasError('required')">
+                        Treatment is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Diet</mat-label>
+                    <input matInput type="text" [formControlName]="'diet'" />
+                    <mat-error *ngIf="form.get('diet').hasError('required')">
+                        Diet is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Living Activity</mat-label>
+                    <input matInput type="text" [formControlName]="'livingActivity'" />
+                    <mat-error *ngIf="form.get('livingActivity').hasError('required')">
+                        Living Activity is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Logo</mat-label>
+                    <input matInput type="text" [formControlName]="'logo'" />
+                    <mat-error *ngIf="form.get('logo').hasError('required')">
+                        Logo is required
+                    </mat-error>
+                </mat-form-field> -->
+
+
+                <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
+
+                <!-- <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="4 / 3"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper> -->
+            </div>
+
+            <div class="flex justify-center sm:justify-end py-4 space-x-3 dark:bg-black dark:bg-opacity-10 p-4">
+                <button mat-stroked-button matDialogClose="true">Cancel</button>
+                <button mat-flat-button color="primary" (click)="handleCreateUpdate()">
+                    {{ mode }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
