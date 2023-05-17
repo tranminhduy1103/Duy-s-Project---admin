@@ -43,7 +43,7 @@ export class SymptomsManagementComponent implements OnInit, OnDestroy {
             { prop: 'name', name: 'Name' },
             { prop: 'description', name: 'Description' },
             { prop: 'type', name: 'Type' },
-            { prop: 'referenceImage', name: 'Reference Image' },
+            // { prop: 'referenceImage', name: 'Reference Image' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',

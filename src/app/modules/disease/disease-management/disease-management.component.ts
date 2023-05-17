@@ -48,11 +48,6 @@ export class DiseaseManagementComponent implements OnInit, OnDestroy {
             { prop: 'drugs', name: 'Drug', cellTemplate: this.formatObject, },
             { prop: 'approach', name: 'Approach' },
             { prop: 'basicExperiment', name: 'Basic Experiment' },
-            { prop: 'treatment', name: 'Treatment' },
-            { prop: 'diet', name: 'Diet' },
-            { prop: 'livingActivity', name: 'Living Activity' },
-            // { prop: 'logo', name: 'Logo' },
-            { prop: 'type', name: 'Type' },
             {
                 cellTemplate: this.actionTemplate,
                 prop: 'Actions',

@@ -38,7 +38,7 @@ export class SymptomsDialogComponent implements OnInit {
         this.symptomsForm = this.fb.group({
             name: ['', Validators.required],
             description: ['', Validators.required],
-            referecenImage: [''],
+            // referecenImage: [''],
             type: ['', Validators.required],
             id: [uuidv4()],
         });
@@ -48,7 +48,7 @@ export class SymptomsDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
-                referecenImage: this.data.referecenImage,
+                // referecenImage: this.data.referecenImage,
                 type: this.data.type
             });
             this.mode = 'Update';
