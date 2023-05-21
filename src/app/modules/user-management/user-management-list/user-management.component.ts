@@ -80,14 +80,14 @@ export class UserManagementComponent implements OnInit, OnDestroy {
         this.fuseConfirmationService.openConfirm(() => {
             this.userManagementService
                 .updateUserStatus(item.id)
-                .subscribe(() => this.getAlls());
+                .subscribe(() => this.getAlls({ ...this.page, tabManage: this.tabManage }));
         });
     }
     handleDelete(item): void {
         this.fuseConfirmationService.openConfirm(() => {
             this.userManagementService
                 .delete(item.id)
-                .subscribe(res => res.success && this.getAlls());
+                .subscribe(res => res.success && this.getAlls({ ...this.page, tabManage: this.tabManage }));
         });
     }
     openDialog(model = null): void {
@@ -95,7 +95,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
             width: '800px',
             data: model,
         });
-        ref.afterClosed().subscribe(m => m && this.getAlls());
+        ref.afterClosed().subscribe(m => m && this.getAlls({ ...this.page, tabManage: this.tabManage }));
     }
     handlePageChange(page): void {
         this.page.pageNumber = page.pageIndex + 1;
