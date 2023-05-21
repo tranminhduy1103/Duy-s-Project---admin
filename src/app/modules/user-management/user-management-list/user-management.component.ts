@@ -42,10 +42,10 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.getAlls();
+        this.getAlls({ ...this.page, tabManage: this.tabManage });
         this.userManagementQuery.select().subscribe((m: any) => {
             this.dataSource = m || [];
-            this.dataSource.items = m.items && this.tabManage !== 3 ? this.dataSource.items?.filter(value => value.isActive === this.tabStatus[this.tabManage]) : m.items;
+            this.dataSource.items = m.items;
         });
         this.columns = [
             { prop: 'userName', name: 'User Name' },
@@ -72,7 +72,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
 
     getAlls(params: any = this.page): void {
         this.userManagementService
-            .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
+            .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue', 'tabManage']))
             .subscribe();
     }
 
@@ -100,12 +100,10 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     handlePageChange(page): void {
         this.page.pageNumber = page.pageIndex + 1;
         this.page.pageSize = page.pageSize;
-        this.getAlls(this.page);
+        this.getAlls({...this.page, tabManage: this.tabManage});
     }
     filter(): void {
-        this.page.pageNumber = 1;
-        this.page.pageSize = 10;
-        this.getAlls({ ...this.page, filterValue: this.filterValue });
+        this.getAlls({ ...this.page, filterValue: this.filterValue, tabManage: this.tabManage });
     }
 
     filterListData(item): void {
@@ -114,7 +112,6 @@ export class UserManagementComponent implements OnInit, OnDestroy {
 
     changeTabTransaction(tab): void {
         this.tabManage = tab;
-
         this.filter();
     }
 }
