@@ -45,7 +45,7 @@ export class DrugDialogComponent implements OnInit {
             quantity: [''],
             referenceImage: [''],
             // logo: [uuidv4()],
-            id: [uuidv4()],
+            id: [''],
         });
 
         if (this.data) {
