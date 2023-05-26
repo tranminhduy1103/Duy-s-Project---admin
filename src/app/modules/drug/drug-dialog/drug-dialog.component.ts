@@ -45,12 +45,12 @@ export class DrugDialogComponent implements OnInit {
             quantity: [''],
             referenceImage: [''],
             // logo: [uuidv4()],
-            id: [''],
+            // id: [''],
         });
 
         if (this.data) {
             this.form.patchValue({
-                id: this.data.id,
+                // id: this.data.id,
                 name: this.data.name,
                 effect: this.data.effect,
                 description: this.data.description,
