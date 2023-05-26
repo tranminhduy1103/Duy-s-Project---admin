@@ -43,6 +43,14 @@
                     </mat-select>
                 </mat-form-field>
                 
+                <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full">
+                    <mat-label>Address</mat-label>
+                    <input matInput [formControlName]="'address'" />
+                    <mat-error *ngIf="form.get('address').hasError('required')">
+                        Address is required
+                    </mat-error>
+                </mat-form-field>
+
                 <div class="flex">
                     <mat-form-field class="fuse-mat-no-subscript fuse-mat-textarea w-full mr-2">
                         <mat-label>Open Hour</mat-label>

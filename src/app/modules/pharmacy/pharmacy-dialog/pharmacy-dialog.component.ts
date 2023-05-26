@@ -58,6 +58,7 @@ export class PharmacyDialogComponent implements OnInit {
     ngOnInit(): void {
         this.form = this.fb.group({
             name: ['', Validators.required],
+            address: ['', Validators.required],
             phone: ['', Validators.required],
             drugIds: [[]],
             doctorIds: [[]],
@@ -79,6 +80,7 @@ export class PharmacyDialogComponent implements OnInit {
                 id: this.data.id,
                 name: this.data.name,
                 description: this.data.description,
+                address: this.data.address,
                 phone: this.data.phone,
                 drugIds: this.data.drugIds,
                 doctorIds: this.data.doctorIds,
