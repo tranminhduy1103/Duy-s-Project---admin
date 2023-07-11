@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { SymptomsService } from 'app/modules/symptoms/services/symptoms.service';
 import { SymptomsQuery } from 'app/modules/symptoms/state/symptoms.query';
-import { PageOptions } from 'app/shared/models/pagination.model';
+import { PageOptions, PageOptionsCustom } from 'app/shared/models/pagination.model';
 import { pick } from 'lodash';
 import { DrugService } from 'app/modules/drug/services/drug.service';
 import { DrugQuery } from 'app/modules/drug/state/drug.query';
@@ -24,6 +24,7 @@ export class DiseaseDialogComponent implements OnInit {
     form: FormGroup;
     mode: string = 'Create';
     page: PageOptions = new PageOptions();
+    pageCustom: PageOptionsCustom = new PageOptionsCustom();
     imageChangedEvent: any = '';
     croppedImage: any = '';
     convertTypes: ConvertType[] = [
@@ -97,13 +98,13 @@ export class DiseaseDialogComponent implements OnInit {
         });
     }
 
-    getListSymptoms(params: any = this.page): void {
+    getListSymptoms(params: any = this.pageCustom): void {
         this.symptomsService
         .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
         .subscribe();
     }
 
-    getListDrug(params: any = this.page): void {
+    getListDrug(params: any = this.pageCustom): void {
         this.drugService
         .getAll(pick(params, ['pageNumber', 'pageSize', 'filterValue']))
         .subscribe();

@@ -18,3 +18,8 @@ export class PageOptions {
     pageSize?: number = 10;
     pageNumber?: number = 1;
 }
+
+export class PageOptionsCustom {
+    pageSize?: number = 1000;
+    pageNumber?: number = 1;
+}
